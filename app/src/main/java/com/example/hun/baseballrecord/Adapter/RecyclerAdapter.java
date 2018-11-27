@@ -42,7 +42,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void onClick(View v) {
             if (mItemClickListener != null) {
                 //int i = v.getAccessibilityViewId();
-                int i = v.getAccessibilityLiveRegion();
+
+                int i = v.getVerticalScrollbarPosition();
                 mItemClickListener.onItemClick(v, i);
                 Log.d("111", "i ==> " + i);
             }
@@ -106,4 +107,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemView.setOnClickListener(clickListener);
         }
     }
+
+
 }
