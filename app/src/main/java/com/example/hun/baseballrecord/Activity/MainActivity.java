@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addDummy(){
-        dataList.add(new RecyclerModel("111", "222"));
+        dataList.add(new RecyclerModel("순위", "이름"));
         dataList.add(new RecyclerModel("333", "444"));
         dataList.add(new RecyclerModel("555", "666"));
         dataList.add(new RecyclerModel("777", "888"));
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerAdapter.setOnItemClickListener(mOnItemClickListener);
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recyclerAdapter);

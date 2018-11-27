@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@drawable/focus_border_a7a7a7"
     android:focusable="true"
-    android:id="@+id/id"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-     <TextView
+    <TextView
         android:id="@+id/titleText"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="aaa"
         android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/aurthorText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/titleText"
-                android:text="bbb"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"/>
-
     <View
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:background="@color/colorAccent"
-        android:layout_below="@+id/aurthorText"
-        />
+        android:layout_width="5dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/colorAccent" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/aurthorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="bbb" />
+
+
+
+</LinearLayout>
