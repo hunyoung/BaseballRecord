@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
-        addDummy();
-        setRecyclerView();
+      //  addDummy();
+      //  setRecyclerView();
     }
 
     /**
@@ -111,9 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Document doc = Jsoup.connect(htmlURL).get();
 
+                dataList.add(new RecyclerModel("순위", "이름"));
 
                 //테스트1
-                Elements titles= doc.select("div.box-body tr");
+                Elements titles= doc.select("div.box-body tr ");
+                //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
                 System.out.println("-------------------------------------------------------------");
                 for(Element e: titles){
@@ -123,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
                     dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
                 }
 
-                Elements titlesss= doc.select("div.box-body tr.colhead_stz0");
-
-                System.out.println("-------------------------------------------------------------");
-                for(Element e: titlesss){
-                       System.out.println("titlesss : " + e.text());
-                    dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
-                }
+//                Elements titlesss= doc.select("div.box-body tr.colhead_stz0");
+//
+//                System.out.println("-------------------------------------------------------------");
+//                for(Element e: titlesss){
+//                       System.out.println("titlesss : " + e.text());
+//                    dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
+//                }
 
 //                //테스트2
 //                titles= doc.select("div.news-con h2.tit-news");
@@ -156,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            dataList.add(new RecyclerModel("1", a));
+
+            setRecyclerView();
+
+
             Log.d("aaaaaaaaaaaaaaa =   ", a);
         }
     }
