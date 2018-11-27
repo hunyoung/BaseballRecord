@@ -71,22 +71,22 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        recyclerAdapter.OnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.d("####", ""+ v);
-            }
-        });
+//        recyclerAdapter.OnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("####", ""+ v);
+//            }
+//        });
+//
+//        RecyclerAdapter.OnItemClickListener mOnItemClickListener = new RecyclerAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//                count = position;
+//                Log.d("position ==>", " " + count);
+//            }
+//        };
 
-        RecyclerAdapter.OnItemClickListener mOnItemClickListener = new RecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                count = position;
-                Log.d("position ==>", " " + position);
-            }
-        };
-
-        recyclerAdapter.setOnItemClickListener(mOnItemClickListener);
+//        recyclerAdapter.setOnItemClickListener(mOnItemClickListener);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 dataList.add(new RecyclerModel("순위", "이름"));
 
                 //테스트1
-                Elements titles= doc.select("div.box-body tr ");
+                Elements titles= doc.select("div.box-body tr");
                 //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
                 System.out.println("-------------------------------------------------------------");

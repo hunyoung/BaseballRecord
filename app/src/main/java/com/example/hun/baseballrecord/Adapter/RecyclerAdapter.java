@@ -18,6 +18,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Context context;
     private int resourceId;
     private List<RecyclerModel> dataList;
+    private int curPosition = 0;
 
     public RecyclerAdapter(Context context, int resourceId, List<RecyclerModel>dataList){
         this.context=context;
@@ -42,10 +43,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void onClick(View v) {
             if (mItemClickListener != null) {
                 //int i = v.getAccessibilityViewId();
-
                 int i = v.getVerticalScrollbarPosition();
+//                int i = v.getVerticalScrollbarPosition();
                 mItemClickListener.onItemClick(v, i);
                 Log.d("111", "i ==> " + i);
+                Log.d("111", "v getAccessibilityLiveRegion==> " + v.getAccessibilityLiveRegion());
+                Log.d("111", "v getBottom==> " + v.getBottom());
+                Log.d("111", "v getId==> " + v.getId());
+
             }
         }
     };
@@ -68,12 +73,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
+    public void onBindViewHolder(final ViewHolder holder, int position){
         RecyclerModel recyclerModel = dataList.get(position);
         holder.titleText.setText((recyclerModel.getTitle()));
         holder.aurthorText.setText(recyclerModel.getAurthor());
 
-        holder.getListRoot().setOnClickListener(mOnClickListener);
+        position = holder.getAdapterPosition();
+
+        //holder.getListRoot().setOnClickListener(mOnClickListener);
+
+        holder.listRoot.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                curPosition = holder.getAdapterPosition();
+                Log.d("Aaaaaaaaaaa", "curPosition ==> " + curPosition);
+            }
+        });
+
     }
 
     @Override
@@ -91,6 +107,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView titleText;
         TextView aurthorText;
         View listRoot;
+
 
         public View getListRoot() {
             return listRoot;
