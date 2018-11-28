@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="50dp"
     android:background="@drawable/focus_border_a7a7a7"
     android:focusable="true"
     android:orientation="horizontal">
@@ -10,38 +10,37 @@
     <TextView
         android:id="@+id/rankText"
         android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
         android:text="aaa"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
         android:textStyle="bold" />
 
     <View
         android:layout_width="5dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="50dp"
         android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/nameText"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="bbb" />
 
     <View
         android:layout_width="5dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="50dp"
         android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/warText"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="ccc" />
 
 
