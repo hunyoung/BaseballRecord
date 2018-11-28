@@ -32,38 +32,38 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.l = l;
     }
 
-    View.OnClickListener clickListener;
-    public void OnClickListener(View.OnClickListener onClickListener) {
-        this.clickListener = onClickListener;
-    }
-
-
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mItemClickListener != null) {
-                //int i = v.getAccessibilityViewId();
-                int i = v.getVerticalScrollbarPosition();
+//    View.OnClickListener clickListener;
+//    public void OnClickListener(View.OnClickListener onClickListener) {
+//        this.clickListener = onClickListener;
+//    }
+//
+//
+//    View.OnClickListener mOnClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            if (mItemClickListener != null) {
+//                //int i = v.getAccessibilityViewId();
 //                int i = v.getVerticalScrollbarPosition();
-                mItemClickListener.onItemClick(v, i);
-                Log.d("111", "i ==> " + i);
-                Log.d("111", "v getAccessibilityLiveRegion==> " + v.getAccessibilityLiveRegion());
-                Log.d("111", "v getBottom==> " + v.getBottom());
-                Log.d("111", "v getId==> " + v.getId());
-
-            }
-        }
-    };
-
-    private OnItemClickListener mItemClickListener;
-
-    public interface OnItemClickListener {
-        void onItemClick(View v, int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mItemClickListener = listener;
-    }
+////                int i = v.getVerticalScrollbarPosition();
+//                mItemClickListener.onItemClick(v, i);
+//                Log.d("111", "i ==> " + i);
+//                Log.d("111", "v getAccessibilityLiveRegion==> " + v.getAccessibilityLiveRegion());
+//                Log.d("111", "v getBottom==> " + v.getBottom());
+//                Log.d("111", "v getId==> " + v.getId());
+//
+//            }
+//        }
+//    };
+//
+//    private OnItemClickListener mItemClickListener;
+//
+//    public interface OnItemClickListener {
+//        void onItemClick(View v, int position);
+//    }
+//
+//    public void setOnItemClickListener(OnItemClickListener listener) {
+//        mItemClickListener = listener;
+//    }
 
 
     @Override
@@ -121,7 +121,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             listRoot = itemView.findViewById(R.id.id);
 
             itemView.setOnFocusChangeListener(l);
-            itemView.setOnClickListener(clickListener);
+          //  itemView.setOnClickListener(clickListener);
         }
     }
 

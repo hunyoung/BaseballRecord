@@ -19,16 +19,19 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private static String TAG = "MainActivity";
 
     private RecyclerView recyclerView = null;
     private RecyclerAdapter recyclerAdapter = null;
     private List<RecyclerModel> dataList=null;
     private String htmlURL = "http://www.statiz.co.kr/stat.php";
     private int count = 0;
-    private List<String> htmlList = null;
+    private List<String> htmlList = new ArrayList<>();
+    private HashMap<String, String> map = new HashMap<String, String>();
     String a = "";
 
     @Override
@@ -64,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setRecyclerView(){
         recyclerAdapter=new RecyclerAdapter(getApplicationContext(),R.layout.activity_main_item, dataList);
-//        recyclerAdapter.set(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                Log.d("#####", v+" "+hasFocus);
-//            }
-//        });
+        recyclerAdapter.set(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.d("#####", v+" "+hasFocus);
+            }
+        });
 
 //        recyclerAdapter.OnClickListener(new View.OnClickListener(){
 //            @Override
@@ -114,16 +117,25 @@ public class MainActivity extends AppCompatActivity {
                 dataList.add(new RecyclerModel("순위", "이름"));
 
                 //테스트1
-                Elements titles= doc.select("div.box-body tr");
+//                Elements titles= doc.select("div.box-body tr td span");
+                Elements titles= doc.select("table.table tr");
+                String aaa = doc.select("table.table tr.colhead_stz0").attr("A");
                 //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
                 System.out.println("-------------------------------------------------------------");
                 for(Element e: titles){
                     System.out.println("title: " + e.text());
-//                    htmlList.add(e.text());
+                    htmlList.add(e.text());
+
                     a += e.text();
                     dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
                 }
+
+                for(int a = 0; a< htmlList.size(); a++){
+                    Log.d(TAG, htmlList.get(a));
+                }
+
+
 
 //                Elements titlesss= doc.select("div.box-body tr.colhead_stz0");
 //
@@ -161,8 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView();
 
-
-            Log.d("aaaaaaaaaaaaaaa =   ", a);
         }
     }
 
