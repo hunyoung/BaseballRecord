@@ -58,10 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addDummy(){
-        dataList.add(new RecyclerModel("순위", "이름"));
-        dataList.add(new RecyclerModel("333", "444"));
-        dataList.add(new RecyclerModel("555", "666"));
-        dataList.add(new RecyclerModel("777", "888"));
+//        dataList.add(new RecyclerModel("순위", "이름", "war"));
+
     }
 
 
@@ -114,25 +112,27 @@ public class MainActivity extends AppCompatActivity {
 
                 Document doc = Jsoup.connect(htmlURL).get();
 
-                dataList.add(new RecyclerModel("순위", "이름"));
+                dataList.add(new RecyclerModel("순위", "이름", "WAR"));
 
                 //테스트1
 //                Elements titles= doc.select("div.box-body tr td span");
-                Elements titles= doc.select("table.table tr");
-                String aaa = doc.select("table.table tr.colhead_stz0").attr("A");
+                Elements titles= doc.select("table.table tr td");
+
                 //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
                 System.out.println("-------------------------------------------------------------");
                 for(Element e: titles){
-                    System.out.println("title: " + e.text());
+ //                   System.out.println("title: " + e.text());
                     htmlList.add(e.text());
 
-                    a += e.text();
-                    dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
+             //       dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
                 }
 
-                for(int a = 0; a< htmlList.size(); a++){
-                    Log.d(TAG, htmlList.get(a));
+                for(int a = 0; a< 929 /*htmlList.size()*/; a++){
+                    if(a % 31 == 1 ){
+                        Log.d(TAG,"a ==== " + a + " 값 ==>  " + htmlList.get(a));
+                        dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a+28)));
+                    }
                 }
 
 
@@ -170,9 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-
             setRecyclerView();
-
         }
     }
 

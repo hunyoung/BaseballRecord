@@ -75,8 +75,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
         RecyclerModel recyclerModel = dataList.get(position);
-        holder.titleText.setText((recyclerModel.getTitle()));
-        holder.aurthorText.setText(recyclerModel.getAurthor());
+        holder.rankText.setText((recyclerModel.getRank()));
+        holder.nameText.setText(recyclerModel.getName());
+        holder.warText.setText(recyclerModel.getWar());
 
         position = holder.getAdapterPosition();
 
@@ -104,8 +105,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView titleText;
-        TextView aurthorText;
+        TextView rankText;
+        TextView nameText;
+        TextView warText;
         View listRoot;
 
 
@@ -116,8 +118,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public ViewHolder(View itemView){
             super(itemView);
 
-            titleText=itemView.findViewById(R.id.titleText);
-            aurthorText=itemView.findViewById(R.id.aurthorText);
+            rankText =itemView.findViewById(R.id.rankText);
+            nameText =itemView.findViewById(R.id.nameText);
+            warText =itemView.findViewById(R.id.warText);
             listRoot = itemView.findViewById(R.id.id);
 
             itemView.setOnFocusChangeListener(l);

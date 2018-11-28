@@ -2,28 +2,36 @@ package com.example.hun.baseballrecord.Model;
 
 public class RecyclerModel {
 
-    private String title;
-    private String aurthor;
+    private String rank;
+    private String name;
+    private String war;
 
-    public RecyclerModel(String title, String aurthor){
-        this.title=title;
-        this.aurthor=aurthor;
+    public RecyclerModel(String rank, String name, String war){
+        this.rank = rank;
+        this.name = name;
+        this.war  = war;
     }
 
-    public String getTitle() {
-        return title;
+    public String getRank() {
+        return rank;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
-    public String getAurthor() {
-        return aurthor;
+    public String getName() {
+        return name;
     }
 
-    public void setAurthor(String artist) {
-        this.aurthor = aurthor;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getWar(){ return war;}
+
+    public void setWar(String war){
+        this.war = war;
     }
 
 }
