@@ -46,14 +46,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         init();
-
 
       //  addDummy();
       //  setRecyclerView();
-
 
     }
 
@@ -80,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addMainMenuDummy(){
-        menuList.add(new MainMenuRecyclerModel("1번"));
+        menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("2번"));
         menuList.add(new MainMenuRecyclerModel("3번"));
 
@@ -99,35 +95,7 @@ public class MainActivity extends AppCompatActivity {
     private void setRecyclerView(){
         Log.d(TAG, "setRecyclerView");
         recyclerAdapter=new RecyclerAdapter(getApplicationContext(),R.layout.activity_main_item, dataList);
-
-
-//        recyclerAdapter.set(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                Log.d("#####", v+" "+hasFocus);
-//            }
-//        });
-
-//        recyclerAdapter.OnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("####", ""+ v);
-//            }
-//        });
-//
-//        RecyclerAdapter.OnItemClickListener mOnItemClickListener = new RecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int position) {
-//                count = position;
-//                Log.d("position ==>", " " + count);
-//            }
-//        };
-
-//        recyclerAdapter.setOnItemClickListener(mOnItemClickListener);
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.requestFocus();
@@ -145,23 +113,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-
                 Document doc = Jsoup.connect(htmlURL).get();
 
-                dataList.add(new RecyclerModel("순위", "이름", "WAR"));
-
                 //테스트1
-//                Elements titles= doc.select("div.box-body tr td span");
                 Elements titles= doc.select("table.table tr td");
-
                 //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
-                System.out.println("-------------------------------------------------------------");
                 for(Element e: titles){
- //                   System.out.println("title: " + e.text());
                     htmlList.add(e.text());
-
-             //       dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
+         //       dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
                 }
 
                 String link= "http://www.statiz.co.kr/" + doc.select("table.table tr td a").attr("href");

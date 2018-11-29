@@ -14,7 +14,7 @@ import com.example.hun.baseballrecord.R;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
-
+    private  String TAG = "RecyclerAdapter";
     private Context context;
     private int resourceId;
     private List<RecyclerModel> dataList;
@@ -26,45 +26,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.dataList=dataList;
 
     }
-
-    View.OnFocusChangeListener l;
-    public void set(View.OnFocusChangeListener l) {
-        this.l = l;
-    }
-
-//    View.OnClickListener clickListener;
-//    public void OnClickListener(View.OnClickListener onClickListener) {
-//        this.clickListener = onClickListener;
-//    }
-//
-//
-//    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            if (mItemClickListener != null) {
-//                //int i = v.getAccessibilityViewId();
-//                int i = v.getVerticalScrollbarPosition();
-////                int i = v.getVerticalScrollbarPosition();
-//                mItemClickListener.onItemClick(v, i);
-//                Log.d("111", "i ==> " + i);
-//                Log.d("111", "v getAccessibilityLiveRegion==> " + v.getAccessibilityLiveRegion());
-//                Log.d("111", "v getBottom==> " + v.getBottom());
-//                Log.d("111", "v getId==> " + v.getId());
-//
-//            }
-//        }
-//    };
-//
-//    private OnItemClickListener mItemClickListener;
-//
-//    public interface OnItemClickListener {
-//        void onItemClick(View v, int position);
-//    }
-//
-//    public void setOnItemClickListener(OnItemClickListener listener) {
-//        mItemClickListener = listener;
-//    }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -79,15 +40,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.nameText.setText(recyclerModel.getName());
         holder.warText.setText(recyclerModel.getWar());
 
-        position = holder.getAdapterPosition();
-
-        //holder.getListRoot().setOnClickListener(mOnClickListener);
-
         holder.listRoot.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 curPosition = holder.getAdapterPosition();
-                Log.d("Aaaaaaaaaaa", "curPosition ==> " + curPosition);
+                Log.d(TAG, "curPosition ==> " + curPosition);
             }
         });
 
@@ -110,21 +67,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView warText;
         View listRoot;
 
-
         public View getListRoot() {
             return listRoot;
         }
 
         public ViewHolder(View itemView){
             super(itemView);
-
             rankText =itemView.findViewById(R.id.rankText);
             nameText =itemView.findViewById(R.id.nameText);
             warText =itemView.findViewById(R.id.warText);
             listRoot = itemView.findViewById(R.id.id);
-
-            itemView.setOnFocusChangeListener(l);
-          //  itemView.setOnClickListener(clickListener);
         }
     }
 
