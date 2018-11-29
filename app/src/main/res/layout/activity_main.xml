@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,16 +6,42 @@
 
     >
 
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        >
+        android:orientation="vertical"
+        android:gravity="center">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            >
+        </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:layout_gravity="start"
+        android:background="#e49e9e"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여기는 슬라이딩 메뉴입니다~"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+
+
+
+</android.support.v4.widget.DrawerLayout>
