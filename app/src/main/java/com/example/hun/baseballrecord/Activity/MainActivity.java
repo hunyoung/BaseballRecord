@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
     private List<MainMenuRecyclerModel> menuList = null;
 
-
-    private String htmlURL = "http://www.statiz.co.kr/stat.php";
+    private String htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=";  //타격
+    // 투구 http://www.statiz.co.kr/stat.php?re=1&lr=
     private List<String> htmlList = new ArrayList<>();
     private List<String> nameLinkList = new ArrayList<>();
     private HashMap<String, String> map = new HashMap<String, String>();
