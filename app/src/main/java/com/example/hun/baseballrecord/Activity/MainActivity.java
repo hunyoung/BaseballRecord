@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private String htmlURL = "http://www.statiz.co.kr/stat.php";
     private int count = 0;
     private List<String> htmlList = new ArrayList<>();
+    private List<String> nameLinkList = new ArrayList<>();
     private HashMap<String, String> map = new HashMap<String, String>();
     String a = "";
 
@@ -128,12 +129,21 @@ public class MainActivity extends AppCompatActivity {
              //       dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
                 }
 
+                String link= "http://www.statiz.co.kr/" + doc.select("table.table tr td a").attr("href");
+                Log.d(TAG, "link ====>>> " + link);
+
                 for(int a = 0; a< 929 /*htmlList.size()*/; a++){
                     if(a % 31 == 1 ){
                         Log.d(TAG,"a ==== " + a + " 값 ==>  " + htmlList.get(a));
                         dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a+28)));
+
                     }
                 }
+
+
+
+
+
 
 
 
