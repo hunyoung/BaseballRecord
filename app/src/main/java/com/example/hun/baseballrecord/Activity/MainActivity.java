@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 
+import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.RecyclerAdapter;
+import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
 import com.example.hun.baseballrecord.Model.RecyclerModel;
 import com.example.hun.baseballrecord.R;
 
@@ -28,8 +29,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView = null;
     private RecyclerAdapter recyclerAdapter = null;
     private List<RecyclerModel> dataList=null;
+
+    private RecyclerView mainMenuRecyclerView = null;
+    private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
+    private List<MainMenuRecyclerModel> menuList = null;
+
+
     private String htmlURL = "http://www.statiz.co.kr/stat.php";
-    private int count = 0;
     private List<String> htmlList = new ArrayList<>();
     private List<String> nameLinkList = new ArrayList<>();
     private HashMap<String, String> map = new HashMap<String, String>();
@@ -40,22 +46,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         init();
 
 
       //  addDummy();
       //  setRecyclerView();
+
+
     }
 
     /**
      * 레이아웃 초기화
      */
     private void init(){
-
+        Log.d(TAG, "init()");
         recyclerView = findViewById(R.id.recyclerView);
-        dataList=new ArrayList<RecyclerModel>();
+        dataList = new ArrayList<>();
+
+        mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
+        menuList = new ArrayList<>();
+        addMainMenuDummy();
+
         JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
         jsoupAsyncTask.execute();
+
     }
 
     private void addDummy(){
@@ -63,15 +79,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void addMainMenuDummy(){
+        menuList.add(new MainMenuRecyclerModel("1번"));
+        menuList.add(new MainMenuRecyclerModel("2번"));
+        menuList.add(new MainMenuRecyclerModel("3번"));
+
+        setMainMenuRecyclerView();
+    }
+
+
+    private void setMainMenuRecyclerView(){
+        Log.d(TAG, "setMainMenuRecyclerView");
+        mainMenuRecyclerAdapter = new MainMenuRecyclerAdapter(getApplicationContext(), R.layout.main_menu_recyclerview_item, menuList);
+        mainMenuRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        mainMenuRecyclerView.setAdapter(mainMenuRecyclerAdapter);
+    }
+
 
     private void setRecyclerView(){
+        Log.d(TAG, "setRecyclerView");
         recyclerAdapter=new RecyclerAdapter(getApplicationContext(),R.layout.activity_main_item, dataList);
-        recyclerAdapter.set(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d("#####", v+" "+hasFocus);
-            }
-        });
+
+
+//        recyclerAdapter.set(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                Log.d("#####", v+" "+hasFocus);
+//            }
+//        });
 
 //        recyclerAdapter.OnClickListener(new View.OnClickListener(){
 //            @Override
@@ -139,38 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-
-
-
-
-
-
-
-
-//                Elements titlesss= doc.select("div.box-body tr.colhead_stz0");
-//
-//                System.out.println("-------------------------------------------------------------");
-//                for(Element e: titlesss){
-//                       System.out.println("titlesss : " + e.text());
-//                    dataList.add(new RecyclerModel(String.valueOf(++i), e.text()));
-//                }
-
-//                //테스트2
-//                titles= doc.select("div.news-con h2.tit-news");
-//
-//                System.out.println("-------------------------------------------------------------");
-//                for(Element e: titles){
-//                    System.out.println("title: " + e.text());
-//                }
-//
-//                //테스트3
-//                titles= doc.select("li.section02 div.con h2.news-tl");
-//
-//                System.out.println("-------------------------------------------------------------");
-//                for(Element e: titles){
-//                    System.out.println("title: " + e.text());
-//                }
-//                System.out.println("-------------------------------------------------------------");
 
             } catch (IOException e) {
                 e.printStackTrace();

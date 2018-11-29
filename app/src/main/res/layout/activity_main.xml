@@ -19,6 +19,7 @@
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:visibility="visible"
             >
         </android.support.v7.widget.RecyclerView>
 
@@ -32,6 +33,14 @@
         android:layout_gravity="start"
         android:background="#e49e9e"
         android:gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menuRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            >
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
             android:layout_width="wrap_content"
