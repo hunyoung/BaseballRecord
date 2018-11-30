@@ -36,7 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
     private String htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=";  //타격
     // 투구 http://www.statiz.co.kr/stat.php?re=1&lr=
-    private List<String> htmlList = new ArrayList<>();
+
+    //http://www.statiz.co.kr/stat.php?opt=0&sopt=0&re=0&ys=1993&ye=2018&se=0&te=&tm=&ty=0&qu=auto&po=0&as=&ae=&hi=&un=&pl=&da=1&o1=WAR_ALL_ADJ&o2=TPA&de=1&lr=0&tr=&cv=&ml=1&sn=30&si=&cn=
+    // re == 0 종합 1 타격 2 수비 7 종합 ,
+    // ys == 시작년도
+    // ye == 종료년도
+    // te == 팀 이름
+    // se == 시즌(0~6) 정규, 포스트, 한국S, 플옵, 준플, 와카, 올스타, 섬머
+    // po = 포지션(1 투수, 2 포수, ~~ 10 지타)
+
+   private List<String> htmlList = new ArrayList<>();
     private List<String> nameLinkList = new ArrayList<>();
     private HashMap<String, String> map = new HashMap<String, String>();
     String a = "";
