@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Model.RecyclerModel;
@@ -18,7 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Context context;
     private int resourceId;
     private List<RecyclerModel> dataList;
-    private int curPosition = 0;
+    public int curPosition = 0;
 
     public RecyclerAdapter(Context context, int resourceId, List<RecyclerModel>dataList){
         this.context=context;
@@ -33,6 +34,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
+
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
         RecyclerModel recyclerModel = dataList.get(position);
@@ -40,11 +43,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.nameText.setText(recyclerModel.getName());
         holder.warText.setText(recyclerModel.getWar());
 
-        holder.listRoot.setOnClickListener(new View.OnClickListener(){
+        holder.getListRoot().setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 curPosition = holder.getAdapterPosition();
                 Log.d(TAG, "curPosition ==> " + curPosition);
+
             }
         });
 

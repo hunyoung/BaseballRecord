@@ -9,51 +9,59 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
-import com.example.hun.baseballrecord.Model.RecyclerModel;
 import com.example.hun.baseballrecord.R;
 
 import java.util.List;
 
-public class MainMenuRecyclerAdapter extends RecyclerView.Adapter<MainMenuRecyclerAdapter.ViewHolder>{
-
+public class MainMenuRecyclerAdapter extends RecyclerView.Adapter<MainMenuRecyclerAdapter.MainMenuViewHolder> {
+    private static String TAG = "MainMenuRecyclerAdapter";
     private Context context;
     private int resourceId;
     private List<MainMenuRecyclerModel> dataList;
     private int curPosition = 0;
+    private MainMenuViewHolder mHolder;
 
-    public MainMenuRecyclerAdapter(Context context, int resourceId, List<MainMenuRecyclerModel> dataList){
-        this.context=context;
-        this.resourceId=resourceId;
-        this.dataList=dataList;
-
+    public MainMenuRecyclerAdapter(Context context, int resourceId, List<MainMenuRecyclerModel> dataList) {
+        this.context = context;
+        this.resourceId = resourceId;
+        this.dataList = dataList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        return new ViewHolder(LayoutInflater.from(context).inflate(resourceId,parent,false));
+    public MainMenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MainMenuViewHolder(LayoutInflater.from(context).inflate(resourceId, parent, false));
+    }
 
+    private OnItemClickListener mItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position){
+    public void onBindViewHolder(final MainMenuViewHolder holder, int position) {
         MainMenuRecyclerModel recyclerModel = dataList.get(position);
         holder.one.setText((recyclerModel.getOne()));
-//        holder.two.setText(recyclerModel.getTwo());
-//        holder.three.setText(recyclerModel.getThree());
 
+        mHolder = holder;
 
-        holder.listRoot.setOnClickListener(new View.OnClickListener(){
+        mHolder.getListRoot().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 curPosition = holder.getAdapterPosition();
-                Log.d("menu position", "curPosition ==> " + curPosition);
+                Log.d(TAG, "curPosition ==> " + curPosition);
+                mItemClickListener.onItemClick(view, curPosition);
             }
         });
 
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return dataList.size();
     }
 
@@ -62,28 +70,19 @@ public class MainMenuRecyclerAdapter extends RecyclerView.Adapter<MainMenuRecycl
         return position;
     }
 
-
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class MainMenuViewHolder extends RecyclerView.ViewHolder {
         TextView one;
-//        TextView two;
-//        TextView three;
         View listRoot;
-
 
         public View getListRoot() {
             return listRoot;
         }
 
-        public ViewHolder(View itemView){
+        public MainMenuViewHolder(View itemView) {
             super(itemView);
-
-            one =itemView.findViewById(R.id.one);
-//            two =itemView.findViewById(R.id.two);
-//            three =itemView.findViewById(R.id.three);
+            one = itemView.findViewById(R.id.one);
             listRoot = itemView.findViewById(R.id.menu_linear);
-
         }
     }
-
 
 }
