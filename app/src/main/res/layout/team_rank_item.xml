@@ -8,155 +8,167 @@
 
     <TextView
         android:id="@+id/teamRankText"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="match_parent"
-        android:text="순위"
+        android:text="@string/record"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/border"
-        android:textStyle="bold" />
+        android:background="@drawable/border" />
 
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
 
     <TextView
         android:id="@+id/teamNameText"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/team_name" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamGameText"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/game" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamWinText"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/win" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamLoseText"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/lose" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamDrawText"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/draw" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamWinningRateText"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/winning_rate" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
-
-    <TextView
-        android:id="@+id/teamGameDisText"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/team_name" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamGameText"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/game" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamWinText"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/win" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamLoseText"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/lose" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamDrawText"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/draw" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamWinningRateText"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:text="@string/winning_rate" />
+
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
+
+    <TextView
+        android:id="@+id/teamGameDisText"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border"
         android:text="@string/game_dis" />
 
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
 
     <TextView
         android:id="@+id/teamRecentTenGameText"
-        android:layout_width="50dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@drawable/border"
         android:text="@string/recent_ten_game" />
 
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
 
     <TextView
         android:id="@+id/teamContinuanceText"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@drawable/border"
         android:text="@string/continuance" />
 
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#FAFAAA" />
+    <!--<View-->
+        <!--android:layout_width="2dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FAFAAA" />-->
 
     <TextView
         android:id="@+id/teamHomeGameText"
-        android:layout_width="30dp"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@drawable/border"
         android:text="@string/home_game" />
 
+<!--
     <View
         android:layout_width="2dp"
         android:layout_height="match_parent"
         android:background="#FAFAAA" />
+-->
 
     <TextView
         android:id="@+id/teamExpeditionGameText"
-        android:layout_width="30dp"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@drawable/border"
         android:text="@string/expedition_game" />
 
 

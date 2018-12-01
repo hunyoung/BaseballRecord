@@ -80,7 +80,6 @@ public class TeamFragment extends Fragment {
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
         dataList.add(new TeamFragmentRecyclerModel("순위", "팀명", "경기", "승", "패", "무", "승률", "게임차", "최근10경기", "연속", "홈", "원정"));
-//        dataList.add(new TeamFragmentRecyclerModel("10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120"));
 
     }
 
@@ -111,13 +110,17 @@ public class TeamFragment extends Fragment {
                 //테스트1
                 Elements titles = doc.select("table.tData tr td");
                 Elements currentDate = doc.select("span.exp2");
-                Log.d(TAG, "e.text ==>>  " + currentDate.text());
-                dateString = currentDate.text();
-                int i = 0;
+
+                Elements currentYear = doc.select("select.select01 option");
+                String curYear = "";
+                for(int i=0; i<currentYear.size(); i++){
+                    curYear = currentYear.get(0).text();
+                }
+
+                dateString = curYear + currentDate.text();
                 for (Element e : titles) {
                     htmlList.add(e.text());
 //                    Log.d(TAG, "e.text ==>>  " + e.text());
-
                 }
 
                 for (int a = 0; a < 120 /*htmlList.size()*/; a++) {

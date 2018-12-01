@@ -10,17 +10,24 @@
         android:layout_height="wrap_content"
         android:text="@string/date"/>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/teamRecyclerView"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        android:visibility="visible"
-        >
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/teamRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:visibility="visible"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+    </HorizontalScrollView>
+
+
 
 
 </LinearLayout>
