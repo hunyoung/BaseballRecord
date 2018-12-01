@@ -1,6 +1,7 @@
 package com.example.hun.baseballrecord.Activity;
 
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,16 +10,13 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
-import com.example.hun.baseballrecord.Adapter.RecyclerAdapter;
 import com.example.hun.baseballrecord.Fragment.MainFragment;
 import com.example.hun.baseballrecord.Fragment.TeamFragment;
 import com.example.hun.baseballrecord.Global.GlobalVariable;
 import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
-import com.example.hun.baseballrecord.Model.RecyclerModel;
 import com.example.hun.baseballrecord.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainMenuRecyclerView = null;
     private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
     private List<MainMenuRecyclerModel> menuList = null;
+    private DrawerLayout mDrawerLayout;
 
 
     @Override
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "init()");
         mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
         menuList = new ArrayList<>();
+        mDrawerLayout = findViewById(R.id.drawerLayout);
         addMainMenuDummy();
         setMainMenuRecyclerView();
         callFragment(GlobalVariable.Main_Fragment);
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "position ==>  " + position);
+                mDrawerLayout.closeDrawers();
                 callFragment(position);
             }
         };
