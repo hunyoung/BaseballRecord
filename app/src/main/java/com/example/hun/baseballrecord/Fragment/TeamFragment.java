@@ -90,13 +90,45 @@ public class TeamFragment extends Fragment {
     }
     private void chartSettings(){
         List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1,1));
-        entries.add(new Entry(2,2));
-        entries.add(new Entry(3,0));
-        entries.add(new Entry(4,4));
-        entries.add(new Entry(5,3));
+        entries.add(new Entry(1982,10));
+        entries.add(new Entry(1983,5));
+        entries.add(new Entry(1984,8));
+        entries.add(new Entry(1985,7));
+        entries.add(new Entry(1986,7));
+        entries.add(new Entry(1987,7));
+        entries.add(new Entry(1988,6));
+        entries.add(new Entry(1989,6));
+        entries.add(new Entry(1990,4));
+        entries.add(new Entry(1991,3));
+        entries.add(new Entry(1992,6));
+        entries.add(new Entry(1993,8));
+        entries.add(new Entry(1994,4));
+        entries.add(new Entry(1995,10));
+        entries.add(new Entry(1996,3));
+        entries.add(new Entry(1997,6));
+        entries.add(new Entry(1998,7));
+        entries.add(new Entry(1999,8));
+        entries.add(new Entry(2000,9));
+        entries.add(new Entry(2001,10));
+        entries.add(new Entry(2002,6));
+        entries.add(new Entry(2003,4));
+        entries.add(new Entry(2004,8));
+        entries.add(new Entry(2005,9));
+        entries.add(new Entry(2006,6));
+        entries.add(new Entry(2007,9));
+        entries.add(new Entry(2008,9));
+        entries.add(new Entry(2009,8));
+        entries.add(new Entry(2010,8));
+        entries.add(new Entry(2011,6));
+        entries.add(new Entry(2012,8));
+        entries.add(new Entry(2013,9));
+        entries.add(new Entry(2014,5));
+        entries.add(new Entry(2015,10));
+        entries.add(new Entry(2016,10));
+        entries.add(new Entry(2017,9));
+        entries.add(new Entry(2018,9));
 
-        LineDataSet lineDataSet = new LineDataSet(entries, "속성명1");
+        LineDataSet lineDataSet = new LineDataSet(entries, "두산");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
         lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
@@ -109,7 +141,64 @@ public class TeamFragment extends Fragment {
         lineDataSet.setDrawValues(false);
 
         LineData lineData = new LineData(lineDataSet);
+
+        List<Entry> entries2 = new ArrayList<>();
+        entries2.add(new Entry(1982,8));
+        entries2.add(new Entry(1983,9));
+        entries2.add(new Entry(1984,7));
+        entries2.add(new Entry(1985,6));
+        entries2.add(new Entry(1986,8));
+        entries2.add(new Entry(1987,6));
+        entries2.add(new Entry(1988,5));
+        entries2.add(new Entry(1989,5));
+        entries2.add(new Entry(1990,10));
+        entries2.add(new Entry(1991,5));
+        entries2.add(new Entry(1992,4));
+        entries2.add(new Entry(1993,7));
+        entries2.add(new Entry(1994,10));
+        entries2.add(new Entry(1995,8));
+        entries2.add(new Entry(1996,4));
+        entries2.add(new Entry(1997,9));
+        entries2.add(new Entry(1998,9));
+        entries2.add(new Entry(1999,5));
+        entries2.add(new Entry(2000,7));
+        entries2.add(new Entry(2001,5));
+        entries2.add(new Entry(2002,9));
+        entries2.add(new Entry(2003,5));
+        entries2.add(new Entry(2004,5));
+        entries2.add(new Entry(2005,5));
+        entries2.add(new Entry(2006,3));
+        entries2.add(new Entry(2007,6));
+        entries2.add(new Entry(2008,3));
+        entries2.add(new Entry(2009,4));
+        entries2.add(new Entry(2010,5));
+        entries2.add(new Entry(2011,5));
+        entries2.add(new Entry(2012,4));
+        entries2.add(new Entry(2013,8));
+        entries2.add(new Entry(2014,7));
+        entries2.add(new Entry(2015,2));
+        entries2.add(new Entry(2016,7));
+        entries2.add(new Entry(2017,5));
+        entries2.add(new Entry(2018,8));
+
+        LineDataSet lineDataSet2 = new LineDataSet(entries2, "LG");
+        lineDataSet2.setLineWidth(2);
+        lineDataSet2.setCircleRadius(6);
+        lineDataSet2.setCircleColor(Color.parseColor("#FFFF00"));
+        lineDataSet2.setCircleColorHole(Color.WHITE);
+        lineDataSet2.setColor(Color.parseColor("#FFFFFF00"));
+        lineDataSet2.setDrawCircleHole(true);
+        lineDataSet2.setDrawCircles(true);
+        lineDataSet2.setDrawHorizontalHighlightIndicator(false);
+        lineDataSet2.setDrawHighlightIndicators(false);
+        lineDataSet2.setDrawValues(false);
+
+        LineData lineData2 = new LineData(lineDataSet2);
+
+
         lineChart.setData(lineData);
+//        lineChart.setData(lineData2);
+
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
