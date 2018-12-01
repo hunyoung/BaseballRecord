@@ -18,8 +18,9 @@ public class MainMenuRecyclerAdapter extends RecyclerView.Adapter<MainMenuRecycl
     private Context context;
     private int resourceId;
     private List<MainMenuRecyclerModel> dataList;
-    private int curPosition = 0;
     private MainMenuViewHolder mHolder;
+    private int curPosition = 0;
+
 
     public MainMenuRecyclerAdapter(Context context, int resourceId, List<MainMenuRecyclerModel> dataList) {
         this.context = context;
