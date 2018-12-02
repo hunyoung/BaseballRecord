@@ -7,7 +7,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Fragment.MainFragment;
@@ -34,6 +39,56 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // 메뉴 추가
+        menu.add(0, 0, Menu.NONE, "About");
+
+        // SubMenu 추가
+        SubMenu subMenu = menu.addSubMenu("설정");
+        // 메뉴 (0~7중) 1을 누르면 나오는 SubMenu
+        subMenu.add(1, 3, Menu.NONE, "하나");
+        subMenu.add(1, 4, Menu.NONE, "둘");
+        subMenu.add(1, 5, Menu.NONE, "셋");
+
+        menu.add(0, 1, Menu.NONE, "Developer");
+        menu.add(0, 2, Menu.NONE, "삭제");
+        return true;
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
+                Toast.makeText(MainActivity.this, "About", Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                Toast.makeText(MainActivity.this, "Developer", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                Toast.makeText(MainActivity.this, "삭제", Toast.LENGTH_SHORT).show();
+                break;
+            case 3:
+                Toast.makeText(MainActivity.this, "하나", Toast.LENGTH_SHORT).show();
+                break;
+            case 4:
+                Toast.makeText(MainActivity.this, "둘", Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                Toast.makeText(MainActivity.this, "셋", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**
