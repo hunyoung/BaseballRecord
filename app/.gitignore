@@ -3,6 +3,11 @@
 # Intellij
 *.iml
 .idea/
+.idea/*
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+
 
 # Gradle files
 .gradle/
