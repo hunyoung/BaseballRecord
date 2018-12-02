@@ -2,15 +2,15 @@ package com.example.hun.baseballrecord.Activity;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,14 +24,14 @@ import com.example.hun.baseballrecord.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private static String TAG = "MainActivity";
 
     private RecyclerView mainMenuRecyclerView = null;
     private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
     private List<MainMenuRecyclerModel> menuList = null;
     private DrawerLayout mDrawerLayout;
-
+    private Toolbar toolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,56 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // 메뉴 추가
-        menu.add(0, 0, Menu.NONE, "About");
-
-        // SubMenu 추가
-        SubMenu subMenu = menu.addSubMenu("설정");
-        // 메뉴 (0~7중) 1을 누르면 나오는 SubMenu
-        subMenu.add(1, 3, Menu.NONE, "하나");
-        subMenu.add(1, 4, Menu.NONE, "둘");
-        subMenu.add(1, 5, Menu.NONE, "셋");
-
-        menu.add(0, 1, Menu.NONE, "Developer");
-        menu.add(0, 2, Menu.NONE, "삭제");
-        return true;
-    }
-
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case 0:
-                Toast.makeText(MainActivity.this, "About", Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                Toast.makeText(MainActivity.this, "Developer", Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                Toast.makeText(MainActivity.this, "삭제", Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
-                Toast.makeText(MainActivity.this, "하나", Toast.LENGTH_SHORT).show();
-                break;
-            case 4:
-                Toast.makeText(MainActivity.this, "둘", Toast.LENGTH_SHORT).show();
-                break;
-            case 5:
-                Toast.makeText(MainActivity.this, "셋", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -99,9 +49,50 @@ public class MainActivity extends AppCompatActivity {
         mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
         menuList = new ArrayList<>();
         mDrawerLayout = findViewById(R.id.drawerLayout);
+        toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
+   //     actionBar.setHomeAsUpIndicator(R.drawable.btn_list); //뒤로가기 버튼을 본인이 만든 아이콘으로 하기 위해 필요
+        toolBar.setTitle(R.string.total);
+        toolBar.setSubtitle("부제목");
+        toolBar.setNavigationIcon(R.drawable.btn_list);
+
+
+
         addMainMenuDummy();
         setMainMenuRecyclerView();
         callFragment(GlobalVariable.Main_Fragment);
+    }
+
+    //툴바에 메뉴 넣기
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.actionbar_action, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home :
+                Toast.makeText(MainActivity.this, "back button click", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_bt1:
+                Toast.makeText(this, "버튼1을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_bt2:
+                Toast.makeText(this, "버튼2을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_bt3:
+                Toast.makeText(this, "버튼3을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                break;
+            default :
+                break;
+        }
+        return super.onOptionsItemSelected(item) ;
     }
 
 
@@ -143,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 MainFragment fragment1 = new MainFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
                 transaction.commit();
+                toolBar.setTitle(R.string.total);
                 break;
 
             case 1:
@@ -150,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 TeamFragment fragment2 = new TeamFragment();
                 transaction.replace(R.id.fragment_container, fragment2);
                 transaction.commit();
+                toolBar.setTitle(R.string.team_total);
                 break;
 
             case 2:
@@ -157,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 MainFragment fragment3 = new MainFragment();
                 transaction.replace(R.id.fragment_container, fragment3);
                 transaction.commit();
+                toolBar.setTitle("3번 프래그먼트");
                 break;
 
             case 3:
@@ -164,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 TeamFragment fragment4 = new TeamFragment();
                 transaction.replace(R.id.fragment_container, fragment4);
                 transaction.commit();
+                toolBar.setTitle("4번 프래그먼트");
                 break;
 
             case 4:
@@ -171,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 MainFragment fragment5 = new MainFragment();
                 transaction.replace(R.id.fragment_container, fragment5);
                 transaction.commit();
+                toolBar.setTitle("5번 프래그먼트");
                 break;
         }
 

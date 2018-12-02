@@ -2,6 +2,7 @@
     <string name="app_name">BaseballRecord</string>
 
     <string name="total">종합</string>
+    v<string name="team_total">팀 순위</string>
     <string name="hit">타격</string>
     <string name="pitching">투구</string>
     <string name="record">순위</string>
