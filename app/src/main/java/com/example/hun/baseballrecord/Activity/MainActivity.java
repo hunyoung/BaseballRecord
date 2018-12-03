@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Fragment.MainFragment;
+import com.example.hun.baseballrecord.Fragment.TeamDetailFragment;
 import com.example.hun.baseballrecord.Fragment.TeamFragment;
 import com.example.hun.baseballrecord.Global.GlobalVariable;
 import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
@@ -25,8 +26,8 @@ import com.example.hun.baseballrecord.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity  {
     private static String TAG = "MainActivity";
@@ -34,18 +35,18 @@ public class MainActivity extends AppCompatActivity  {
     private RecyclerView mainMenuRecyclerView = null;
     private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
     private List<MainMenuRecyclerModel> menuList = null;
-//    private DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     private Toolbar toolBar;
     private LinearLayout mDrawerView;
 
-    @BindView(R.id.drawerView)
-    DrawerLayout mDrawerLayout;
+//    @BindView(R.id.drawerView)
+//    DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
         init();
     }
 
@@ -57,22 +58,25 @@ public class MainActivity extends AppCompatActivity  {
         mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
         menuList = new ArrayList<>();
         mDrawerLayout = findViewById(R.id.drawerLayout);
-    //    mDrawerView = findViewById(R.id.drawerView);
+        mDrawerView = findViewById(R.id.drawerView);
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
-   //     actionBar.setHomeAsUpIndicator(R.drawable.btn_list); //뒤로가기 버튼을 본인이 만든 아이콘으로 하기 위해 필요
         toolBar.setTitle(R.string.total);
         toolBar.setSubtitle("부제목");
         toolBar.setNavigationIcon(R.drawable.btn_list);
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "메뉴 리스트 호출");
-                mDrawerLayout.openDrawer(mDrawerView);
+                if(mDrawerView.getVisibility()==View.VISIBLE){
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    mDrawerLayout.openDrawer(mDrawerView);
+                }
+
             }
         });
         addMainMenuDummy();
@@ -160,7 +164,7 @@ public class MainActivity extends AppCompatActivity  {
 
             case 2:
                 // '프래그먼트3' 호출
-                MainFragment fragment3 = new MainFragment();
+                TeamDetailFragment fragment3 = new TeamDetailFragment();
                 transaction.replace(R.id.fragment_container, fragment3);
                 transaction.commit();
                 toolBar.setTitle("3번 프래그먼트");

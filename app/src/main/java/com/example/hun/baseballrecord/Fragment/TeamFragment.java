@@ -33,8 +33,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
 
 public class TeamFragment extends Fragment {
     private static String TAG = "TeamFragment";

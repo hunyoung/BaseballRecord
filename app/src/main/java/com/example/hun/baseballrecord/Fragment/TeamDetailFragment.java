@@ -42,7 +42,7 @@ public class TeamDetailFragment extends Fragment {
     private View mRootView;
     private List<TeamDetailFragmentRecyclerModel> dataList = null;
     private TeamDetailFrgmentRecyclerAdapter mTeamDetailFragmentRecyclerAdapter = null;
-    private RecyclerView teamRecyclerView;
+    private RecyclerView teamDetailRecyclerView;
 
 
     public TeamDetailFragment() {
@@ -71,27 +71,36 @@ public class TeamDetailFragment extends Fragment {
     private void init() {
         Log.d(TAG, "init()");
 
-        teamRecyclerView = mRootView.findViewById(R.id.teamRecyclerView);
+        teamDetailRecyclerView = mRootView.findViewById(R.id.team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
         addMainMenuDummy();
-        setRecyclerView();
+//        setRecyclerView();
 
     }
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        dataList.add(new TeamDetailFragmentRecyclerModel("두산", getResources().getDrawable(R.drawable.btn_list)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("두산", getResources().getDrawable(R.drawable.doosan)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("SK", getResources().getDrawable(R.drawable.sk)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("KT", getResources().getDrawable(R.drawable.kt)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("LG", getResources().getDrawable(R.drawable.lg)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("NC", getResources().getDrawable(R.drawable.nc)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("삼성", getResources().getDrawable(R.drawable.samsung)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("롯데", getResources().getDrawable(R.drawable.lotte)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("기아", getResources().getDrawable(R.drawable.kia)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("넥센", getResources().getDrawable(R.drawable.nexen)));
+        dataList.add(new TeamDetailFragmentRecyclerModel("한화", getResources().getDrawable(R.drawable.hanhwa)));
+        setRecyclerView();
 
     }
 
 
     private void setRecyclerView() {
         Log.d(TAG, "setRecyclerView");
-        mTeamDetailFragmentRecyclerAdapter = new TeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.team_rank_item, dataList);
-        teamRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), GridLayoutManager.VERTICAL, false));
-        teamRecyclerView.setHasFixedSize(true);
-        teamRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        teamRecyclerView.setAdapter(mTeamDetailFragmentRecyclerAdapter);
+        mTeamDetailFragmentRecyclerAdapter = new TeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.team_detail_fragment_recyclerview_item, dataList);
+        teamDetailRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        teamDetailRecyclerView.setHasFixedSize(true);
+        teamDetailRecyclerView.setAdapter(mTeamDetailFragmentRecyclerAdapter);
 
 
 

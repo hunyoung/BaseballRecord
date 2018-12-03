@@ -5,9 +5,12 @@
     android:orientation="horizontal">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/team_detail_fragment_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
