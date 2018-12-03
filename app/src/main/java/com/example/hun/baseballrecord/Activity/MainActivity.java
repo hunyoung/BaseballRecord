@@ -25,21 +25,27 @@ import com.example.hun.baseballrecord.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity  {
     private static String TAG = "MainActivity";
 
     private RecyclerView mainMenuRecyclerView = null;
     private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
     private List<MainMenuRecyclerModel> menuList = null;
-    private DrawerLayout mDrawerLayout;
+//    private DrawerLayout mDrawerLayout;
     private Toolbar toolBar;
     private LinearLayout mDrawerView;
+
+    @BindView(R.id.drawerView)
+    DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         init();
     }
 
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity  {
         mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
         menuList = new ArrayList<>();
         mDrawerLayout = findViewById(R.id.drawerLayout);
-        mDrawerView = findViewById(R.id.drawerView);
+    //    mDrawerView = findViewById(R.id.drawerView);
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
