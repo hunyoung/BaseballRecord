@@ -90,7 +90,10 @@ public class TeamDetailFragment extends Fragment {
         mTeamDetailFragmentRecyclerAdapter = new TeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.team_rank_item, dataList);
         teamRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), GridLayoutManager.VERTICAL, false));
         teamRecyclerView.setHasFixedSize(true);
+        teamRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         teamRecyclerView.setAdapter(mTeamDetailFragmentRecyclerAdapter);
+
+
 
     }
 

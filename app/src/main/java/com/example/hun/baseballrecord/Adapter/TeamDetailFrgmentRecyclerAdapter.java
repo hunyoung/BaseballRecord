@@ -16,7 +16,7 @@ import com.example.hun.baseballrecord.R;
 import java.util.List;
 
 public class TeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamDetailFrgmentRecyclerAdapter.ViewHolder>{
-    private  String TAG = "TeamDetailFrgmentRecyclerAdapter";
+    private  String TAG = "TeamDetailFragmentRecyclerAdapter";
     private Context context;
     private int resourceId;
     private List<TeamDetailFragmentRecyclerModel> dataList;
@@ -41,9 +41,6 @@ public class TeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamD
     public void onBindViewHolder(final ViewHolder holder, int position){
         TeamDetailFragmentRecyclerModel recyclerModel = dataList.get(position);
         holder.nameText.setText(recyclerModel.getName());
-//        holder.teamIcon.setImageDrawable(recyclerModel.getIcon());
-//        holder.teamIcon.setImageDrawable(recyclerModel.getIcon());
-//        holder.teamIcon.image
         holder.teamIcon.setImageDrawable(recyclerModel.getIcon());
 
         holder.getListRoot().setOnClickListener(new View.OnClickListener(){
