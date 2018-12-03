@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity  {
         Log.d(TAG, "addMainMenuDummy");
         menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("시즌 순위"));
-        menuList.add(new MainMenuRecyclerModel("3번"));
+        menuList.add(new MainMenuRecyclerModel("전체 팀"));
         menuList.add(new MainMenuRecyclerModel("4번"));
         menuList.add(new MainMenuRecyclerModel("5번"));
     }
