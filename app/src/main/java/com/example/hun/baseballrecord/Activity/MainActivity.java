@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity  {
     private List<MainMenuRecyclerModel> menuList = null;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolBar;
+    private LinearLayout mDrawerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity  {
         mainMenuRecyclerView = findViewById(R.id.menuRecyclerView);
         menuList = new ArrayList<>();
         mDrawerLayout = findViewById(R.id.drawerLayout);
+        mDrawerView = findViewById(R.id.drawerView);
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
@@ -59,9 +62,13 @@ public class MainActivity extends AppCompatActivity  {
         toolBar.setTitle(R.string.total);
         toolBar.setSubtitle("부제목");
         toolBar.setNavigationIcon(R.drawable.btn_list);
-
-
-
+        toolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "메뉴 리스트 호출");
+                mDrawerLayout.openDrawer(mDrawerView);
+            }
+        });
         addMainMenuDummy();
         setMainMenuRecyclerView();
         callFragment(GlobalVariable.Main_Fragment);
