@@ -9,12 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.RecyclerAdapter;
 import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
 import com.example.hun.baseballrecord.Model.RecyclerModel;
+import com.example.hun.baseballrecord.Popup.SearchRecordPopup;
 import com.example.hun.baseballrecord.R;
 
 import org.jsoup.Jsoup;
@@ -32,11 +33,9 @@ public class MainFragment extends Fragment {
     private RecyclerAdapter recyclerAdapter = null;
     private List<RecyclerModel> dataList = null;
 
-    private RecyclerView mainMenuRecyclerView = null;
-    private MainMenuRecyclerAdapter mainMenuRecyclerAdapter = null;
-    private List<MainMenuRecyclerModel> menuList = null;
     private List<String> htmlList = new ArrayList<>();
     private View mRootView;
+    private TextView mSearch;
 
     private String htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=";  //타격
     // 투구 http://www.statiz.co.kr/stat.php?re=1&lr=
@@ -74,9 +73,17 @@ public class MainFragment extends Fragment {
         Log.d(TAG, "init()");
         recyclerView = mRootView.findViewById(R.id.recyclerView);
         dataList = new ArrayList<>();
+        mSearch = mRootView.findViewById(R.id.search_total_record);
+        mSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d(TAG, "팝업 노출");
+                SearchRecordPopup popup = new SearchRecordPopup(getContext());
+                popup.callFunction();
 
-        mainMenuRecyclerView = mRootView.findViewById(R.id.menuRecyclerView);
-        menuList = new ArrayList<>();
+            }
+
+        });
 
         MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
