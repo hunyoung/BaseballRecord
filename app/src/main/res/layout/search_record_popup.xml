@@ -26,14 +26,21 @@
             android:text="년도"/>
 
         <TextView
+            android:id="@+id/search_year_txt"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="xxxx"/>
+
+        <Spinner
+            android:id="@+id/search_year"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
-            android:gravity="center"
-            android:text="선택"/>
+            android:entries="@array/search_year"/>
+
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -46,12 +53,21 @@
             android:text="팀"/>
 
         <TextView
+            android:id="@+id/search_team_txt"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="xxxx"/>
+
+        <Spinner
+            android:id="@+id/search_team"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
-            android:gravity="center"
-            android:text="전체"/>
+            android:entries="@array/search_team"/>
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,11 +81,18 @@
             android:text="포지션"/>
 
         <TextView
+            android:id="@+id/search_position_txt"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="xxxx"/>
+
+        <Spinner
+            android:id="@+id/search_position"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
-            android:gravity="center"
-            android:text="선택"/>
+            android:entries="@array/search_position"/>
 
     </LinearLayout>
 
