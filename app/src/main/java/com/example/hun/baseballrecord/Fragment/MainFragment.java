@@ -141,6 +141,10 @@ public class MainFragment extends Fragment {
                 htmlList.clear();
                 dataList.clear();
                 statMode = 1;
+                firstValue.setText("타율");
+                secondValue.setText("출루율");
+                thirdValue.setText("장타율");
+                fourthValue.setText("OPS");
                 MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
             }
