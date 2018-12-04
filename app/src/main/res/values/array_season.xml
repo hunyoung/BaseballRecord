@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_season">
+        <item >정규</item>
+        <item >포스트</item>
+        <item >한국S</item>
+        <item >플옵</item>
+        <item >준플</item>
+        <item >와카</item>
+        <item >올스타</item>
+        <item >섬머</item>
+    </string-array>
+</resources>
+
