@@ -50,7 +50,10 @@ public class SearchRecordPopup {
         final TextView positionSearchTxt = dlg.findViewById(R.id.search_position_txt);
         final Spinner teamSpinner = dlg.findViewById(R.id.search_team);
         final TextView teamSearchTxt = dlg.findViewById(R.id.search_team_txt);
-
+        final Spinner seasonSpinner = dlg.findViewById(R.id.search_season);
+        final TextView seasonSearchTxt = dlg.findViewById(R.id.search_season_txt);
+        final Spinner battingSpinner = dlg.findViewById(R.id.search_batting);
+        final TextView battingSearchTxt = dlg.findViewById(R.id.search_batting_txt);
 
        okButton.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -110,7 +113,29 @@ public class SearchRecordPopup {
 
         });
 
+        seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                seasonSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+
+        });
+
+        battingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                battingSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
 
     }
 }

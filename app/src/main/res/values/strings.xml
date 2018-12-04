@@ -2,12 +2,16 @@
     <string name="app_name">BaseballRecord</string>
 
     <string name="total">종합</string>
-    v<string name="team_total">팀 순위</string>
+    <string name="team_total">팀 순위</string>
     <string name="hit">타격</string>
     <string name="pitching">투구</string>
     <string name="record">순위</string>
     <string name="name">이름</string>
     <string name="war">WAR</string>
+    <string name="battingAvg">타율</string>
+    <string name="onBasePercent">출루율</string>
+    <string name="slugAvg">장타율</string>
+    <string name="ops">OPS</string>
     <string name="date">날짜 기준</string>
     <string name="team_name">팀명</string>
     <string name="game">경기</string>
