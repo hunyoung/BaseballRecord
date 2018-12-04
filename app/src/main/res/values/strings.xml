@@ -24,6 +24,16 @@
     <string name="continuance">연속</string>
     <string name="home_game">홈</string>
     <string name="expedition_game">원정</string>
+    <string name="team_doosan">두산</string>
+    <string name="team_sk">SK</string>
+    <string name="team_hanhwa">한화</string>
+    <string name="team_nexen">넥센</string>
+    <string name="team_samsung">삼성</string>
+    <string name="team_lotte">롯데</string>
+    <string name="team_kia">KIA</string>
+    <string name="team_lg">LG</string>
+    <string name="team_nc">NC</string>
+    <string name="team_kt">KT</string>
 
 
 

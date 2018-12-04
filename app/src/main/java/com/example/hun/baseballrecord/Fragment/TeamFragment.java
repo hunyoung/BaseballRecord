@@ -130,7 +130,7 @@ public class TeamFragment extends Fragment {
 
         LineDataSet lineDataSet = new LineDataSet(entries, "두산");
         lineDataSet.setLineWidth(2);
-        lineDataSet.setCircleRadius(6);
+        lineDataSet.setCircleRadius(4);
         lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
         lineDataSet.setCircleColorHole(Color.BLUE);
         lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
