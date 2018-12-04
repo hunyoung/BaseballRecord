@@ -92,6 +92,7 @@ public class MainFragment extends Fragment {
         thirdValue = mRootView.findViewById(R.id.thirdValue);
         fourthValue = mRootView.findViewById(R.id.fourthValue);
         statMode = 1;
+//        addMainMenuDummy(1);
 
         mSearch.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -118,9 +119,9 @@ public class MainFragment extends Fragment {
                 secondValue.setText("패");
                 thirdValue.setText("세");
                 fourthValue.setText("ERA");
+//                addMainMenuDummy(2);
                 MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
-                //WAR 승 패 세 ERA
             }
         });
 
@@ -136,6 +137,7 @@ public class MainFragment extends Fragment {
                 secondValue.setText(R.string.onBasePercent);
                 thirdValue.setText(R.string.slugAvg);
                 fourthValue.setText(R.string.ops);
+//                addMainMenuDummy(1);
                 MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
             }
@@ -144,6 +146,17 @@ public class MainFragment extends Fragment {
 
         MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
+
+    }
+
+    private void addMainMenuDummy(int type) {
+        Log.d(TAG, "addMainMenuDummy");
+        if(type == 1){
+            dataList.add(new RecyclerModel("순위", "이름", "팀명", "WAR", "타율", "출루율", "장타율", "OPS"));
+        } else {
+            dataList.add(new RecyclerModel("순위", "이름", "팀명", "WAR", "승", "패", "세이브", "방어율"));
+        }
+
 
     }
 

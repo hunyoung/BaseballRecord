@@ -60,7 +60,7 @@
                     />
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/team_name"
                     android:gravity="center"
@@ -69,7 +69,7 @@
                     />
 
                 <TextView
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:text="@string/war"
                     android:gravity="center"
@@ -78,7 +78,7 @@
                     />
                 <TextView
                     android:id="@+id/firstValue"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="50dp"
                     android:text="@string/battingAvg"
                     android:gravity="center"
@@ -87,7 +87,7 @@
                     />
                 <TextView
                     android:id="@+id/secondValue"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="50dp"
                     android:text="@string/onBasePercent"
                     android:gravity="center"
@@ -96,7 +96,7 @@
                     />
                 <TextView
                     android:id="@+id/thirdValue"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="50dp"
                     android:text="@string/slugAvg"
                     android:gravity="center"
@@ -106,7 +106,7 @@
 
                 <TextView
                     android:id="@+id/fourthValue"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="50dp"
                     android:text="@string/ops"
                     android:gravity="center"
