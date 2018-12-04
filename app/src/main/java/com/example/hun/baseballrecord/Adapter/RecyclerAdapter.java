@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.hun.baseballrecord.Model.RecyclerModel;
 import com.example.hun.baseballrecord.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
@@ -26,6 +27,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.resourceId=resourceId;
         this.dataList=dataList;
 
+    }
+
+    public void listInit(){
+        Log.d(TAG, "listInit()");
+        dataList = new ArrayList<>();
+        dataList.clear();
     }
 
     @Override

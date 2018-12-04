@@ -19,18 +19,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
                 <TextView
+                    android:id="@+id/total_record"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/total"
                     android:gravity="center"
                     />
                 <TextView
+                    android:id="@+id/batting_record"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/hit"
                     android:gravity="center"
                     />
                 <TextView
+                    android:id="@+id/pitching_record"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/pitching"
@@ -70,6 +73,7 @@
                     android:background="@color/color_ff99ff"
                     />
                 <TextView
+                    android:id="@+id/firstValue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/battingAvg"
@@ -78,6 +82,7 @@
                     android:background="@color/color_ff99ff"
                     />
                 <TextView
+                    android:id="@+id/secondValue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/onBasePercent"
@@ -86,6 +91,7 @@
                     android:background="@color/color_ff99ff"
                     />
                 <TextView
+                    android:id="@+id/thirdValue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/slugAvg"
@@ -95,6 +101,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/fourthValue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/ops"
