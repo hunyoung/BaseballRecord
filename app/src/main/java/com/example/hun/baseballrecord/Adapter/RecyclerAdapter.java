@@ -1,6 +1,7 @@
 package com.example.hun.baseballrecord.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +50,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.rankText.setText((recyclerModel.getRank()));
         holder.nameText.setText(recyclerModel.getName());
         holder.teamText.setText(recyclerModel.getTeamName());
+        
+        String tempTeam = recyclerModel.getTeamName().substring(2, 3);
+        if(tempTeam.equals("두")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#000054"));
+        } else if(tempTeam.equals("넥")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#740000"));
+        } else if(tempTeam.equals("롯")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#000000"));
+        }  else if(tempTeam.equals("K")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#c90000"));
+        }  else if(tempTeam.equals("삼")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#001ec9"));
+        }  else if(tempTeam.equals("L")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#000000"));
+        }  else if(tempTeam.equals("S")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#ff1212"));
+        }  else if(tempTeam.equals("N")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#002266"));
+        }  else if(tempTeam.equals("한")){
+            holder.teamText.setBackgroundColor(Color.parseColor("#ed4c00"));
+        }
+            holder.teamText.setTextColor(Color.parseColor("#ffffff"));
+
         holder.warText.setText(recyclerModel.getWar());
         holder.battingAvgText.setText(recyclerModel.getBattingAvg());
         holder.onBasePercentText.setText(recyclerModel.getOnBasePercent());
