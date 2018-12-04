@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.hun.baseballrecord.R;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 
@@ -147,4 +148,25 @@ public class SearchRecordPopup {
         });
 
     }
+
+    private void urlBuilder(){
+//        String url = CMSManagerImpl.INSTANCE.getServerAddress() + TRVCatchupCategoryDetailbyHourResponse.TRV_URL;
+//
+//        try {
+//            url = new URLBuilder(url)
+//                    .arg("fromHour", String.valueOf(fromHour))
+//                    .arg("toHour", String.valueOf(toHour))
+//                    .arg("platformId", mPlatformId)
+//                    .arg("scheduleDt", scheduleDt)
+//                    .arg("timezone", timezone)
+//                    .arg("channelId", channelId)
+//                    .arg("orderBy", orderBy)
+//                    .arg("orderDirection", orderDirection)
+//
+//                    .build();
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+    }
+
 }
