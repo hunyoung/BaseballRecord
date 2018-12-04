@@ -11,7 +11,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -40,40 +40,88 @@
             </LinearLayout>
 
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                >
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/record"
                     android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
                     />
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/name"
                     android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
                     />
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:text="@string/war"
                     android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
+                    />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/battingAvg"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
+                    />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/onBasePercent"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
+                    />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/slugAvg"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
+                    />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/ops"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
                     />
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                android:visibility="visible"
-                >
-            </android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_centerHorizontal="true"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    >
+                </android.support.v7.widget.RecyclerView>
+
+            </HorizontalScrollView>
+
 
         </LinearLayout>
 

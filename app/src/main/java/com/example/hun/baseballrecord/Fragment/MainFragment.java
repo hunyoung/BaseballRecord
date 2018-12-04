@@ -129,7 +129,8 @@ public class MainFragment extends Fragment {
                 for (int a = 0; a < 929 /*htmlList.size()*/; a++) {
                     if (a % 31 == 1) {
                         //                Log.d(TAG,"a ==== " + a + " 값 ==>  " + htmlList.get(a));
-                        dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a + 28)));
+                        dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a + 28),
+                                htmlList.get(a + 22), htmlList.get(a + 23), htmlList.get(a + 24) , htmlList.get(a + 25)));
 
                     }
                 }

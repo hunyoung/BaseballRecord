@@ -42,6 +42,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.rankText.setText((recyclerModel.getRank()));
         holder.nameText.setText(recyclerModel.getName());
         holder.warText.setText(recyclerModel.getWar());
+        holder.battingAvgText.setText(recyclerModel.getBattingAvg());
+        holder.onBasePercentText.setText(recyclerModel.getOnBasePercent());
+        holder.slugAvgText.setText(recyclerModel.getSlugAvg());
+        holder.opsText.setText(recyclerModel.getOps());
 
         holder.getListRoot().setOnClickListener(new View.OnClickListener(){
             @Override
@@ -69,6 +73,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView rankText;
         TextView nameText;
         TextView warText;
+        TextView battingAvgText;
+        TextView onBasePercentText;
+        TextView slugAvgText;
+        TextView opsText;
         View listRoot;
 
         public View getListRoot() {
@@ -80,6 +88,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             rankText =itemView.findViewById(R.id.rankText);
             nameText =itemView.findViewById(R.id.nameText);
             warText =itemView.findViewById(R.id.warText);
+            battingAvgText =itemView.findViewById(R.id.battingAvgText);
+            onBasePercentText =itemView.findViewById(R.id.onBasePercentText);
+            slugAvgText =itemView.findViewById(R.id.slugAvgText);
+            opsText =itemView.findViewById(R.id.opsText);
             listRoot = itemView.findViewById(R.id.id);
         }
     }
