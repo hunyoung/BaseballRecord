@@ -18,13 +18,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
-                <TextView
-                    android:id="@+id/total_record"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:text="@string/total"
-                    android:gravity="center"
-                    />
+
                 <TextView
                     android:id="@+id/batting_record"
                     android:layout_width="50dp"
@@ -136,10 +130,10 @@
             android:id="@+id/search_total_record"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="bottom|end"
+            android:layout_gravity="end"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="검색"
+            android:text="선수     검색"
             android:background="@drawable/search_border"
             android:textColor="#000000"
             android:gravity="center"

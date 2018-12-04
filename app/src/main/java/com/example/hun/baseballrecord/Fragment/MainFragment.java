@@ -36,7 +36,6 @@ public class MainFragment extends Fragment {
     private List<String> htmlList = new ArrayList<>();
     private View mRootView;
     private TextView mSearch;
-    private TextView mTotalRecord;
     private TextView mBattingRecord;
     private TextView mPitchingRecord;
     private int statMode = 1;
@@ -83,7 +82,6 @@ public class MainFragment extends Fragment {
         recyclerView = mRootView.findViewById(R.id.recyclerView);
         dataList = new ArrayList<>();
         mSearch = mRootView.findViewById(R.id.search_total_record);
-        mTotalRecord = mRootView.findViewById(R.id.total_record);
         mBattingRecord = mRootView.findViewById(R.id.batting_record);
         mPitchingRecord = mRootView.findViewById(R.id.pitching_record);
         recyclerAdapter = new RecyclerAdapter(getContext(), R.layout.activity_main_item, dataList);
@@ -104,16 +102,7 @@ public class MainFragment extends Fragment {
 
         });
 
-//        mTotalRecord.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Log.d(TAG, "Total Record");
-//                htmlURL = "http://www.statiz.co.kr/stat.php?re=7";
-//                htmlList.clear();
-//                MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
-//                jsoupAsyncTask.execute();
-//            }
-//        });
+
 
         mPitchingRecord.setOnClickListener(new View.OnClickListener(){
             @Override
