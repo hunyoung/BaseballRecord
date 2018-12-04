@@ -36,7 +36,7 @@
             android:id="@+id/search_year"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:entries="@array/search_year"/>
 
 
@@ -63,7 +63,7 @@
             android:id="@+id/search_team"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:entries="@array/search_team"/>
 
     </LinearLayout>
@@ -91,7 +91,7 @@
             android:id="@+id/search_position"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:entries="@array/search_position"/>
 
     </LinearLayout>
