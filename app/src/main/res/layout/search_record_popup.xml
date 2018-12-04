@@ -132,7 +132,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="시즌"/>
+            android:text="타석"/>
 
         <TextView
             android:id="@+id/search_batting_txt"
@@ -158,14 +158,6 @@
         android:layout_height="1dp"
         android:background="#000000"/>
 
-    <EditText
-        android:id="@+id/mesgase"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="16dp"
-        android:hint="내용을 입력하세요."/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

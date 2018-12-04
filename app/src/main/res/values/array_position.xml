@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="search_position">
+        <item >전체</item>
         <item >투수</item>
         <item >포수</item>
         <item >1루수</item>

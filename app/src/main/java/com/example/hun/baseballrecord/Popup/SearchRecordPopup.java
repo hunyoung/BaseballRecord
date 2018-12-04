@@ -20,6 +20,11 @@ import java.util.ArrayList;
 
 public class SearchRecordPopup {
     private Context context;
+    private String mSearchYear = "2018년";
+    private String mSearchTeam = "팀 = 전체";
+    private String mSearchPosition = "포지션 = 전체";
+    private String mSearchSeason = "시즌 = 정규";
+    private String mSearchBatting = "타석 = 규정";
 
     public SearchRecordPopup(Context context) {
         this.context = context;
@@ -41,7 +46,6 @@ public class SearchRecordPopup {
         dlg.show();
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
-        final EditText message = dlg.findViewById(R.id.mesgase);
         final Button okButton =  dlg.findViewById(R.id.okButton);
         final Button cancelButton = dlg.findViewById(R.id.cancelButton);
         final Spinner yearSpinner = dlg.findViewById(R.id.search_year);
@@ -60,8 +64,8 @@ public class SearchRecordPopup {
         public void onClick(View view) {
             // '확인' 버튼 클릭시 메인 액티비티에서 설정한 main_label에
             // 커스텀 다이얼로그에서 입력한 메시지를 대입한다.
-           // main_label.setText(message.getText().toString());
-            Toast.makeText(context, "\"" +  message.getText().toString() + "\" 을 입력하였습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, mSearchYear + "\n" + mSearchTeam + "\n" + mSearchPosition + "\n" +
+                    mSearchSeason + "\n" + mSearchBatting + "\n 의 검색결과로 검색합니다.", Toast.LENGTH_LONG).show();
 
             // 커스텀 다이얼로그를 종료한다.
             dlg.dismiss();
@@ -81,6 +85,7 @@ public class SearchRecordPopup {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 yearSearchTxt.setText(adapterView.getItemAtPosition(position) + "년");
+                mSearchYear = adapterView.getItemAtPosition(position) + "년";
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -93,6 +98,7 @@ public class SearchRecordPopup {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 positionSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+                mSearchPosition ="포지션 = " + String.valueOf(adapterView.getItemAtPosition(position));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -105,6 +111,7 @@ public class SearchRecordPopup {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 teamSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+                mSearchTeam = "팀 = " + String.valueOf(adapterView.getItemAtPosition(position));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -117,6 +124,7 @@ public class SearchRecordPopup {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 seasonSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+                mSearchSeason = "시즌 = " + String.valueOf(adapterView.getItemAtPosition(position));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -129,6 +137,7 @@ public class SearchRecordPopup {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 battingSearchTxt.setText(String.valueOf(adapterView.getItemAtPosition(position)));
+                mSearchBatting = "타석 = " + String.valueOf(adapterView.getItemAtPosition(position));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
