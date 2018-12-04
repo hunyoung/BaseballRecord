@@ -34,6 +34,7 @@ public class MainFragment extends Fragment {
     private List<RecyclerModel> dataList = null;
 
     private List<String> htmlList = new ArrayList<>();
+    private List<String> includeTeamList = new ArrayList<>();
     private View mRootView;
     private TextView mSearch;
     private TextView mBattingRecord;
@@ -44,7 +45,7 @@ public class MainFragment extends Fragment {
     private TextView thirdValue;
     private TextView fourthValue;
 
-    private String htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=";  //타격
+    private String htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=&sn=100&pa=0";  //타격
     // 투구 http://www.statiz.co.kr/stat.php?re=1&lr=
     // 종합 http://www.statiz.co.kr/stat.php?re=7
 
@@ -55,6 +56,7 @@ public class MainFragment extends Fragment {
     // te == 팀 이름
     // se == 시즌(0~6) 정규, 포스트, 한국S, 플옵, 준플, 와카, 올스타, 섬머
     // po = 포지션(1 투수, 2 포수, ~~ 10 지타)v
+    // pa =0 1등부터 // sn = 100  100등까지
 
     public MainFragment() {
         // Required empty public constructor
@@ -108,7 +110,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Log.d(TAG, "Pitching Record");
-                htmlURL = "http://www.statiz.co.kr/stat.php?re=1&lr=";
+                htmlURL = "http://www.statiz.co.kr/stat.php?re=1&lr=&sn=100&pa=0v";
                 htmlList.clear();
                 dataList.clear();
                 statMode = 2;
@@ -126,14 +128,14 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Log.d(TAG, "Batting Record");
-                htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=";
+                htmlURL = "http://www.statiz.co.kr/stat.php?re=0&lr=&sn=100&pa=0";
                 htmlList.clear();
                 dataList.clear();
                 statMode = 1;
-                firstValue.setText("타율");
-                secondValue.setText("출루율");
-                thirdValue.setText("장타율");
-                fourthValue.setText("OPS");
+                firstValue.setText(R.string.battingAvg);
+                secondValue.setText(R.string.onBasePercent);
+                thirdValue.setText(R.string.slugAvg);
+                fourthValue.setText(R.string.ops);
                 MainFragment.JsoupAsyncTask jsoupAsyncTask = new MainFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
             }
@@ -172,26 +174,25 @@ public class MainFragment extends Fragment {
 
                 //테스트1
                 Elements titles = doc.select("table.table tr td");
+
                 //Elements titles= doc.select("div.box-body tr td");    //한개 씩 뜯어서 나옴
                 int i = 0;
                 for (Element e : titles) {
                     htmlList.add(e.text());
                 }
 
-                if (statMode ==1){
-                    for (int a = 0; a < 929 /*htmlList.size()*/; a++) {
+                if (statMode ==1){  //타격
+                    for (int a = 0; a < 3097 /*929 ==> 10명*/ /*htmlList.size()*/; a++) {
                         if (a % 31 == 1) {
-                            //                Log.d(TAG,"a ==== " + a + " 값 ==>  " + htmlList.get(a));
-                            dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a + 28),
+                            dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a+1), htmlList.get(a + 28),
                                     htmlList.get(a + 22), htmlList.get(a + 23), htmlList.get(a + 24) , htmlList.get(a + 25)));
-//                        Log.d(TAG, "선수 이름 ===> " + htmlList.get(a));
                         }
                     }
-                } else if(statMode ==2){
-                    for (int a = 0; a < 962 /*htmlList.size()*/; a++) {
+                } else if(statMode ==2){    //투구
+                    for (int a = 0; a < 3270 /*htmlList.size()*/; a++) {
                         if (a % 33 == 1) {
                             //                Log.d(TAG,"a ==== " + a + " 값 ==>  " + htmlList.get(a));
-                            dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a + 30),
+                            dataList.add(new RecyclerModel(String.valueOf(++i), htmlList.get(a), htmlList.get(a+1), htmlList.get(a + 30),
                                     htmlList.get(a + 7), htmlList.get(a + 8), htmlList.get(a + 9) , htmlList.get(a + 26)));
                         }
                     }

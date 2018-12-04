@@ -43,7 +43,7 @@
                 android:layout_height="50dp"
                 >
                 <TextView
-                    android:layout_width="50dp"
+                    android:layout_width="30dp"
                     android:layout_height="50dp"
                     android:text="@string/record"
                     android:gravity="center"
@@ -51,13 +51,23 @@
                     android:background="@color/color_ff99ff"
                     />
                 <TextView
-                    android:layout_width="50dp"
+                    android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:text="@string/name"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:background="@color/color_ff99ff"
                     />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:text="@string/team_name"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@color/color_ff99ff"
+                    />
+
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="50dp"

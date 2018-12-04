@@ -48,6 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         RecyclerModel recyclerModel = dataList.get(position);
         holder.rankText.setText((recyclerModel.getRank()));
         holder.nameText.setText(recyclerModel.getName());
+        holder.teamText.setText(recyclerModel.getTeamName());
         holder.warText.setText(recyclerModel.getWar());
         holder.battingAvgText.setText(recyclerModel.getBattingAvg());
         holder.onBasePercentText.setText(recyclerModel.getOnBasePercent());
@@ -79,6 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView rankText;
         TextView nameText;
+        TextView teamText;
         TextView warText;
         TextView battingAvgText;
         TextView onBasePercentText;
@@ -94,6 +96,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             super(itemView);
             rankText =itemView.findViewById(R.id.rankText);
             nameText =itemView.findViewById(R.id.nameText);
+            teamText =itemView.findViewById(R.id.teamText);
             warText =itemView.findViewById(R.id.warText);
             battingAvgText =itemView.findViewById(R.id.battingAvgText);
             onBasePercentText =itemView.findViewById(R.id.onBasePercentText);

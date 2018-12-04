@@ -4,16 +4,18 @@ public class RecyclerModel {
 
     private String rank;
     private String name;
+    private String teamName;
     private String war;
     private String battingAvg;
     private String onBasePercent;
     private String slugAvg;
     private String ops;
 
-    public RecyclerModel(String rank, String name, String war, String battingAvg,
+    public RecyclerModel(String rank, String name, String teamName, String war, String battingAvg,
                          String onBasePercent, String slugAvg, String ops){
         this.rank = rank;
         this.name = name;
+        this.teamName = teamName;
         this.war  = war;
         this.battingAvg = battingAvg;
         this.onBasePercent = onBasePercent;
@@ -35,6 +37,14 @@ public class RecyclerModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public String getWar(){ return war;}

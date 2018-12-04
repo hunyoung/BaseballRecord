@@ -42,7 +42,7 @@ public class TeamFragment extends Fragment {
 
     private View mRootView;
     private List<TeamFragmentRecyclerModel> dataList = null;
-    private TeamFrgmentRecyclerAdapter mTeamFrgmentRecyclerAdapter = null;
+    private TeamFrgmentRecyclerAdapter mTeamFragmentRecyclerAdapter = null;
     private List<String> htmlList = new ArrayList<>();
     private RecyclerView teamRecyclerView;
     private LineChart lineChart;
@@ -232,10 +232,10 @@ public class TeamFragment extends Fragment {
 
     private void setRecyclerView() {
         Log.d(TAG, "setRecyclerView");
-        mTeamFrgmentRecyclerAdapter = new TeamFrgmentRecyclerAdapter(getContext(), R.layout.team_rank_item, dataList);
+        mTeamFragmentRecyclerAdapter = new TeamFrgmentRecyclerAdapter(getContext(), R.layout.team_rank_item, dataList);
         teamRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         teamRecyclerView.setHasFixedSize(true);
-        teamRecyclerView.setAdapter(mTeamFrgmentRecyclerAdapter);
+        teamRecyclerView.setAdapter(mTeamFragmentRecyclerAdapter);
 
     }
 
