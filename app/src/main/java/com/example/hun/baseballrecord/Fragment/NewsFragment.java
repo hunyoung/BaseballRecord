@@ -3,7 +3,6 @@ package com.example.hun.baseballrecord.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -38,7 +37,6 @@ public class NewsFragment extends Fragment {
     private String clientId = "Q9bW7CbasjpOQVO02uXm";
     private String clientSecret = "Wu_19W2CcU";
 
-
     public NewsFragment() {
         // Required empty public constructor
     }
@@ -64,7 +62,6 @@ public class NewsFragment extends Fragment {
      */
     private void init() {
         Log.d(TAG, "init()");
-
         newsRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
         addMainMenuDummy();
@@ -91,7 +88,6 @@ public class NewsFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "position ==>  " + position);
-
 
             }
         };
@@ -168,6 +164,7 @@ public class NewsFragment extends Fragment {
                 String link = itemInfo.getString("link");
                 String description = itemInfo.getString("description");
                 String pubDate = itemInfo.getString("pubDate");
+
                 dataList.add(new NewsModel(title, description, pubDate, link));
 
             }

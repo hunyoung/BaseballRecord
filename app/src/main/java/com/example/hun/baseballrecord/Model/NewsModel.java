@@ -5,14 +5,14 @@ public class NewsModel {
 
     private String title;
     private String description;
-    private String link;
     private String pubdate;
+    private String link;
 
-    public NewsModel(String title, String description, String link, String pubdate){
+    public NewsModel(String title, String description, String pubdate, String link){
         this.title = title;
         this.description = description;
-        this.link = link;
         this.pubdate = pubdate;
+        this.link = link;
 
     }
 
@@ -32,20 +32,20 @@ public class NewsModel {
         this.description = description;
     }
 
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public String getPubdate() {
         return pubdate;
     }
 
     public void setPubdate(String pubdate) {
         this.pubdate = pubdate;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
 }

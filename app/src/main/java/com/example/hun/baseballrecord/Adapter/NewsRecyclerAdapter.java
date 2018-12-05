@@ -2,6 +2,7 @@ package com.example.hun.baseballrecord.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Model.NewsModel;
-import com.example.hun.baseballrecord.Model.OneTeamDetailFragmentRecyclerModel;
 import com.example.hun.baseballrecord.R;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
-        NewsModel recyclerModel = dataList.get(position);
+        final NewsModel recyclerModel = dataList.get(position);
         holder.newsTitle.setText(recyclerModel.getTitle());
         holder.newsDescription.setText(recyclerModel.getDescription());
         holder.newsLink.setText(recyclerModel.getLink());
@@ -60,7 +60,11 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             public void onClick(View view) {
                 curPosition = holder.getAdapterPosition();
                 Log.d(TAG, "curPosition ==> " + curPosition);
+                Log.d(TAG, "url link ===>    " + recyclerModel.getLink());
+                Linkify.addLinks(holder.newsLink, Linkify.WEB_URLS);
+
                 mItemClickListener.onItemClick(view, curPosition);
+
             }
         });
 
