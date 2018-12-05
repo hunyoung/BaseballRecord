@@ -176,7 +176,8 @@ public class MainActivity extends AppCompatActivity  {
                 NewsFragment fragment4 = new NewsFragment();
                 transaction.replace(R.id.fragment_container, fragment4);
                 transaction.commit();
-                toolBar.setTitle("4번 프래그먼트");
+                toolBar.setTitle("네이버 뉴스");
+                toolBar.setSubtitle("야구");
                 break;
 
             case 4:
