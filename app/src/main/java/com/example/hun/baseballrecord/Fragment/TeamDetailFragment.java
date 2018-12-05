@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -107,7 +108,10 @@ public class TeamDetailFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "position ==>  " + position);
-
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
+                transaction.replace(R.id.fragment_container, fragment1);
+                transaction.commit();
 
             }
         };
