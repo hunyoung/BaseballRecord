@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:focusable="true"
+    android:background="@drawable/border"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/naver_news_title"
+        android:layout_width="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_height="50dp"
+        android:background="@color/color_ff99ff"
+        android:text="aaa"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/naver_news_description"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="bbb" />
+
+    <TextView
+        android:id="@+id/naver_news_link"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="bbb" />
+
+    <TextView
+        android:id="@+id/naver_news_pubdate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="bbb" />
+
+
+
+</LinearLayout>

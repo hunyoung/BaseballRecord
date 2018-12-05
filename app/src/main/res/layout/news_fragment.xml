@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="네이버 뉴스(검색어 : 프로 야구)"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/one_team_detail_fragment_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

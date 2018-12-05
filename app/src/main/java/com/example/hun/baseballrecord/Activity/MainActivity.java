@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Fragment.MainFragment;
+import com.example.hun.baseballrecord.Fragment.NewsFragment;
 import com.example.hun.baseballrecord.Fragment.TeamDetailFragment;
 import com.example.hun.baseballrecord.Fragment.TeamFragment;
 import com.example.hun.baseballrecord.Global.GlobalVariable;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity  {
         menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("시즌 순위"));
         menuList.add(new MainMenuRecyclerModel("전체 팀"));
-        menuList.add(new MainMenuRecyclerModel("4번"));
+        menuList.add(new MainMenuRecyclerModel("뉴스"));
         menuList.add(new MainMenuRecyclerModel("5번"));
     }
 
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity  {
 
             case 3:
                 // '프래그먼트4' 호출
-                TeamFragment fragment4 = new TeamFragment();
+                NewsFragment fragment4 = new NewsFragment();
                 transaction.replace(R.id.fragment_container, fragment4);
                 transaction.commit();
                 toolBar.setTitle("4번 프래그먼트");
