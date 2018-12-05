@@ -72,11 +72,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }  else if(tempTeam.equals("한")){
                 holder.teamText.setBackgroundColor(Color.parseColor("#ed4c00"));
             } else {
-                holder.teamText.setBackgroundColor(Color.parseColor("#ffffff"));
+                holder.teamText.setBackgroundColor(Color.parseColor("#2a2119"));
             }
             holder.teamText.setTextColor(Color.parseColor("#ffffff"));
         } else {
-            holder.teamText.setTextColor(Color.parseColor("#000000"));
+            holder.teamText.setTextColor(Color.parseColor("#2a2119"));
         }
 
 

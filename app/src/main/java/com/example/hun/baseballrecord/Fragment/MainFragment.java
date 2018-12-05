@@ -17,9 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hun.baseballrecord.Adapter.MainMenuRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.RecyclerAdapter;
-import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
 import com.example.hun.baseballrecord.Model.RecyclerModel;
 import com.example.hun.baseballrecord.R;
 
@@ -421,7 +419,7 @@ public class MainFragment extends Fragment {
 
         mRequestString = url;
         result(mRequestString);
-        
+
     }
 
 }
