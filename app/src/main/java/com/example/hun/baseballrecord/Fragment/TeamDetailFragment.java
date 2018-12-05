@@ -1,5 +1,6 @@
 package com.example.hun.baseballrecord.Fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Adapter.TeamDetailFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.TeamFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.TeamDetailFragmentRecyclerModel;
@@ -100,6 +102,18 @@ public class TeamDetailFragment extends Fragment {
         mTeamDetailFragmentRecyclerAdapter = new TeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.team_detail_fragment_recyclerview_item, dataList);
         teamDetailRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         teamDetailRecyclerView.setHasFixedSize(true);
+
+        TeamDetailFrgmentRecyclerAdapter.OnItemClickListener mOnItemClickListener = new TeamDetailFrgmentRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.d(TAG, "position ==>  " + position);
+
+
+            }
+        };
+        mTeamDetailFragmentRecyclerAdapter.setOnItemClickListener(mOnItemClickListener);
+
+
         teamDetailRecyclerView.setAdapter(mTeamDetailFragmentRecyclerAdapter);
 
 

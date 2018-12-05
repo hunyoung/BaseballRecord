@@ -35,6 +35,16 @@ public class TeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamD
 
     }
 
+    private OnItemClickListener mItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mItemClickListener = listener;
+    }
+
 
 
     @Override
@@ -43,14 +53,16 @@ public class TeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamD
         holder.nameText.setText(recyclerModel.getName());
         holder.teamIcon.setImageDrawable(recyclerModel.getIcon());
 
-        holder.getListRoot().setOnClickListener(new View.OnClickListener(){
+
+        holder.getListRoot().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 curPosition = holder.getAdapterPosition();
                 Log.d(TAG, "curPosition ==> " + curPosition);
-
+                mItemClickListener.onItemClick(view, curPosition);
             }
         });
+
 
     }
 
