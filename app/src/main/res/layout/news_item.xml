@@ -2,47 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:focusable="true"
     android:background="@drawable/border"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/naver_news_title"
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/noimage"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_height="50dp"
-        android:background="@color/color_ff99ff"
-        android:text="aaa"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/naver_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="1dp"
+            android:gravity="center_vertical"
+            android:background="@color/color_ff99ff"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="17dp"
+            android:text="제목"
+            android:textStyle="bold" />
 
 
-    <TextView
-        android:id="@+id/naver_news_description"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:text="bbb" />
+        <TextView
+            android:id="@+id/naver_news_description"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="1dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="내용" />
 
-    <TextView
-        android:id="@+id/naver_news_link"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:text="bbb" />
+        <TextView
+            android:id="@+id/naver_news_link"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="1dp"
+            android:text="링크" />
 
-    <TextView
-        android:id="@+id/naver_news_pubdate"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:text="bbb" />
+        <TextView
+            android:id="@+id/naver_news_pubdate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="1dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="1dp"
+            android:text="날자" />
+
+
+    </LinearLayout>
+
 
 
 
