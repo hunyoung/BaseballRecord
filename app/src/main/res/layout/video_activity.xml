@@ -40,13 +40,21 @@
         android:gravity="center"
         android:text="네이버 뉴스(검색어 : 프로 야구)"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/youtubeRecyclerView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:visibility="visible"
-        >
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="200dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/youtubeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            >
+        </android.support.v7.widget.RecyclerView>v
+
+    </ScrollView>
+
+
 
 
     <view

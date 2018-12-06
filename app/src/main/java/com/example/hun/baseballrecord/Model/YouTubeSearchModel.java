@@ -1,14 +1,14 @@
 package com.example.hun.baseballrecord.Model;
 
 public class YouTubeSearchModel {
-    String videoId;
-    String title;
-    String url;
-    String publishedAt;
+
+    private String videoId;
+    private String title;
+    private String url;
+    private String publishedAt;
 
     public YouTubeSearchModel(String videoId, String title, String url,
                       String publishedAt) {
-        super();
         this.videoId = videoId;
         this.title = title;
         this.url = url;

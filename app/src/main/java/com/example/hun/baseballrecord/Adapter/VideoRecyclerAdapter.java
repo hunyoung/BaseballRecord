@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Model.YouTubeSearchModel;
@@ -15,7 +16,7 @@ import com.example.hun.baseballrecord.R;
 import java.util.List;
 
 public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdapter.ViewHolder>{
-    private  String TAG = "OneTeamDetailFrgmentRecyclerAdapter";
+    private  String TAG = "VideoRecyclerAdapter";
     private Context context;
     private int resourceId;
     private List<YouTubeSearchModel> dataList;
@@ -30,6 +31,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        Log.d(TAG, "onCreateViewHolder");
         return new ViewHolder(LayoutInflater.from(context).inflate(resourceId,parent,false));
 
     }
@@ -48,10 +50,11 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
+        Log.d(TAG, "onBindViewHolder");
         final YouTubeSearchModel recyclerModel = dataList.get(position);
 //        holder.videoID.setText(recyclerModel.getVideoId());
         holder.changString.setText(recyclerModel.getTitle());
-        holder.imgUrl.setText(recyclerModel.getUrl());
+//        holder.imgUrl.setText(recyclerModel.getUrl());
         holder.date.setText(recyclerModel.getPublishedAt());
 
 
@@ -82,7 +85,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
     class ViewHolder extends RecyclerView.ViewHolder{
  //       TextView videoID;
         TextView changString;
-        TextView imgUrl;
+     //   ImageView imgUrl;
         TextView date;
         View listRoot;
 
@@ -94,7 +97,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
             super(itemView);
     //        videoID = itemView.findViewById(R.id.naver_news_title);
             changString = itemView.findViewById(R.id.title);
-            imgUrl = itemView.findViewById(R.id.img);
+     //       imgUrl = itemView.findViewById(R.id.img);
             date = itemView.findViewById(R.id.date);
 
 

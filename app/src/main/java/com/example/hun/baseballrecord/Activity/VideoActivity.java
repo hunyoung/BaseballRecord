@@ -15,6 +15,7 @@ import com.example.hun.baseballrecord.Adapter.VideoRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.YouTubeSearchModel;
 import com.example.hun.baseballrecord.R;
 
+import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 
@@ -35,6 +36,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.security.AccessController.getContext;
@@ -71,8 +73,16 @@ public class VideoActivity extends YouTubeBaseActivity {
         youTubeView = findViewById(R.id.youtubeView);
         et =  findViewById(R.id.eturl);
         youtubeRecyclerView = findViewById(R.id.youtubeRecyclerView);
+        dataList = new ArrayList<>();
         addMainMenuDummy();
         Button search = findViewById(R.id.search);
+
+
+        Log.d("youtube Test",
+                "사용가능여부:"+YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(this)); //SUCCSESS
+
+
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +142,7 @@ public class VideoActivity extends YouTubeBaseActivity {
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        dataList.add(new YouTubeSearchModel("제목", "설명", "날짜", "기사 링크"));
+        dataList.add(new YouTubeSearchModel("videoId", "title", "url", "publishedAt"));
     }
 
     private void setRecyclerView() {
@@ -157,7 +167,7 @@ public class VideoActivity extends YouTubeBaseActivity {
 
         URL url = null;
         try {
-            url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + et.getText().toString() + "&maxResults=20&key=" + serverKey);
+            url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + et.getText().toString() + "&key=" + serverKey);
             Log.d(TAG, "video url ===> " + url);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
