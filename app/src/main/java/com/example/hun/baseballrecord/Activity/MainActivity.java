@@ -1,5 +1,6 @@
 package com.example.hun.baseballrecord.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -182,10 +183,12 @@ public class MainActivity extends AppCompatActivity  {
 
             case 4:
                 // '프래그먼트5' 호출
-                MainFragment fragment5 = new MainFragment();
-                transaction.replace(R.id.fragment_container, fragment5);
-                transaction.commit();
-                toolBar.setTitle("5번 프래그먼트");
+//                NewsFragment fragment5 = new NewsFragment();
+//                transaction.replace(R.id.fragment_container, fragment5);
+//                transaction.commit();
+//                toolBar.setTitle("비디오");
+                Intent intent = new Intent(this, VideoActivity.class);
+                startActivity(intent);
                 break;
         }
 
