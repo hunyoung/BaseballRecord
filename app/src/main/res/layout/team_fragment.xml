@@ -139,13 +139,6 @@
             android:layout_width="match_parent"
             android:layout_height="30dp">
 
-            <SeekBar
-                android:id="@+id/seekBar2"
-                android:layout_width="300dp"
-                android:layout_height="30dp"
-                android:max="30"
-                android:min="1"
-             />
             <TextView
                 android:id="@+id/tvYMax"
                 android:layout_width="50dp"
@@ -154,20 +147,17 @@
                 android:gravity="center_horizontal"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:max="30"
+                android:min="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp">
-
-            <SeekBar
-                android:id="@+id/seekBar1"
-                android:layout_width="300dp"
-                android:layout_height="30dp"
-                android:max="10"
-                android:min="1"
-                />
-
             <TextView
                 android:id="@+id/tvXMax"
                 android:layout_width="50dp"
@@ -176,6 +166,12 @@
                 android:gravity="center_horizontal"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:max="10"
+                android:min="1" />
         </LinearLayout>
 
 
