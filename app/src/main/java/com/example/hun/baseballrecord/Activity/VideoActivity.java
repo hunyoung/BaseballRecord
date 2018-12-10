@@ -1,12 +1,16 @@
 package com.example.hun.baseballrecord.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,6 +45,7 @@ public class VideoActivity extends YouTubeBaseActivity {
     private VideoRecyclerAdapter VideoRecyclerAdapter = null;
     private String serverKey = "AIzaSyCuAjoENl1G_hs-B2EnVaBG5ZIdddiqPFM";
     private TextView resultTxt;
+    private InputMethodManager imm;
 
     private YouTubePlayer.OnInitializedListener listener;
     AsyncTask<?, ?, ?> searchTask;
@@ -62,9 +67,11 @@ public class VideoActivity extends YouTubeBaseActivity {
         et =  findViewById(R.id.eturl);
         youtubeRecyclerView = findViewById(R.id.youtubeRecyclerView);
         resultTxt = findViewById(R.id.result_search_text);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
         dataList = new ArrayList<>();
         addMainMenuDummy();
-        Button searchBtn = findViewById(R.id.search);
+        final Button searchBtn = findViewById(R.id.search);
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +80,40 @@ public class VideoActivity extends YouTubeBaseActivity {
             }
         });
 
+        et.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event){
+                if(/*event.getAction()==KeyEvent.KEYCODE_ENTER  && */(keyCode == KeyEvent.KEYCODE_ENTER)){
+                    Log.d(TAG, "enter 키 입력");
+                    searchBtn.callOnClick();
+                    hideKeyboard();
+                    return true;
+                }
+
+                return false;
+            }
+
+
+        });
+
+
     }
 
+    private void hideKeyboard(){
+        imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+    }
 
+    
     private class searchTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog asyncDialog = new ProgressDialog(VideoActivity.this);
+
         @Override
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+            // show dialog
+            asyncDialog.show();
+
             super.onPreExecute();
         }
 
@@ -90,6 +125,7 @@ public class VideoActivity extends YouTubeBaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            asyncDialog.dismiss();
             setRecyclerView();
         }
     }
