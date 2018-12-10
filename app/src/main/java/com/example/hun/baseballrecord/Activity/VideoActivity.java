@@ -15,18 +15,9 @@ import com.example.hun.baseballrecord.Adapter.VideoRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.YouTubeSearchModel;
 import com.example.hun.baseballrecord.R;
 
-import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-
 import com.google.android.youtube.player.YouTubePlayer;
 
-import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.youtube.YouTube;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -75,9 +66,6 @@ public class VideoActivity extends YouTubeBaseActivity {
         addMainMenuDummy();
         Button searchBtn = findViewById(R.id.search);
 
-        Log.d("youtube Test",
-                "사용가능여부:"+YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(this)); //SUCCSESS
-
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,14 +85,11 @@ public class VideoActivity extends YouTubeBaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             getUtube();
-
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-
-
             setRecyclerView();
         }
     }
@@ -139,7 +124,6 @@ public class VideoActivity extends YouTubeBaseActivity {
     }
 
     public void getUtube() {
-
         URL url = null;
         try {
             url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + et.getText().toString() + "&key=" + serverKey);
@@ -154,7 +138,7 @@ public class VideoActivity extends YouTubeBaseActivity {
             } else {
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
             }
-//            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null){
@@ -179,7 +163,7 @@ public class VideoActivity extends YouTubeBaseActivity {
             JSONArray contacts = jsonObject.getJSONArray("items");
             for (int i = 0; i < contacts.length(); i++) {
                 JSONObject c = contacts.getJSONObject(i);
-                String vodid = ""; //c.getJSONObject("id").getString("videoId");
+                String vodid = "";
                 if(c.getJSONObject("id").has("videoId")){
                     if(c.getJSONObject("id").getString("videoId")==null){
                         vodid = c.getJSONObject("id").getString("channelId");
@@ -189,7 +173,7 @@ public class VideoActivity extends YouTubeBaseActivity {
                 }
 
                 String title = c.getJSONObject("snippet").getString("title");
-//                Log.d(TAG, "title ====>   " + title);
+
                 String changString = "";
                 try {
                     changString = new String(title.getBytes("8859_1"), "utf-8");
@@ -201,8 +185,6 @@ public class VideoActivity extends YouTubeBaseActivity {
                         .substring(0, 10);
                 String imgUrl = c.getJSONObject("snippet").getJSONObject("thumbnails")
                         .getJSONObject("default").getString("url");
-
-//                Log.d(TAG, "imgUrl ====>   " + imgUrl);
 
                  dataList.add(new YouTubeSearchModel(vodid, title, imgUrl, date));
 
