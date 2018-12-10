@@ -122,7 +122,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
 
-        seekBarX.setProgress(10);
+        seekBarX.setProgress(1982);
 
         seekBarY.setProgress(5);
 
@@ -366,7 +366,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
         // 여기가 데이터 세팅 하는 부분
-        for (int z = 0; z < 2; z++) {
+        for (int z = 0; z < 5; z++) {
 
             ArrayList<Entry> values = new ArrayList<>();
             rankList(values, z);
@@ -376,12 +376,21 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 //                values.add(new Entry(i, (float) val));
 //            }
 
-            
+
             String tempName = "";
             if (z == 0) {
                 tempName = "두산";
             } else if(z ==1){
                 tempName = "LG";
+            } else if(z ==2){
+                tempName = "삼성";
+            } else if(z ==3){
+                tempName = "롯데";
+            }  else if(z ==4){
+                tempName = "KIA";
+            }
+            else {
+                tempName = "dddd";
             }
             LineDataSet d = new LineDataSet(values, tempName);
             d.setLineWidth(2.5f);
@@ -398,6 +407,9 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         ((LineDataSet) dataSets.get(0)).setColors(Color.rgb(192, 255, 140));
 //        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
 //        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSets.get(2)).setColors(Color.BLUE);
+        ((LineDataSet) dataSets.get(3)).setColors(Color.BLACK);
+        ((LineDataSet) dataSets.get(4)).setColors(Color.RED);
 
         LineData data = new LineData(dataSets);
         chart.setData(data);
@@ -405,14 +417,10 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
+    public void onStartTrackingTouch(SeekBar seekBar) {}
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
+    public void onStopTrackingTouch(SeekBar seekBar) {}
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -548,6 +556,120 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             values.add(new Entry(2016,7));
             values.add(new Entry(2017,5));
             values.add(new Entry(2018,8));
+        } else if(order ==2){
+            values.add(new Entry(1982,9));
+            values.add(new Entry(1983,7));
+            values.add(new Entry(1984,9));
+            values.add(new Entry(1985,10));
+            values.add(new Entry(1986,9));
+            values.add(new Entry(1987,9));
+            values.add(new Entry(1988,7));
+            values.add(new Entry(1989,7));
+            values.add(new Entry(1990,9));
+            values.add(new Entry(1991,8));
+            values.add(new Entry(1992,7));
+            values.add(new Entry(1993,9));
+            values.add(new Entry(1994,6));
+            values.add(new Entry(1995,6));
+            values.add(new Entry(1996,5));
+            values.add(new Entry(1997,7));
+            values.add(new Entry(1998,8));
+            values.add(new Entry(1999,7));
+            values.add(new Entry(2000,8));
+            values.add(new Entry(2001,9));
+            values.add(new Entry(2002,10));
+            values.add(new Entry(2003,7));
+            values.add(new Entry(2004,9));
+            values.add(new Entry(2005,10));
+            values.add(new Entry(2006,10));
+            values.add(new Entry(2007,7));
+            values.add(new Entry(2008,7));
+            values.add(new Entry(2009,6));
+            values.add(new Entry(2010,9));
+            values.add(new Entry(2011,10));
+            values.add(new Entry(2012,10));
+            values.add(new Entry(2013,10));
+            values.add(new Entry(2014,10));
+            values.add(new Entry(2015,9));
+            values.add(new Entry(2016,2));
+            values.add(new Entry(2017,2));
+            values.add(new Entry(2018,5));
+        } else if(order ==3){
+            values.add(new Entry(1982,6));
+            values.add(new Entry(1983,5));
+            values.add(new Entry(1984,10));
+            values.add(new Entry(1985,9));
+            values.add(new Entry(1986,6));
+            values.add(new Entry(1987,8));
+            values.add(new Entry(1988,8));
+            values.add(new Entry(1989,4));
+            values.add(new Entry(1990,5));
+            values.add(new Entry(1991,7));
+            values.add(new Entry(1992,10));
+            values.add(new Entry(1993,5));
+            values.add(new Entry(1994,5));
+            values.add(new Entry(1995,9));
+            values.add(new Entry(1996,6));
+            values.add(new Entry(1997,3));
+            values.add(new Entry(1998,3));
+            values.add(new Entry(1999,2));
+            values.add(new Entry(2000,6));
+            values.add(new Entry(2001,3));
+            values.add(new Entry(2002,3));
+            values.add(new Entry(2003,3));
+            values.add(new Entry(2004,3));
+            values.add(new Entry(2005,6));
+            values.add(new Entry(2006,4));
+            values.add(new Entry(2007,4));
+            values.add(new Entry(2008,8));
+            values.add(new Entry(2009,7));
+            values.add(new Entry(2010,7));
+            values.add(new Entry(2011,8));
+            values.add(new Entry(2012,7));
+            values.add(new Entry(2013,6));
+            values.add(new Entry(2014,4));
+            values.add(new Entry(2015,3));
+            values.add(new Entry(2016,3));
+            values.add(new Entry(2017,8));
+            values.add(new Entry(2018,4));
+        }  else if(order ==4){
+            values.add(new Entry(1982,7));
+            values.add(new Entry(1983,10));
+            values.add(new Entry(1984,6));
+            values.add(new Entry(1985,8));
+            values.add(new Entry(1986,10));
+            values.add(new Entry(1987,10));
+            values.add(new Entry(1988,10));
+            values.add(new Entry(1989,10));
+            values.add(new Entry(1990,8));
+            values.add(new Entry(1991,10));
+            values.add(new Entry(1992,8));
+            values.add(new Entry(1993,10));
+            values.add(new Entry(1994,7));
+            values.add(new Entry(1995,7));
+            values.add(new Entry(1996,10));
+            values.add(new Entry(1997,10));
+            values.add(new Entry(1998,6));
+            values.add(new Entry(1999,4));
+            values.add(new Entry(2000,5));
+            values.add(new Entry(2001,6));
+            values.add(new Entry(2002,8));
+            values.add(new Entry(2003,8));
+            values.add(new Entry(2004,7));
+            values.add(new Entry(2005,3));
+            values.add(new Entry(2006,7));
+            values.add(new Entry(2007,3));
+            values.add(new Entry(2008,5));
+            values.add(new Entry(2009,10));
+            values.add(new Entry(2010,6));
+            values.add(new Entry(2011,7));
+            values.add(new Entry(2012,6));
+            values.add(new Entry(2013,3));
+            values.add(new Entry(2014,3));
+            values.add(new Entry(2015,4));
+            values.add(new Entry(2016,6));
+            values.add(new Entry(2017,10));
+            values.add(new Entry(2018,6));
         }
 
     }
