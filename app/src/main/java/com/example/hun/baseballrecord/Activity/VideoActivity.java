@@ -308,6 +308,8 @@ public class VideoActivity extends YouTubeBaseActivity {
                 String imgUrl = c.getJSONObject("snippet").getJSONObject("thumbnails")
                         .getJSONObject("default").getString("url");
 
+                Log.d(TAG, "imgUrl ====>   " + imgUrl);
+
                  dataList.add(new YouTubeSearchModel(vodid, title, imgUrl, date));
 
             }

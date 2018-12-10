@@ -2,7 +2,6 @@ package com.example.hun.baseballrecord.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.hun.baseballrecord.Model.YouTubeSearchModel;
 import com.example.hun.baseballrecord.R;
 
@@ -58,6 +58,9 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
         holder.date.setText(recyclerModel.getPublishedAt());
 
 
+        Glide.with(context).load(recyclerModel.getUrl()).into(holder.imgUrl);
+
+
         holder.getListRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +88,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
     class ViewHolder extends RecyclerView.ViewHolder{
  //       TextView videoID;
         TextView changString;
-     //   ImageView imgUrl;
+        ImageView imgUrl;
         TextView date;
         View listRoot;
 
@@ -97,7 +100,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
             super(itemView);
     //        videoID = itemView.findViewById(R.id.naver_news_title);
             changString = itemView.findViewById(R.id.title);
-     //       imgUrl = itemView.findViewById(R.id.img);
+            imgUrl = itemView.findViewById(R.id.img);
             date = itemView.findViewById(R.id.date);
 
 
