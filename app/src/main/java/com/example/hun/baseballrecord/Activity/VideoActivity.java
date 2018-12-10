@@ -201,11 +201,7 @@ public class VideoActivity extends YouTubeBaseActivity {
                 JSONObject c = contacts.getJSONObject(i);
                 String vodid = "";
                 if(c.getJSONObject("id").has("videoId")){
-                    if(c.getJSONObject("id").getString("videoId")==null){
-                        vodid = c.getJSONObject("id").getString("channelId");
-                    } else {
-                        vodid = c.getJSONObject("id").getString("videoId");
-                    }
+                    vodid = c.getJSONObject("id").getString("videoId");
                 }
 
                 String title = c.getJSONObject("snippet").getString("title");
@@ -222,7 +218,9 @@ public class VideoActivity extends YouTubeBaseActivity {
                 String imgUrl = c.getJSONObject("snippet").getJSONObject("thumbnails")
                         .getJSONObject("default").getString("url");
 
-                 dataList.add(new YouTubeSearchModel(vodid, title, imgUrl, date));
+                if(c.getJSONObject("id").has("videoId")){
+                    dataList.add(new YouTubeSearchModel(vodid, title, imgUrl, date));
+                }
 
             }
 
