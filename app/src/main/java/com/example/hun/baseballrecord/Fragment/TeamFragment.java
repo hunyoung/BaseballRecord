@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -25,7 +26,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.jsoup.Jsoup;
@@ -40,7 +45,8 @@ import java.util.List;
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 
-public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeListener,
+        OnChartGestureListener, OnChartValueSelectedListener {
     private static String TAG = "TeamFragment";
     private String htmlURL = "https://www.koreabaseball.com/TeamRank/TeamRank.aspx";
 
@@ -116,8 +122,9 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
 
-        seekBarX.setProgress(20);
-        seekBarY.setProgress(100);
+        seekBarX.setProgress(10);
+
+        seekBarY.setProgress(5);
 
         Legend l = chart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -352,22 +359,31 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
         progress = seekBarX.getProgress();
 
+        Log.d(TAG, "progress ===>   "+ progress);
         tvX.setText(String.valueOf(seekBarX.getProgress()));
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
         // 여기가 데이터 세팅 하는 부분
-        for (int z = 0; z < 3; z++) {
+        for (int z = 0; z < 2; z++) {
 
             ArrayList<Entry> values = new ArrayList<>();
+            rankList(values, z);
 
-            for (int i = 0; i < progress; i++) {
-                double val = (Math.random() * seekBarY.getProgress()) + 3;
-                values.add(new Entry(i, (float) val));
+//            for (int i = 0; i < progress; i++) {
+//                double val = (Math.random() * seekBarY.getProgress()) + 3;
+//                values.add(new Entry(i, (float) val));
+//            }
+
+            
+            String tempName = "";
+            if (z == 0) {
+                tempName = "두산";
+            } else if(z ==1){
+                tempName = "LG";
             }
-
-            LineDataSet d = new LineDataSet(values, "DataSet " + (z + 1));
+            LineDataSet d = new LineDataSet(values, tempName);
             d.setLineWidth(2.5f);
             d.setCircleRadius(4f);
 
@@ -379,8 +395,9 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
         // make the first DataSet dashed
         ((LineDataSet) dataSets.get(0)).enableDashedLine(10, 10, 0);
-        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
-        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSets.get(0)).setColors(Color.rgb(192, 255, 140));
+//        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
 
         LineData data = new LineData(dataSets);
         chart.setData(data);
@@ -397,6 +414,143 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
     }
 
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i("Gesture", "START, x: " + me.getX() + ", y: " + me.getY());
+    }
+
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i("Gesture", "END, lastGesture: " + lastPerformedGesture);
+
+        // un-highlight values after the gesture is finished and no single-tap
+        if(lastPerformedGesture != ChartTouchListener.ChartGesture.SINGLE_TAP)
+            chart.highlightValues(null); // or highlightTouch(null) for callback to onNothingSelected(...)
+    }
+
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+        Log.i("LongPress", "Chart long pressed.");
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+        Log.i("DoubleTap", "Chart double-tapped.");
+    }
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me) {
+        Log.i("SingleTap", "Chart single-tapped.");
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+        Log.i("Fling", "Chart fling. VelocityX: " + velocityX + ", VelocityY: " + velocityY);
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+        Log.i("Scale / Zoom", "ScaleX: " + scaleX + ", ScaleY: " + scaleY);
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+        Log.i("Translate / Move", "dX: " + dX + ", dY: " + dY);
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i("VAL SELECTED",
+                "Value: " + e.getY() + ", xIndex: " + e.getX()
+                        + ", DataSet index: " + h.getDataSetIndex());
+    }
+
+    @Override
+    public void onNothingSelected() {}
+
+
+
+    private void rankList(ArrayList<Entry> values, int order){
+       // values = new ArrayList<>();
+        if(order==0){
+            values.add(new Entry(1982,10));
+            values.add(new Entry(1983,5));
+            values.add(new Entry(1984,8));
+            values.add(new Entry(1985,7));
+            values.add(new Entry(1986,7));
+            values.add(new Entry(1987,7));
+            values.add(new Entry(1988,6));
+            values.add(new Entry(1989,6));
+            values.add(new Entry(1990,4));
+            values.add(new Entry(1991,3));
+            values.add(new Entry(1992,6));
+            values.add(new Entry(1993,8));
+            values.add(new Entry(1994,4));
+            values.add(new Entry(1995,10));
+            values.add(new Entry(1996,3));
+            values.add(new Entry(1997,6));
+            values.add(new Entry(1998,7));
+            values.add(new Entry(1999,8));
+            values.add(new Entry(2000,9));
+            values.add(new Entry(2001,10));
+            values.add(new Entry(2002,6));
+            values.add(new Entry(2003,4));
+            values.add(new Entry(2004,8));
+            values.add(new Entry(2005,9));
+            values.add(new Entry(2006,6));
+            values.add(new Entry(2007,9));
+            values.add(new Entry(2008,9));
+            values.add(new Entry(2009,8));
+            values.add(new Entry(2010,8));
+            values.add(new Entry(2011,6));
+            values.add(new Entry(2012,8));
+            values.add(new Entry(2013,9));
+            values.add(new Entry(2014,5));
+            values.add(new Entry(2015,10));
+            values.add(new Entry(2016,10));
+            values.add(new Entry(2017,9));
+            values.add(new Entry(2018,9));
+        } else if(order ==1){
+            values.add(new Entry(1982,8));
+            values.add(new Entry(1983,9));
+            values.add(new Entry(1984,7));
+            values.add(new Entry(1985,6));
+            values.add(new Entry(1986,8));
+            values.add(new Entry(1987,6));
+            values.add(new Entry(1988,5));
+            values.add(new Entry(1989,5));
+            values.add(new Entry(1990,10));
+            values.add(new Entry(1991,5));
+            values.add(new Entry(1992,4));
+            values.add(new Entry(1993,7));
+            values.add(new Entry(1994,10));
+            values.add(new Entry(1995,8));
+            values.add(new Entry(1996,4));
+            values.add(new Entry(1997,9));
+            values.add(new Entry(1998,9));
+            values.add(new Entry(1999,5));
+            values.add(new Entry(2000,7));
+            values.add(new Entry(2001,5));
+            values.add(new Entry(2002,9));
+            values.add(new Entry(2003,5));
+            values.add(new Entry(2004,5));
+            values.add(new Entry(2005,5));
+            values.add(new Entry(2006,3));
+            values.add(new Entry(2007,6));
+            values.add(new Entry(2008,3));
+            values.add(new Entry(2009,4));
+            values.add(new Entry(2010,5));
+            values.add(new Entry(2011,5));
+            values.add(new Entry(2012,4));
+            values.add(new Entry(2013,8));
+            values.add(new Entry(2014,7));
+            values.add(new Entry(2015,2));
+            values.add(new Entry(2016,7));
+            values.add(new Entry(2017,5));
+            values.add(new Entry(2018,8));
+        }
+
+    }
 
 
 }
