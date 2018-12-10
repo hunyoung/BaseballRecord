@@ -292,10 +292,17 @@ public class VideoActivity extends YouTubeBaseActivity {
             JSONArray contacts = jsonObject.getJSONArray("items");
             for (int i = 0; i < contacts.length(); i++) {
                 JSONObject c = contacts.getJSONObject(i);
-                String vodid = c.getJSONObject("id").getString("videoId");
-
+                String vodid = ""; //c.getJSONObject("id").getString("videoId");
+                if(c.getJSONObject("id").has("videoId")){
+                    if(c.getJSONObject("id").getString("videoId")==null){
+                        vodid = c.getJSONObject("id").getString("channelId");
+                    } else {
+                        vodid = c.getJSONObject("id").getString("videoId");
+                    }
+                }
+                
                 String title = c.getJSONObject("snippet").getString("title");
-                Log.d(TAG, "title ====>   " + title);
+//                Log.d(TAG, "title ====>   " + title);
                 String changString = "";
                 try {
                     changString = new String(title.getBytes("8859_1"), "utf-8");
@@ -308,7 +315,7 @@ public class VideoActivity extends YouTubeBaseActivity {
                 String imgUrl = c.getJSONObject("snippet").getJSONObject("thumbnails")
                         .getJSONObject("default").getString("url");
 
-                Log.d(TAG, "imgUrl ====>   " + imgUrl);
+//                Log.d(TAG, "imgUrl ====>   " + imgUrl);
 
                  dataList.add(new YouTubeSearchModel(vodid, title, imgUrl, date));
 
