@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Adapter.TeamFrgmentRecyclerAdapter;
@@ -18,11 +19,14 @@ import com.example.hun.baseballrecord.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,7 +40,7 @@ import java.util.List;
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 
-public class TeamFragment extends Fragment {
+public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
     private static String TAG = "TeamFragment";
     private String htmlURL = "https://www.koreabaseball.com/TeamRank/TeamRank.aspx";
 
@@ -45,9 +49,11 @@ public class TeamFragment extends Fragment {
     private TeamFrgmentRecyclerAdapter mTeamFragmentRecyclerAdapter = null;
     private List<String> htmlList = new ArrayList<>();
     private RecyclerView teamRecyclerView;
-    private LineChart lineChart;
+    private LineChart chart;
     private TextView mCurDate;
     private String dateString;
+    private SeekBar seekBarX, seekBarY;
+    private TextView tvX, tvY;
 
 
 
@@ -80,9 +86,50 @@ public class TeamFragment extends Fragment {
         teamRecyclerView = mRootView.findViewById(R.id.teamRecyclerView);
         dataList = new ArrayList<>();
         mCurDate = mRootView.findViewById(R.id.date);
-        lineChart = mRootView.findViewById(R.id.chart);
+        chart = mRootView.findViewById(R.id.chart);
+        tvX = mRootView.findViewById(R.id.tvXMax);
+        tvY = mRootView.findViewById(R.id.tvYMax);
+
+        seekBarX = mRootView.findViewById(R.id.seekBar1);
+        seekBarX.setOnSeekBarChangeListener(this);
+
+        seekBarY = mRootView.findViewById(R.id.seekBar2);
+        seekBarY.setOnSeekBarChangeListener(this);
+
+        chart.setDrawGridBackground(false);
+        chart.getDescription().setEnabled(false);
+        chart.setDrawBorders(false);
+
+        chart.getAxisLeft().setEnabled(false);
+        chart.getAxisRight().setDrawAxisLine(false);
+        chart.getAxisRight().setDrawGridLines(false);
+        chart.getXAxis().setDrawAxisLine(false);
+        chart.getXAxis().setDrawGridLines(false);
+
+        // enable touch gestures
+        chart.setTouchEnabled(true);
+
+        // enable scaling and dragging
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        chart.setPinchZoom(false);
+
+        seekBarX.setProgress(20);
+        seekBarY.setProgress(100);
+
+        Legend l = chart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+
+
+
+
         addMainMenuDummy();
-        chartSettings();
+        //chartSettings();
 //        setRecyclerView();
         TeamFragment.JsoupAsyncTask jsoupAsyncTask = new TeamFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
@@ -196,19 +243,19 @@ public class TeamFragment extends Fragment {
         LineData lineData2 = new LineData(lineDataSet2);
 
 
-        lineChart.setData(lineData);
+        chart.setData(lineData);
 //        lineChart.setData(lineData2);
 
 
-        XAxis xAxis = lineChart.getXAxis();
+        XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.BLACK);
         xAxis.enableGridDashedLine(8, 24, 0);
 
-        YAxis yLAxis = lineChart.getAxisLeft();
+        YAxis yLAxis = chart.getAxisLeft();
         yLAxis.setTextColor(Color.BLACK);
 
-        YAxis yRAxis = lineChart.getAxisRight();
+        YAxis yRAxis = chart.getAxisRight();
         yRAxis.setDrawLabels(false);
         yRAxis.setDrawAxisLine(false);
         yRAxis.setDrawGridLines(false);
@@ -216,11 +263,11 @@ public class TeamFragment extends Fragment {
         Description description = new Description();
         description.setText("");
 
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setDescription(description);
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
-        lineChart.invalidate();
+        chart.setDoubleTapToZoomEnabled(false);
+        chart.setDrawGridBackground(false);
+        chart.setDescription(description);
+        chart.animateY(2000, Easing.EasingOption.EaseInCubic);
+        chart.invalidate();
     }
 
     private void addMainMenuDummy() {
@@ -238,7 +285,6 @@ public class TeamFragment extends Fragment {
         teamRecyclerView.setAdapter(mTeamFragmentRecyclerAdapter);
 
     }
-
 
 
     private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -291,6 +337,66 @@ public class TeamFragment extends Fragment {
             mCurDate.setText(dateString);
         }
     }
+
+
+    private final int[] colors = new int[] {
+            ColorTemplate.VORDIPLOM_COLORS[0],
+            ColorTemplate.VORDIPLOM_COLORS[1],
+            ColorTemplate.VORDIPLOM_COLORS[2]
+    };
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+        chart.resetTracking();
+
+        progress = seekBarX.getProgress();
+
+        tvX.setText(String.valueOf(seekBarX.getProgress()));
+        tvY.setText(String.valueOf(seekBarY.getProgress()));
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        // 여기가 데이터 세팅 하는 부분
+        for (int z = 0; z < 3; z++) {
+
+            ArrayList<Entry> values = new ArrayList<>();
+
+            for (int i = 0; i < progress; i++) {
+                double val = (Math.random() * seekBarY.getProgress()) + 3;
+                values.add(new Entry(i, (float) val));
+            }
+
+            LineDataSet d = new LineDataSet(values, "DataSet " + (z + 1));
+            d.setLineWidth(2.5f);
+            d.setCircleRadius(4f);
+
+            int color = colors[z % colors.length];
+            d.setColor(color);
+            d.setCircleColor(color);
+            dataSets.add(d);
+        }
+
+        // make the first DataSet dashed
+        ((LineDataSet) dataSets.get(0)).enableDashedLine(10, 10, 0);
+        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        LineData data = new LineData(dataSets);
+        chart.setData(data);
+        chart.invalidate();
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
 
 
 }

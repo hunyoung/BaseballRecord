@@ -103,7 +103,7 @@ public class VideoActivity extends YouTubeBaseActivity {
         imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
     }
 
-    
+
     private class searchTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog asyncDialog = new ProgressDialog(VideoActivity.this);
 

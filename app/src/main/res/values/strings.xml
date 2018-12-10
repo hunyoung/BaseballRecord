@@ -34,7 +34,7 @@
     <string name="team_lg">LG</string>
     <string name="team_nc">NC</string>
     <string name="team_kt">KT</string>
-
+    <string name="dash">-</string>
 
 
 </resources>
