@@ -77,6 +77,7 @@ public class VideoActivity extends YouTubeBaseActivity {
             @Override
             public void onClick(View v) {
                 searchTask = new searchTask().execute();
+                hideKeyboard();
             }
         });
 
