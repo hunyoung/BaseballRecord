@@ -136,6 +136,7 @@
             android:layout_height="300dp" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="30dp">
 
@@ -151,11 +152,12 @@
                 android:id="@+id/seekBar2"
                 android:layout_width="300dp"
                 android:layout_height="30dp"
-                android:max="30"
+                android:max="10"
                 android:min="1" />
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="30dp">
             <TextView
@@ -170,8 +172,8 @@
                 android:id="@+id/seekBar1"
                 android:layout_width="300dp"
                 android:layout_height="30dp"
-                android:max="10"
-                android:min="1" />
+                android:max="2018"
+                android:min="1982" />
         </LinearLayout>
 
 
