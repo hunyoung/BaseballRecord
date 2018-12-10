@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity  {
         menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("시즌 순위"));
         menuList.add(new MainMenuRecyclerModel("전체 팀"));
-        menuList.add(new MainMenuRecyclerModel("뉴스"));
-        menuList.add(new MainMenuRecyclerModel("5번"));
+        menuList.add(new MainMenuRecyclerModel("네이버 뉴스"));
+        menuList.add(new MainMenuRecyclerModel("유투브 검색"));
     }
 
     private void setMainMenuRecyclerView() {

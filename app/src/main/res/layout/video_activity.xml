@@ -5,6 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activity.VideoActivity"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Youtube 검색"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -33,44 +40,29 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/result_search_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textStyle="bold"
         android:textSize="20dp"
         android:gravity="center"
-        android:text="네이버 뉴스(검색어 : 프로 야구)"/>
+        android:visibility="gone"
+        android:text="검색어 : "/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/youtubeRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:visibility="visible"
             >
-        </android.support.v7.widget.RecyclerView>v
+        </android.support.v7.widget.RecyclerView>
 
     </ScrollView>
 
 
-    <view
-        android:id="@+id/youtubeView"
-        class="com.google.android.youtube.player.YouTubePlayerView"
-        id="@+id/view2"
-        android:layout_width="345dp"
-        android:layout_height="215dp"/>
-
-    <Button
-        android:id="@+id/youtubebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="재생"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
 
 </LinearLayout>

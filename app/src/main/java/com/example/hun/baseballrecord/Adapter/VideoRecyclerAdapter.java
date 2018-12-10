@@ -39,7 +39,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
     private OnItemClickListener mItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(View v, int position);
+        void onItemClick(View v, int position, String url);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -66,7 +66,8 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
             public void onClick(View view) {
                 curPosition = holder.getAdapterPosition();
                 Log.d(TAG, "curPosition ==> " + curPosition);
-                mItemClickListener.onItemClick(view, curPosition);
+                Log.d(TAG, "curPositions videoUrl ==> " + recyclerModel.getVideoId());
+                mItemClickListener.onItemClick(view, curPosition, recyclerModel.getVideoId());
 
             }
         });

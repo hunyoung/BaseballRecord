@@ -24,6 +24,11 @@
 
         <activity android:name=".Activity.VideoActivity" />
 
+        <activity android:name=".Activity.PlayerActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+
+        />
 
 
     </application>
