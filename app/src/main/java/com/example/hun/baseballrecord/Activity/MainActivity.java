@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity  {
                 transaction.replace(R.id.fragment_container, fragment1);
                 transaction.commit();
                 toolBar.setTitle(R.string.total);
+                toolBar.setSubtitle("종합 기록");
                 break;
 
             case 1:
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity  {
                 transaction.replace(R.id.fragment_container, fragment2);
                 transaction.commit();
                 toolBar.setTitle(R.string.team_total);
+                toolBar.setSubtitle("야구");
                 break;
 
             case 2:
