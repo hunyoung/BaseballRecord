@@ -324,7 +324,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 //            }
 
 
-            String tempName = "";
+            String tempName ;
             if (z == 0) { tempName = "두산"; }
             else if(z ==1){ tempName = "LG"; }
             else if(z ==2){ tempName = "삼성"; }
@@ -338,8 +338,20 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             else { tempName = "팀"; }
 
             LineDataSet d = new LineDataSet(values, tempName);
-            d.setLineWidth(2.5f);
-            d.setCircleRadius(4f);
+            LineData lineData = new LineData(d);
+            chart.setData(lineData);
+
+            XAxis xAxis = chart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setDrawGridLines(false);
+
+            YAxis yRAxis = chart.getAxisRight();
+
+            yRAxis.setDrawGridLines(false);
+            yRAxis.setInverted(true);
+
+            d.setLineWidth(3);
+            d.setCircleRadius(3);
 
 //            int color = colors[z % colors.length];
 //            d.setColor(color);
@@ -355,6 +367,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 //        ((LineDataSet) dataSets.get(0)).setColors(Color.rgb(192, 255, 140));
 //        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
 //        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+
 
         ((LineDataSet) dataSets.get(0)).setColors(Color.parseColor("#000054"));
         ((LineDataSet) dataSets.get(1)).setColors(Color.BLACK);
