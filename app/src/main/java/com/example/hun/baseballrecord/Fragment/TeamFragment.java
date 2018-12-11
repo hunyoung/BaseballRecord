@@ -366,7 +366,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
         // 여기가 데이터 세팅 하는 부분
-        for (int z = 0; z < 5; z++) {
+        for (int z = 0; z < 10; z++) {
 
             ArrayList<Entry> values = new ArrayList<>();
             rankList(values, z);
@@ -386,8 +386,18 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
                 tempName = "삼성";
             } else if(z ==3){
                 tempName = "롯데";
-            }  else if(z ==4){
+            } else if(z ==4){
                 tempName = "KIA";
+            } else if(z ==5){
+                tempName = "한화";
+            } else if(z ==6){
+                tempName = "NC";
+            } else if(z ==7){
+                tempName = "KT";
+            } else if(z ==8){
+                tempName = "SK";
+            } else if(z ==9){
+                tempName = "넥센";
             }
             else {
                 tempName = "dddd";
@@ -403,13 +413,21 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         }
 
         // make the first DataSet dashed
-        ((LineDataSet) dataSets.get(0)).enableDashedLine(10, 10, 0);
-        ((LineDataSet) dataSets.get(0)).setColors(Color.rgb(192, 255, 140));
+//        ((LineDataSet) dataSets.get(0)).enableDashedLine(10, 10, 0);
+//        ((LineDataSet) dataSets.get(0)).setColors(Color.rgb(192, 255, 140));
 //        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
 //        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        ((LineDataSet) dataSets.get(0)).setColors(Color.parseColor("#000054"));
+        ((LineDataSet) dataSets.get(1)).setColors(Color.BLACK);
         ((LineDataSet) dataSets.get(2)).setColors(Color.BLUE);
         ((LineDataSet) dataSets.get(3)).setColors(Color.BLACK);
-        ((LineDataSet) dataSets.get(4)).setColors(Color.RED);
+        ((LineDataSet) dataSets.get(4)).setColors(Color.parseColor("#c90000"));
+        ((LineDataSet) dataSets.get(5)).setColors(Color.parseColor("#ed4c00"));
+        ((LineDataSet) dataSets.get(6)).setColors(Color.parseColor("#002266"));
+        ((LineDataSet) dataSets.get(7)).setColors(Color.BLACK);
+        ((LineDataSet) dataSets.get(8)).setColors(Color.parseColor("#ff1212"));
+        ((LineDataSet) dataSets.get(9)).setColors(Color.parseColor("#740000"));
 
         LineData data = new LineData(dataSets);
         chart.setData(data);
@@ -670,6 +688,84 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             values.add(new Entry(2016,6));
             values.add(new Entry(2017,10));
             values.add(new Entry(2018,6));
+        }   else if(order ==5){
+            values.add(new Entry(1986,4));
+            values.add(new Entry(1987,5));
+            values.add(new Entry(1988,9));
+            values.add(new Entry(1989,9));
+            values.add(new Entry(1990,7));
+            values.add(new Entry(1991,9));
+            values.add(new Entry(1992,9));
+            values.add(new Entry(1993,6));
+            values.add(new Entry(1994,8));
+            values.add(new Entry(1995,5));
+            values.add(new Entry(1996,7));
+            values.add(new Entry(1997,4));
+            values.add(new Entry(1998,4));
+            values.add(new Entry(1999,10));
+            values.add(new Entry(2000,4));
+            values.add(new Entry(2001,7));
+            values.add(new Entry(2002,4));
+            values.add(new Entry(2003,6));
+            values.add(new Entry(2004,4));
+            values.add(new Entry(2005,7));
+            values.add(new Entry(2006,9));
+            values.add(new Entry(2007,8));
+            values.add(new Entry(2008,6));
+            values.add(new Entry(2009,3));
+            values.add(new Entry(2010,3));
+            values.add(new Entry(2011,5));
+            values.add(new Entry(2012,3));
+            values.add(new Entry(2013,2));
+            values.add(new Entry(2014,2));
+            values.add(new Entry(2015,5));
+            values.add(new Entry(2016,4));
+            values.add(new Entry(2017,3));
+            values.add(new Entry(2018,8));
+        }   else if(order ==6){
+            values.add(new Entry(2013,4));
+            values.add(new Entry(2014,8));
+            values.add(new Entry(2015,8));
+            values.add(new Entry(2016,9));
+            values.add(new Entry(2017,7));
+            values.add(new Entry(2018,1));
+        }   else if(order ==7){
+            values.add(new Entry(2015,1));
+            values.add(new Entry(2016,1));
+            values.add(new Entry(2017,1));
+            values.add(new Entry(2018,2));
+        }   else if(order ==8){
+            values.add(new Entry(2000,3));
+            values.add(new Entry(2001,4));
+            values.add(new Entry(2002,5));
+            values.add(new Entry(2003,9));
+            values.add(new Entry(2004,6));
+            values.add(new Entry(2005,8));
+            values.add(new Entry(2006,5));
+            values.add(new Entry(2007,10));
+            values.add(new Entry(2008,10));
+            values.add(new Entry(2009,9));
+            values.add(new Entry(2010,10));
+            values.add(new Entry(2011,9));
+            values.add(new Entry(2012,9));
+            values.add(new Entry(2013,5));
+            values.add(new Entry(2014,6));
+            values.add(new Entry(2015,6));
+            values.add(new Entry(2016,5));
+            values.add(new Entry(2017,6));
+            values.add(new Entry(2018,10));
+        }   else if(order ==9){
+            values.add(new Entry(2008,4));
+            values.add(new Entry(2009,5));
+            values.add(new Entry(2010,4));
+            values.add(new Entry(2011,3));
+            values.add(new Entry(2012,5));
+            values.add(new Entry(2013,7));
+            values.add(new Entry(2014,9));
+            values.add(new Entry(2015,7));
+            values.add(new Entry(2016,8));
+            values.add(new Entry(2017,4));
+            values.add(new Entry(2018,7));
         }
 
     }
