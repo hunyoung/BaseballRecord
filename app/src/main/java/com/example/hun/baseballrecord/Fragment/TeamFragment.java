@@ -46,7 +46,7 @@ import java.util.List;
 //import butterknife.ButterKnife;
 
 public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeListener,
-        OnChartGestureListener, OnChartValueSelectedListener {
+        OnChartGestureListener, OnChartValueSelectedListener, View.OnClickListener {
     private static String TAG = "TeamFragment";
     private String htmlURL = "https://www.koreabaseball.com/TeamRank/TeamRank.aspx";
 
@@ -60,6 +60,8 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
     private String dateString;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
+    private TextView mDoosan, mLG, mNexen, mLotte, mSamsung, mSk, mHanhwa, mKia, mKt, mNc;
+    private ArrayList<ILineDataSet> dataSets;
 
 
 
@@ -91,6 +93,29 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
         teamRecyclerView = mRootView.findViewById(R.id.teamRecyclerView);
         dataList = new ArrayList<>();
+        mDoosan = mRootView.findViewById(R.id.team_doosan);
+        mDoosan.setOnClickListener(this);
+        mLG = mRootView.findViewById(R.id.team_lg);
+        mLG.setOnClickListener(this);
+        mLotte = mRootView.findViewById(R.id.team_lotte);
+        mLotte.setOnClickListener(this);
+        mHanhwa = mRootView.findViewById(R.id.team_hanhwa);
+        mHanhwa.setOnClickListener(this);
+        mKia = mRootView.findViewById(R.id.team_kia);
+        mKia.setOnClickListener(this);
+        mKt = mRootView.findViewById(R.id.team_kt);
+        mKt.setOnClickListener(this);
+        mSamsung = mRootView.findViewById(R.id.team_samsung);
+        mSamsung.setOnClickListener(this);
+        mSk = mRootView.findViewById(R.id.team_sk);
+        mSk.setOnClickListener(this);
+        mNc = mRootView.findViewById(R.id.team_nc);
+        mNc.setOnClickListener(this);
+        mNexen = mRootView.findViewById(R.id.team_nexen);
+        mNexen.setOnClickListener(this);
+
+
+
         mCurDate = mRootView.findViewById(R.id.date);
         chart = mRootView.findViewById(R.id.chart);
         tvX = mRootView.findViewById(R.id.tvXMax);
@@ -144,92 +169,68 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         jsoupAsyncTask.execute();
 
     }
-    private void chartSettings(){
-        List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1982,10));
-        entries.add(new Entry(1983,5));
-        entries.add(new Entry(1984,8));
-        entries.add(new Entry(1985,7));
-        entries.add(new Entry(1986,7));
-        entries.add(new Entry(1987,7));
-        entries.add(new Entry(1988,6));
-        entries.add(new Entry(1989,6));
-        entries.add(new Entry(1990,4));
-        entries.add(new Entry(1991,3));
-        entries.add(new Entry(1992,6));
-        entries.add(new Entry(1993,8));
-        entries.add(new Entry(1994,4));
-        entries.add(new Entry(1995,10));
-        entries.add(new Entry(1996,3));
-        entries.add(new Entry(1997,6));
-        entries.add(new Entry(1998,7));
-        entries.add(new Entry(1999,8));
-        entries.add(new Entry(2000,9));
-        entries.add(new Entry(2001,10));
-        entries.add(new Entry(2002,6));
-        entries.add(new Entry(2003,4));
-        entries.add(new Entry(2004,8));
-        entries.add(new Entry(2005,9));
-        entries.add(new Entry(2006,6));
-        entries.add(new Entry(2007,9));
-        entries.add(new Entry(2008,9));
-        entries.add(new Entry(2009,8));
-        entries.add(new Entry(2010,8));
-        entries.add(new Entry(2011,6));
-        entries.add(new Entry(2012,8));
-        entries.add(new Entry(2013,9));
-        entries.add(new Entry(2014,5));
-        entries.add(new Entry(2015,10));
-        entries.add(new Entry(2016,10));
-        entries.add(new Entry(2017,9));
-        entries.add(new Entry(2018,9));
 
-        LineDataSet lineDataSet = new LineDataSet(entries, "두산");
-        lineDataSet.setLineWidth(2);
-        lineDataSet.setCircleRadius(4);
-        lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setCircleColorHole(Color.BLUE);
-        lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setDrawCircleHole(true);
-        lineDataSet.setDrawCircles(true);
-        lineDataSet.setDrawHorizontalHighlightIndicator(false);
-        lineDataSet.setDrawHighlightIndicators(false);
-        lineDataSet.setDrawValues(false);
-
-        LineData lineData = new LineData(lineDataSet);
-        chart.setData(lineData);
-//        lineChart.setData(lineData2);
-
-
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.BLACK);
-        xAxis.enableGridDashedLine(8, 24, 0);
-
-        YAxis yLAxis = chart.getAxisLeft();
-        yLAxis.setTextColor(Color.BLACK);
-
-        YAxis yRAxis = chart.getAxisRight();
-        yRAxis.setDrawLabels(false);
-        yRAxis.setDrawAxisLine(false);
-        yRAxis.setDrawGridLines(false);
-
-        Description description = new Description();
-        description.setText("");
-
-        chart.setDoubleTapToZoomEnabled(false);
-        chart.setDrawGridBackground(false);
-        chart.setDescription(description);
-        chart.animateY(2000, Easing.EasingOption.EaseInCubic);
-        chart.invalidate();
+    public void onClick(View v) {
+        //여기에 할 일을 적어주세요.
+        switch (v.getId()) {
+            case R.id.team_doosan :
+                if((dataSets.get(0)).isVisible()){ (dataSets.get(0)).setVisible(false);}
+                else {(dataSets.get(0)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_lg :
+                if((dataSets.get(1)).isVisible()){ (dataSets.get(1)).setVisible(false); }
+                else { (dataSets.get(1)).setVisible(true); }
+                chart.invalidate();
+            break ;
+            case R.id.team_samsung :
+                if((dataSets.get(2)).isVisible()){ (dataSets.get(2)).setVisible(false); }
+                else { (dataSets.get(2)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_lotte :
+                if((dataSets.get(3)).isVisible()){ (dataSets.get(3)).setVisible(false); }
+                else { (dataSets.get(3)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_kia :
+                if((dataSets.get(4)).isVisible()){ (dataSets.get(4)).setVisible(false); }
+                else { (dataSets.get(4)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_hanhwa :
+                if((dataSets.get(5)).isVisible()){ (dataSets.get(5)).setVisible(false); }
+                else { (dataSets.get(5)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_nc :
+                if((dataSets.get(6)).isVisible()){ (dataSets.get(6)).setVisible(false); }
+                else { (dataSets.get(6)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_kt :
+                if((dataSets.get(7)).isVisible()){ (dataSets.get(7)).setVisible(false); }
+                else { (dataSets.get(7)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_sk :
+                if((dataSets.get(8)).isVisible()){ (dataSets.get(8)).setVisible(false); }
+                else { (dataSets.get(8)).setVisible(true); }
+                chart.invalidate();
+                break ;
+            case R.id.team_nexen :
+                if((dataSets.get(9)).isVisible()){ (dataSets.get(9)).setVisible(false); }
+                else { (dataSets.get(9)).setVisible(true); }
+                chart.invalidate();
+                break ;
+        }
     }
-
+    
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
         dataList.add(new TeamFragmentRecyclerModel("순위", "팀명", "경기", "승", "패", "무", "승률", "게임차", "최근10경기", "연속", "홈", "원정"));
 
     }
-
 
     private void setRecyclerView() {
         Log.d(TAG, "setRecyclerView");
@@ -310,7 +311,8 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         tvX.setText(String.valueOf(seekBarX.getProgress()));
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        /*ArrayList<ILineDataSet>*/
+        dataSets = new ArrayList<>();
 
 
 
@@ -377,6 +379,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 
         ((LineDataSet) dataSets.get(0)).setColors(Color.parseColor("#000054"));
+//        ((LineDataSet) dataSets.get(0)).setVisible(false);
         ((LineDataSet) dataSets.get(1)).setColors(Color.YELLOW);
         ((LineDataSet) dataSets.get(2)).setColors(Color.BLUE);
         ((LineDataSet) dataSets.get(3)).setColors(Color.GREEN);
