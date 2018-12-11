@@ -12,11 +12,13 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:text="@string/date"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/teamRecyclerView"
@@ -32,13 +34,27 @@
         </HorizontalScrollView>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:text ="연도별 순위"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:textSize="15dp"
+            android:text ="(그래프 좌우 이동을 통해 축 값 범위 조절 가능)"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:weightSum="5"
             >
             <TextView
@@ -86,6 +102,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:weightSum="5"
             >
             <TextView
@@ -133,7 +150,7 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="400dp" />
 
         <LinearLayout
             android:visibility="gone"

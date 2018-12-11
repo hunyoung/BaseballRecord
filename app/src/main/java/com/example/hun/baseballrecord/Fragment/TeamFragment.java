@@ -195,61 +195,6 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         lineDataSet.setDrawValues(false);
 
         LineData lineData = new LineData(lineDataSet);
-
-        List<Entry> entries2 = new ArrayList<>();
-        entries2.add(new Entry(1982,8));
-        entries2.add(new Entry(1983,9));
-        entries2.add(new Entry(1984,7));
-        entries2.add(new Entry(1985,6));
-        entries2.add(new Entry(1986,8));
-        entries2.add(new Entry(1987,6));
-        entries2.add(new Entry(1988,5));
-        entries2.add(new Entry(1989,5));
-        entries2.add(new Entry(1990,10));
-        entries2.add(new Entry(1991,5));
-        entries2.add(new Entry(1992,4));
-        entries2.add(new Entry(1993,7));
-        entries2.add(new Entry(1994,10));
-        entries2.add(new Entry(1995,8));
-        entries2.add(new Entry(1996,4));
-        entries2.add(new Entry(1997,9));
-        entries2.add(new Entry(1998,9));
-        entries2.add(new Entry(1999,5));
-        entries2.add(new Entry(2000,7));
-        entries2.add(new Entry(2001,5));
-        entries2.add(new Entry(2002,9));
-        entries2.add(new Entry(2003,5));
-        entries2.add(new Entry(2004,5));
-        entries2.add(new Entry(2005,5));
-        entries2.add(new Entry(2006,3));
-        entries2.add(new Entry(2007,6));
-        entries2.add(new Entry(2008,3));
-        entries2.add(new Entry(2009,4));
-        entries2.add(new Entry(2010,5));
-        entries2.add(new Entry(2011,5));
-        entries2.add(new Entry(2012,4));
-        entries2.add(new Entry(2013,8));
-        entries2.add(new Entry(2014,7));
-        entries2.add(new Entry(2015,2));
-        entries2.add(new Entry(2016,7));
-        entries2.add(new Entry(2017,5));
-        entries2.add(new Entry(2018,8));
-
-        LineDataSet lineDataSet2 = new LineDataSet(entries2, "LG");
-        lineDataSet2.setLineWidth(2);
-        lineDataSet2.setCircleRadius(6);
-        lineDataSet2.setCircleColor(Color.parseColor("#FFFF00"));
-        lineDataSet2.setCircleColorHole(Color.WHITE);
-        lineDataSet2.setColor(Color.parseColor("#FFFFFF00"));
-        lineDataSet2.setDrawCircleHole(true);
-        lineDataSet2.setDrawCircles(true);
-        lineDataSet2.setDrawHorizontalHighlightIndicator(false);
-        lineDataSet2.setDrawHighlightIndicators(false);
-        lineDataSet2.setDrawValues(false);
-
-        LineData lineData2 = new LineData(lineDataSet2);
-
-
         chart.setData(lineData);
 //        lineChart.setData(lineData2);
 
@@ -364,6 +309,8 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+
 
         // 여기가 데이터 세팅 하는 부분
         for (int z = 0; z < 10; z++) {
