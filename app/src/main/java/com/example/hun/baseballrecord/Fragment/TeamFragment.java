@@ -378,37 +378,28 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 
             String tempName = "";
-            if (z == 0) {
-                tempName = "두산";
-            } else if(z ==1){
-                tempName = "LG";
-            } else if(z ==2){
-                tempName = "삼성";
-            } else if(z ==3){
-                tempName = "롯데";
-            } else if(z ==4){
-                tempName = "KIA";
-            } else if(z ==5){
-                tempName = "한화";
-            } else if(z ==6){
-                tempName = "NC";
-            } else if(z ==7){
-                tempName = "KT";
-            } else if(z ==8){
-                tempName = "SK";
-            } else if(z ==9){
-                tempName = "넥센";
-            }
-            else {
-                tempName = "dddd";
-            }
+            if (z == 0) { tempName = "두산"; }
+            else if(z ==1){ tempName = "LG"; }
+            else if(z ==2){ tempName = "삼성"; }
+            else if(z ==3){ tempName = "롯데"; }
+            else if(z ==4){ tempName = "KIA"; }
+            else if(z ==5){ tempName = "한화"; }
+            else if(z ==6){ tempName = "NC"; }
+            else if(z ==7){ tempName = "KT"; }
+            else if(z ==8){ tempName = "SK"; }
+            else if(z ==9){ tempName = "넥센"; }
+            else { tempName = "팀"; }
+
             LineDataSet d = new LineDataSet(values, tempName);
             d.setLineWidth(2.5f);
             d.setCircleRadius(4f);
 
-            int color = colors[z % colors.length];
-            d.setColor(color);
-            d.setCircleColor(color);
+//            int color = colors[z % colors.length];
+//            d.setColor(color);
+//            d.setCircleColor(color);
+
+
+            d.setCircleColor(Color.BLACK);
             dataSets.add(d);
         }
 
