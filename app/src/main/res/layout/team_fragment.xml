@@ -150,7 +150,9 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="400dp" />
+            android:layout_height="500dp"
+
+            android:layout_marginBottom="20dp"/>
 
         <LinearLayout
             android:visibility="gone"
@@ -193,6 +195,9 @@
                 android:min="1982" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
     </LinearLayout>
 

@@ -127,13 +127,15 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         seekBarY.setProgress(5);
 
         Legend l = chart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        //l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setTextSize(20);
+        l.setFormSize(15);
+        l.setFormLineWidth(100);
         l.setDrawInside(false);
-
-
-
+        chart.getLegend().setWordWrapEnabled(true);
 
         addMainMenuDummy();
         //chartSettings();
@@ -323,7 +325,6 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 //                values.add(new Entry(i, (float) val));
 //            }
 
-
             String tempName ;
             if (z == 0) { tempName = "두산"; }
             else if(z ==1){ tempName = "LG"; }
@@ -346,9 +347,15 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             xAxis.setDrawGridLines(false);
 
             YAxis yRAxis = chart.getAxisRight();
-
             yRAxis.setDrawGridLines(false);
             yRAxis.setInverted(true);
+
+//            Description des = chart.getDescription();
+//            des.setEnabled(false);
+
+//            Legend legend = chart.getLegend();
+//            legend.setTextSize(20);
+//            legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
 
             d.setLineWidth(3);
             d.setCircleRadius(3);
@@ -370,9 +377,9 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 
         ((LineDataSet) dataSets.get(0)).setColors(Color.parseColor("#000054"));
-        ((LineDataSet) dataSets.get(1)).setColors(Color.BLACK);
+        ((LineDataSet) dataSets.get(1)).setColors(Color.YELLOW);
         ((LineDataSet) dataSets.get(2)).setColors(Color.BLUE);
-        ((LineDataSet) dataSets.get(3)).setColors(Color.BLACK);
+        ((LineDataSet) dataSets.get(3)).setColors(Color.GREEN);
         ((LineDataSet) dataSets.get(4)).setColors(Color.parseColor("#c90000"));
         ((LineDataSet) dataSets.get(5)).setColors(Color.parseColor("#ed4c00"));
         ((LineDataSet) dataSets.get(6)).setColors(Color.parseColor("#002266"));
@@ -382,6 +389,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
         LineData data = new LineData(dataSets);
         chart.setData(data);
+
         chart.invalidate();
     }
 
@@ -524,7 +532,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             values.add(new Entry(2015,2));
             values.add(new Entry(2016,7));
             values.add(new Entry(2017,5));
-            values.add(new Entry(2018,8));
+            values.add(new Entry(2018,3));
         } else if(order ==2){
             values.add(new Entry(1982,9));
             values.add(new Entry(1983,7));
