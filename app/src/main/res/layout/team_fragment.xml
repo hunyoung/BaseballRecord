@@ -12,13 +12,19 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="25sp"
             android:text="@string/date"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:gravity="end"
+            android:text="(-> 이동 가능)"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/teamRecyclerView"
@@ -39,17 +45,9 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:text ="연도별 순위"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="right"
-            android:textSize="15dp"
-            android:text ="(그래프 좌우 이동을 통해 축 값 범위 조절 가능)"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,6 +193,15 @@
                 android:textColor="#ffffff"
                 android:text="@string/team_nexen"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:textSize="15sp"
+            android:text ="(그래프 좌우 이동을 통해 축 값 범위 조절 가능)"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
