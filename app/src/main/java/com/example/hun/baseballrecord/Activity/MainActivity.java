@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity  {
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("시즌 순위"));
+        menuList.add(new MainMenuRecyclerModel("선수 기록"));
         menuList.add(new MainMenuRecyclerModel("전체 팀"));
         menuList.add(new MainMenuRecyclerModel("네이버 뉴스"));
         menuList.add(new MainMenuRecyclerModel("유투브 검색"));
@@ -150,20 +150,20 @@ public class MainActivity extends AppCompatActivity  {
         switch (fragmentNum) {
             case 0:
                 // '프래그먼트1' 호출
-                MainFragment fragment1 = new MainFragment();
+                TeamFragment fragment1 = new TeamFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
                 transaction.commit();
-                toolBar.setTitle(R.string.total);
-                toolBar.setSubtitle("종합 기록");
+                toolBar.setTitle(R.string.team_total);
+                toolBar.setSubtitle("야구");
                 break;
 
             case 1:
                 // '프래그먼트2' 호출
-                TeamFragment fragment2 = new TeamFragment();
+                MainFragment fragment2 = new MainFragment();
                 transaction.replace(R.id.fragment_container, fragment2);
                 transaction.commit();
-                toolBar.setTitle(R.string.team_total);
-                toolBar.setSubtitle("야구");
+                toolBar.setTitle(R.string.total);
+                toolBar.setSubtitle("종합 기록");
                 break;
 
             case 2:
