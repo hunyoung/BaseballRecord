@@ -398,8 +398,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 
         ((LineDataSet) dataSets.get(0)).setColors(Color.parseColor("#000054"));
-//        ((LineDataSet) dataSets.get(0)).setVisible(false);
-        ((LineDataSet) dataSets.get(1)).setColors(Color.YELLOW);
+        ((LineDataSet) dataSets.get(1)).setColors(Color.parseColor("#ff3366"));
         ((LineDataSet) dataSets.get(2)).setColors(Color.BLUE);
         ((LineDataSet) dataSets.get(3)).setColors(Color.GREEN);
         ((LineDataSet) dataSets.get(4)).setColors(Color.parseColor("#c90000"));
