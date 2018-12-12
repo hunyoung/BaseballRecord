@@ -257,6 +257,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         teamRecyclerView.setHasFixedSize(true);
         teamRecyclerView.setAdapter(mTeamFragmentRecyclerAdapter);
 
+
     }
 
 

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.hun.baseballrecord.Model.RecyclerModel;
+
 import com.example.hun.baseballrecord.Model.TeamFragmentRecyclerModel;
 import com.example.hun.baseballrecord.R;
 
@@ -39,6 +39,7 @@ public class TeamFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamFrgment
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
         TeamFragmentRecyclerModel recyclerModel = dataList.get(position);
+
         holder.rankText.setText((recyclerModel.getRank()));
         holder.nameText.setText(recyclerModel.getName());
         holder.gameText.setText(recyclerModel.getGame());
@@ -51,6 +52,21 @@ public class TeamFrgmentRecyclerAdapter extends RecyclerView.Adapter<TeamFrgment
         holder.continuanceText.setText(recyclerModel.getContinuous());
         holder.homeGameText.setText(recyclerModel.getHomeGame());
         holder.expeditionGameText.setText(recyclerModel.getExpeditionGame());
+
+        if(position ==0){
+            holder.rankText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.nameText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.gameText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.winText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.loseText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.drawText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.winningRateText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.gameDisText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.recentTenGameText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.continuanceText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.homeGameText.setBackgroundResource(R.drawable.team_menu_border);
+            holder.expeditionGameText.setBackgroundResource(R.drawable.team_menu_border);
+        }
 
 
         holder.getListRoot().setOnClickListener(new View.OnClickListener(){
