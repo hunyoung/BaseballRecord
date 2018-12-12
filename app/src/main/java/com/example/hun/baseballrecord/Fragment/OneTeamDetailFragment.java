@@ -34,7 +34,8 @@ public class OneTeamDetailFragment extends Fragment {
     private List<OneTeamDetailFragmentRecyclerModel> dataList = null;
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
-    private String accessUrl = "https://www.doosanbears.com/players/pitchers.do";
+    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=두산";
+//    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
 
     public OneTeamDetailFragment() {
@@ -75,8 +76,7 @@ public class OneTeamDetailFragment extends Fragment {
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        dataList.add(new OneTeamDetailFragmentRecyclerModel("두산", "aaa"));
-
+//        dataList.add(new OneTeamDetailFragmentRecyclerModel("두산", "aaa"));
        // setRecyclerView();
 
     }
@@ -115,42 +115,24 @@ public class OneTeamDetailFragment extends Fragment {
                 Log.d(TAG, "html url ===> " + accessUrl);
 
                 Document doc = Jsoup.connect(accessUrl).get();
-//                Log.d(TAG, "doc =====> " + doc);
-                Log.d(TAG, "doc =====> " + doc.text());
+//                Log.d(TAG, "doc =====> " + doc.text());
 
                 //테스트1
-                Elements titles = doc.select("ul.playerlist li");
+                Elements titles = doc.select("div.box-body a");
                 Log.d(TAG, "titles  =====> " + titles.text());
 
-//                Elements titles0 = doc.select("article.maincontent ul");
-//                Log.d(TAG, "titles0  =====> " + titles0.text());
-//                Log.d(TAG, "titles0  notext=====> " + titles0);
-//                Elements titles1 = doc.select("article.maincontent ul li");
-//                Log.d(TAG, "titles1  =====> " + titles1.text());
-//                Log.d(TAG, "titles1 notext =====> " + titles1);
-//
-//                Elements titles2 = doc.select("section#main_container");
-//                Log.d(TAG, "titles2  =====> " + titles2.text());
-//                Log.d(TAG, "titles2  =====> " + titles2);
-//
-//                Elements titles3 = doc.select("article.maincontent");
-//                Log.d(TAG, "titles3  =====> " + titles3.text());
-//                Log.d(TAG, "titles3  =====> " + titles3);
-//
-//                Elements titles4 = doc.select("a.more");
-//                Log.d(TAG, "titles4  =====> " + titles4.text());
-//                Log.d(TAG, "titles4  =====> " + titles4);
-//
-//                Elements titles5 = doc.select("ul.snstabs");
-//                Log.d(TAG, "titles5  =====> " + titles5.text());
-//
-//                Elements titles6 = doc.select("div.inner");
-//                Log.d(TAG, "titles6  =====> " + titles6.text());
-
-                for (Element e : titles) {
-                    Log.d(TAG, e.text());
-
+                for(int i=0; i<titles.size(); i++){
+                    if(i>12){
+                        dataList.add( new OneTeamDetailFragmentRecyclerModel(titles.get(i).text(), ""));
+                    }
                 }
+
+
+
+//                for (Element e : titles) {
+////                    Log.d(TAG, e.text());
+//                    dataList.add( new OneTeamDetailFragmentRecyclerModel(e.text(), ""));
+//                }
 
 //                for(Element e : titles){
 //                    dataList.add( new OneTeamDetailFragmentRecyclerModel("aa", ""));
