@@ -7,11 +7,11 @@
         app:showAsAction="always" />
 
     <item android:id="@+id/action_bt2"
-        android:title="액션버튼2"
+        android:title="Developer"
         app:showAsAction="never" />
 
     <item android:id="@+id/action_bt3"
-        android:title="액션버튼3"
+        android:title="Settings"
         app:showAsAction="never" />
 
 </menu>

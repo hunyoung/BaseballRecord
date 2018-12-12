@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity  {
                 Toast.makeText(MainActivity.this, "back button click", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_bt1:
-                Toast.makeText(this, "버튼1을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_bt2:
-                Toast.makeText(this, "버튼2을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_bt3:
-                Toast.makeText(this, "버튼3을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
                 break;
             default :
                 break;
