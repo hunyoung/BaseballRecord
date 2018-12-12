@@ -86,7 +86,7 @@ public class OneTeamDetailFragment extends Fragment {
     private void setRecyclerView() {
         Log.d(TAG, "setRecyclerView");
         mOneTeamDetailFragmentRecyclerAdapter = new OneTeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.one_team_detail_fragment_recyclerview_item, dataList);
-        oneTeamDetailRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        oneTeamDetailRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         oneTeamDetailRecyclerView.setHasFixedSize(true);
 
         OneTeamDetailFrgmentRecyclerAdapter.OnItemClickListener mOnItemClickListener = new OneTeamDetailFrgmentRecyclerAdapter.OnItemClickListener() {
