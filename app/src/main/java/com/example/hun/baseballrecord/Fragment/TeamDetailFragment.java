@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.hun.baseballrecord.Adapter.TeamDetailFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.TeamDetailFragmentRecyclerModel;
@@ -87,10 +88,11 @@ public class TeamDetailFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "position ==>  " + position);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
-                transaction.replace(R.id.fragment_container, fragment1);
-                transaction.commit();
+                Toast.makeText(getContext(), "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
+//                transaction.replace(R.id.fragment_container, fragment1);
+//                transaction.commit();
 
             }
         };
