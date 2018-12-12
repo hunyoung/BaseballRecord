@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -161,9 +163,15 @@ public class NewsFragment extends Fragment {
             for(int i=0; i < item.length(); i++){
                 JSONObject itemInfo = item.getJSONObject(i);  // JSONObject 추출
                 String title = itemInfo.getString("title");
+                title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
                 String link = itemInfo.getString("link");
+
                 String description = itemInfo.getString("description");
+                description = description.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+
+
                 String pubDate = itemInfo.getString("pubDate");
+
 
                 dataList.add(new NewsModel(title, description, pubDate, link));
 

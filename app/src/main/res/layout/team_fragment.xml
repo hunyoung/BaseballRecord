@@ -54,6 +54,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:visibility="visible"
             android:weightSum="6"
             >
@@ -64,6 +65,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_all_visible"/>
             <TextView
                 android:id="@+id/team_doosan"
@@ -72,6 +74,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_doosan"/>
             <TextView
                 android:id="@+id/team_sk"
@@ -80,6 +83,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_sk"/>
             <TextView
                 android:id="@+id/team_hanhwa"
@@ -88,6 +92,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_hanhwa"/>
             <TextView
                 android:id="@+id/team_lg"
@@ -96,6 +101,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_lg"/>
             <TextView
                 android:id="@+id/team_kt"
@@ -104,6 +110,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_kt"/>
         </LinearLayout>
 
@@ -120,6 +127,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_all_gone"/>
             <TextView
                 android:id="@+id/team_lotte"
@@ -128,6 +136,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_lotte"/>
             <TextView
                 android:id="@+id/team_samsung"
@@ -136,6 +145,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_samsung"/>
             <TextView
                 android:id="@+id/team_kia"
@@ -144,6 +154,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_kia"/>
             <TextView
                 android:id="@+id/team_nc"
@@ -160,6 +171,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/search_border"
+                android:textStyle="bold"
                 android:text="@string/team_nexen"/>
         </LinearLayout>
 
@@ -167,7 +179,6 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-
             android:layout_marginBottom="20dp"/>
 
         <LinearLayout
