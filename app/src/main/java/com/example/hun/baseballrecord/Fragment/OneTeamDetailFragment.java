@@ -25,6 +25,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OneTeamDetailFragment extends Fragment {
@@ -116,28 +117,36 @@ public class OneTeamDetailFragment extends Fragment {
 
                 Document doc = Jsoup.connect(accessUrl).get();
 //                Log.d(TAG, "doc =====> " + doc.text());
+                List<String> htmlList = new ArrayList<>();
+
+                String temp = "";
+
+                Elements backNumber = doc.select("div.box-body");
+
+//                Log.d(TAG, "backNumber  =====> " + backNumber.text());
+//                for(int i=0; i<backNumber.size(); i++){
+
+//                }
+                Log.d(TAG, "backNumber ===> " + backNumber.get(2).text());
+                temp = backNumber.get(2).text();
+                temp.split(" ");
+                Log.d(TAG, "length   " + temp.split(" ").length);
+
+                String[] arr;
+
+                arr = temp.split(" ");
+                for(int i=0; i<arr.length; i = i+2){
+                    dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
+                }
 
                 //테스트1
                 Elements titles = doc.select("div.box-body a");
                 Log.d(TAG, "titles  =====> " + titles.text());
-
                 for(int i=0; i<titles.size(); i++){
                     if(i>12){
-                        dataList.add( new OneTeamDetailFragmentRecyclerModel(titles.get(i).text(), ""));
+//                        dataList.add( new OneTeamDetailFragmentRecyclerModel(titles.get(i).text(), ""));
                     }
                 }
-
-
-
-//                for (Element e : titles) {
-////                    Log.d(TAG, e.text());
-//                    dataList.add( new OneTeamDetailFragmentRecyclerModel(e.text(), ""));
-//                }
-
-//                for(Element e : titles){
-//                    dataList.add( new OneTeamDetailFragmentRecyclerModel("aa", ""));
-//                }
-
 
             } catch (IOException e) {
                 e.printStackTrace();
