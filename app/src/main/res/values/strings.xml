@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseballRecord</string>
+    <string name="app_name">야구</string>
 
     <string name="total">종합</string>
     <string name="team_total">팀 순위</string>
