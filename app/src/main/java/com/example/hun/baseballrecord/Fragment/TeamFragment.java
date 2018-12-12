@@ -61,6 +61,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
     private TextView mDoosan, mLG, mNexen, mLotte, mSamsung, mSk, mHanhwa, mKia, mKt, mNc;
+    private TextView mAllVisible, mALLGone;
     private ArrayList<ILineDataSet> dataSets;
 
 
@@ -113,7 +114,10 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         mNc.setOnClickListener(this);
         mNexen = mRootView.findViewById(R.id.team_nexen);
         mNexen.setOnClickListener(this);
-
+        mAllVisible = mRootView.findViewById(R.id.team_all_visible);
+        mAllVisible.setOnClickListener(this);
+        mALLGone = mRootView.findViewById(R.id.team_all_gone);
+        mALLGone.setOnClickListener(this);
 
 
         mCurDate = mRootView.findViewById(R.id.date);
@@ -223,6 +227,20 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
                 else { (dataSets.get(9)).setVisible(true); }
                 chart.invalidate();
                 break ;
+            case R.id.team_all_visible :
+                for(int i=0; i<10; i++){
+                    (dataSets.get(i)).setVisible(true);
+                }
+                chart.invalidate();
+                break ;
+            case R.id.team_all_gone :
+                for(int i=0; i<10; i++){
+                    (dataSets.get(i)).setVisible(false);
+                }
+                chart.invalidate();
+                break ;
+
+
         }
     }
     

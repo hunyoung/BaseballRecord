@@ -34,6 +34,8 @@
     <string name="team_lg">LG</string>
     <string name="team_nc">NC</string>
     <string name="team_kt">KT</string>
+    <string name="team_all_visible">전체 ON</string>
+    <string name="team_all_gone">전체 OFF</string>
     <string name="dash">-</string>
 
 
