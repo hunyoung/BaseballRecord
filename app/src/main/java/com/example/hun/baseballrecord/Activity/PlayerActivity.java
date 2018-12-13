@@ -22,7 +22,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.player);
+        setContentView(R.layout.player_activity);
         ytpv = findViewById(R.id.youtubeplayer);
         ytpv.initialize(serverKey, this);
 

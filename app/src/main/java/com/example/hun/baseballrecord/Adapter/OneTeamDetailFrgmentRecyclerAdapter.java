@@ -38,7 +38,7 @@ public class OneTeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<On
     private OnItemClickListener mItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(View v, int position);
+        void onItemClick(View v, int position, String playerName);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -49,7 +49,7 @@ public class OneTeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<On
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
-        OneTeamDetailFragmentRecyclerModel recyclerModel = dataList.get(position);
+        final OneTeamDetailFragmentRecyclerModel recyclerModel = dataList.get(position);
         holder.newsTitle.setText(recyclerModel.getName());
         holder.newsImage.setText(recyclerModel.getIcon());
 
@@ -59,7 +59,7 @@ public class OneTeamDetailFrgmentRecyclerAdapter extends RecyclerView.Adapter<On
             public void onClick(View view) {
                 curPosition = holder.getAdapterPosition();
                 Log.d(TAG, "curPosition ==> " + curPosition);
-                mItemClickListener.onItemClick(view, curPosition);
+                mItemClickListener.onItemClick(view, curPosition, recyclerModel.getName());
             }
         });
 

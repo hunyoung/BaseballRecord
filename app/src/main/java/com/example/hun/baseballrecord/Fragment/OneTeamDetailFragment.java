@@ -142,9 +142,17 @@ public class OneTeamDetailFragment extends Fragment implements MainActivity.onKe
 
         OneTeamDetailFrgmentRecyclerAdapter.OnItemClickListener mOnItemClickListener = new OneTeamDetailFrgmentRecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View v, int position) {
+            public void onItemClick(View v, int position, String playerName) {
                 Log.d(TAG, "position ==>  " + position);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PLAYER_NAME", playerName);
 
+                PlayerFragment fragment1 = new PlayerFragment();
+                transaction.replace(R.id.fragment_container, fragment1);
+                transaction.addToBackStack(null);
+                fragment1.setArguments(args);
+                transaction.commit();
 
             }
         };
@@ -205,7 +213,7 @@ public class OneTeamDetailFragment extends Fragment implements MainActivity.onKe
                     for(int i=0; i<arr.length; i = i+2){
                         dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
                     }
-                    // http://www.statiz.co.kr/player.php?name=      ////// 특정 선수 조회
+                    // http://www.statiz.co.kr/player.php?opt=0&name=     ////// 특정 선수 조회
                 } else {
                     validCheck = false;
                 }
