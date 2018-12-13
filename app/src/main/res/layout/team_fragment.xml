@@ -201,7 +201,7 @@
             android:layout_gravity="center"
             android:gravity="end"
             android:textSize="15sp"
-            android:text ="(그래프 좌우 이동을 통해 축 값 범위 조절 가능)"/>
+            android:text ="(그래프 확대 및 좌우 이동을 통해 범위 조절 가능)"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
