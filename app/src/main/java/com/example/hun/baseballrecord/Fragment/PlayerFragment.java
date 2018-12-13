@@ -167,7 +167,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
                     sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
                     sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
-                    sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+3, tempInformation.indexOf("신인지명"));
+                    sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+4, tempInformation.indexOf("신인지명"));
                     sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
                     sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
                     sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
