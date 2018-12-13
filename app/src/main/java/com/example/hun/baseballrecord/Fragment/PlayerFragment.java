@@ -39,6 +39,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private RecyclerView oneTeamDetailRecyclerView;
     private String playerName = "박치국";
     private String teamName = "두산";
+    private String birthTxt = "";
+    private boolean searchFisrt = true;
     private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
     private String tempInformation = "";
     private TextView mPlayerName;
@@ -145,9 +147,9 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
             try {
 
 
-                Document doc = Jsoup.connect(accessUrl + playerName).get();
+                Document doc = Jsoup.connect(accessUrl + playerName + birthTxt).get();
 //                Log.d(TAG, "doc ===> " + doc.text());
-
+                searchFisrt = false;
                 dataList.clear();
                 String temp = "";
 
@@ -173,41 +175,25 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
                 } else {
                     Log.d(TAG, "동명 이인 존재");
-
+                    searchFisrt = true;
                     Elements birthOdd = doc.select("tr.oddrow_stz td");
 
-                    for(Element e : birthOdd){
-                        Log.d(TAG, "odd   e ====>>>> " + e.text());
+                    for(int i=0; i< birthOdd.size(); i++){
+                        if(birthOdd.get(i).text().equals(teamName)){
+                            Log.d(TAG, "홀수에서 검색됨  생년월일 ===> " + birthOdd.get(i-2).text());
+                            birthTxt = "&birth=" + birthOdd.get(i-2).text();
+                        }
                     }
 
                     Elements birthEven = doc.select("tr.evenrow_stz td");
 
-                    for(Element e : birthEven){
-                        Log.d(TAG, "even   e ====>>>> " + e.text());
+                    for(int i=0; i< birthEven.size(); i++){
+                        if(birthEven.get(i).text().equals(teamName)){
+                            Log.d(TAG, "짝수에서 검색됨  생년월일 ===> " + birthEven.get(i-2).text());
+                            birthTxt = "&birth=" + birthEven.get(i-2).text();
+                        }
                     }
-
                 }
-
-
-//                if(!backNumber.get(2).text().isEmpty()){
-//                    validCheck = true;
-//                    temp = backNumber.get(2).text();
-//                    Log.d(TAG, "backNumber ===> " + backNumber.get(2).text());
-//                    temp.split(" ");
-//                    Log.d(TAG, "length   " + temp.split(" ").length);
-//
-//                    String[] arr;
-//
-//                    arr = temp.split(" ");
-//
-//                    for(int i=0; i<arr.length; i = i+2){
-//                        dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
-//                    }
-//                    // http://www.statiz.co.kr/player.php?opt=0&name=     ////// 특정 선수 조회
-//                } else {
-//                    validCheck = false;
-//                }
-
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -230,6 +216,11 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
             mPlayerRecentPosition.setText(sPlayerRecentPosition);
             mPlayerWholeTeam.setText(sPlayerWholeTeam);
             mPlayerWholePosition.setText(sPlayerWholePosition);
+
+            if(birthTxt != null && searchFisrt){
+                PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
+                jsoupAsyncTask.execute();
+            }
 
 //            setRecyclerView();
         }
