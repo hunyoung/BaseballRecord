@@ -1,5 +1,6 @@
 package com.example.hun.baseballrecord.Fragment;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,9 +105,15 @@ public class OneTeamDetailFragment extends Fragment {
 
 
     private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog asyncDialog = new ProgressDialog(getContext());
 
         @Override
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+            // show dialog
+            asyncDialog.show();
+
             super.onPreExecute();
         }
 
@@ -156,6 +163,7 @@ public class OneTeamDetailFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
+            asyncDialog.dismiss();
             setRecyclerView();
         }
     }

@@ -13,6 +13,9 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:layout_gravity="center"
+        android:background="@drawable/uniform_background"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
         android:text="1"
         />
 
@@ -20,8 +23,9 @@
         android:id="@+id/news_title"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:background="@drawable/border"
         android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:text="name"/>
 
 

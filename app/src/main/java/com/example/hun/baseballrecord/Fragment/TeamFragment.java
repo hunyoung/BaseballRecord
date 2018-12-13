@@ -1,5 +1,6 @@
 package com.example.hun.baseballrecord.Fragment;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.hun.baseballrecord.Activity.VideoActivity;
 import com.example.hun.baseballrecord.Adapter.TeamFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.TeamFragmentRecyclerModel;
 import com.example.hun.baseballrecord.R;
@@ -262,9 +264,15 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 
     private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog asyncDialog = new ProgressDialog(getContext());
 
         @Override
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+            // show dialog
+            asyncDialog.show();
+
             super.onPreExecute();
         }
 
@@ -307,6 +315,7 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
         @Override
         protected void onPostExecute(Void result) {
+            asyncDialog.dismiss();
             setRecyclerView();
             mCurDate.setText(dateString);
         }
