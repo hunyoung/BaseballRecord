@@ -40,11 +40,11 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private String playerName = "박치국";
     private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
     private String tempInformation = "";
-    private TextView mInformation;
     private TextView mPlayerName;
-
-//    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
-
+    private TextView mPlayerBirth, mPlayerHitPitch, mPlayerSchool, mPlayerRunYear, mPlayerRunTeam;
+    private TextView mPlayerFirstPick, mPlayerRecentTeam, mPlayerRecentPosition, mPlayerWholeTeam, mPlayerWholePosition;
+    private String sPlayerBirth, sPlayerHitPitch, sPlayerSchool, sPlayerRunYear, sPlayerRunTeam = "";
+    private String sPlayerFirstPick, sPlayerRecentTeam, sPlayerRecentPosition, sPlayerWholeTeam, sPlayerWholePosition = "";
 
     public PlayerFragment() {
         // Required empty public constructor
@@ -54,7 +54,6 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             playerName = getArguments().getString("PLAYER_NAME");
         }
@@ -64,8 +63,6 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
         if (mRootView == null || !mRootView.isShown()) {
             if (mRootView == null) {
@@ -84,13 +81,22 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         oneTeamDetailRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
-        mInformation = mRootView.findViewById(R.id.information);
         mPlayerName = mRootView.findViewById(R.id.player_name);
+
+        mPlayerBirth = mRootView.findViewById(R.id.player_birth);
+        mPlayerHitPitch = mRootView.findViewById(R.id.player_hitPitch);
+        mPlayerSchool = mRootView.findViewById(R.id.player_school);
+        mPlayerRunYear = mRootView.findViewById(R.id.player_run_year);
+        mPlayerRunTeam = mRootView.findViewById(R.id.player_run_team);
+        mPlayerFirstPick = mRootView.findViewById(R.id.player_first_pick);
+        mPlayerRecentTeam = mRootView.findViewById(R.id.player_recent_team);
+        mPlayerRecentPosition = mRootView.findViewById(R.id.player_recent_position);
+        mPlayerWholeTeam = mRootView.findViewById(R.id.player_whole_team);
+        mPlayerWholePosition = mRootView.findViewById(R.id.player_whole_position);
+
 
         addMainMenuDummy();
 //        setRecyclerView();
-
-
 
         PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
@@ -138,7 +144,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
 
                 Document doc = Jsoup.connect(accessUrl + playerName).get();
-                Log.d(TAG, "doc ===> " + doc.text());
+//                Log.d(TAG, "doc ===> " + doc.text());
 
                 dataList.clear();
                 String temp = "";
@@ -152,6 +158,17 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     Log.d(TAG, "e =======> " + description.get(7).text());
                     tempInformation = description.get(7).text();
                 }
+
+                sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
+                sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
+                sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
+                sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
+                sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+3, tempInformation.indexOf("신인지명"));
+                sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
+                sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
+                sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
+                sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
+                sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
 
 //                if(!backNumber.get(2).text().isEmpty()){
 //                    validCheck = true;
@@ -181,9 +198,20 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         @Override
         protected void onPostExecute(Void result) {
-            mInformation.setText(tempInformation);
             mPlayerName.setText(playerName);
             asyncDialog.dismiss();
+
+            mPlayerBirth.setText(sPlayerBirth);
+            mPlayerHitPitch.setText(sPlayerHitPitch);
+            mPlayerSchool.setText(sPlayerSchool);
+            mPlayerRunYear.setText(sPlayerRunYear);
+            mPlayerRunTeam.setText(sPlayerRunTeam);
+            mPlayerFirstPick.setText(sPlayerFirstPick);
+            mPlayerRecentTeam.setText(sPlayerRecentTeam);
+            mPlayerRecentPosition.setText(sPlayerRecentPosition);
+            mPlayerWholeTeam.setText(sPlayerWholeTeam);
+            mPlayerWholePosition.setText(sPlayerWholePosition);
+
 //            setRecyclerView();
         }
     }
