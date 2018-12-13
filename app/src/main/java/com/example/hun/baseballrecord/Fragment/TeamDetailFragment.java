@@ -97,6 +97,7 @@ public class TeamDetailFragment extends Fragment implements MainActivity.onKeyBa
 
                 OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
+                transaction.addToBackStack(null);
                 fragment1.setArguments(args);
                 transaction.commit();
 
