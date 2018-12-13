@@ -92,8 +92,10 @@ public class TeamDetailFragment extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putInt("POSITION", position);
+
                 OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
+                fragment1.setArguments(args);
                 transaction.commit();
 
             }

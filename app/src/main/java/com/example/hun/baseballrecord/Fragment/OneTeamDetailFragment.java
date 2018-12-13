@@ -30,14 +30,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OneTeamDetailFragment extends Fragment {
-    private static String TAG = "TeamDetailFragment";
+    private static String TAG = "OneTeamDetailFragment";
 
     private View mRootView;
     private List<OneTeamDetailFragmentRecyclerModel> dataList = null;
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
     private int positionArg = 0;
-    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=두산";
+    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=";
+    private String teamString = "두산";
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
 
@@ -132,9 +133,20 @@ public class OneTeamDetailFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                Log.d(TAG, "html url ===> " + accessUrl);
 
-                Document doc = Jsoup.connect(accessUrl).get();
+                if(positionArg==0) teamString = "두산";
+                else if(positionArg==1) teamString = "sk";
+                else if(positionArg==2) teamString = "kt";
+                else if(positionArg==3) teamString = "lg";
+                else if(positionArg==4) teamString = "nc";
+                else if(positionArg==5) teamString = "삼성";
+                else if(positionArg==6) teamString = "롯데";
+                else if(positionArg==7) teamString = "kia";
+                else if(positionArg==8) teamString = "넥센";
+                else if(positionArg==9) teamString = "한화";
+                Log.d(TAG, "html url ===> " + accessUrl + teamString);
+
+                Document doc = Jsoup.connect(accessUrl+teamString).get();
 //                Log.d(TAG, "doc =====> " + doc.text());
                 List<String> htmlList = new ArrayList<>();
 
