@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Adapter.OneTeamDetailFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.TeamDetailFrgmentRecyclerAdapter;
@@ -37,8 +40,11 @@ public class OneTeamDetailFragment extends Fragment {
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
     private int positionArg = 0;
-    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=";
+    private Spinner yearSpinner;
+    private TextView mSearchBtn;
+    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7";
     private String teamString = "두산";
+    private String mSearchYear = "2018";
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
 
@@ -80,12 +86,38 @@ public class OneTeamDetailFragment extends Fragment {
 
         oneTeamDetailRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
+        yearSpinner = mRootView.findViewById(R.id.search_year_player);
+        mSearchBtn = mRootView.findViewById(R.id.search_year_btn);
         addMainMenuDummy();
 //        setRecyclerView();
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                mSearchYear = String.valueOf(adapterView.getItemAtPosition(position));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
+
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "search year ===> " + mSearchYear);
+                OneTeamDetailFragment.JsoupAsyncTask jsoupAsyncTask = new OneTeamDetailFragment.JsoupAsyncTask();
+                jsoupAsyncTask.execute();
+            }
+        });
+
 
         OneTeamDetailFragment.JsoupAsyncTask jsoupAsyncTask = new OneTeamDetailFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
         Log.d(TAG, "positionArg ====> " + positionArg);
+
+
 
     }
 
@@ -144,12 +176,12 @@ public class OneTeamDetailFragment extends Fragment {
                 else if(positionArg==7) teamString = "kia";
                 else if(positionArg==8) teamString = "넥센";
                 else if(positionArg==9) teamString = "한화";
-                Log.d(TAG, "html url ===> " + accessUrl + teamString);
 
-                Document doc = Jsoup.connect(accessUrl+teamString).get();
-//                Log.d(TAG, "doc =====> " + doc.text());
-                List<String> htmlList = new ArrayList<>();
+                Log.d(TAG, "html url ===> " + accessUrl +  "&year=" + mSearchYear + "&team=" + teamString);
+                Document doc = Jsoup.connect(accessUrl +  "&year=" + mSearchYear + "&team=" + teamString).get();
 
+
+                dataList.clear();
                 String temp = "";
 
                 Elements backNumber = doc.select("div.box-body");
@@ -166,6 +198,7 @@ public class OneTeamDetailFragment extends Fragment {
                 String[] arr;
 
                 arr = temp.split(" ");
+
                 for(int i=0; i<arr.length; i = i+2){
                     dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
                 }
