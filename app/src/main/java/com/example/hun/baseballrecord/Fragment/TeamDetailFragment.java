@@ -90,6 +90,8 @@ public class TeamDetailFragment extends Fragment {
                 Log.d(TAG, "position ==>  " + position);
                 Toast.makeText(getContext(), "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Bundle args = new Bundle();
+                args.putInt("POSITION", position);
                 OneTeamDetailFragment fragment1 = new OneTeamDetailFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
                 transaction.commit();

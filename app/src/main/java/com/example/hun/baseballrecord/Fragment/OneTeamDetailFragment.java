@@ -36,6 +36,7 @@ public class OneTeamDetailFragment extends Fragment {
     private List<OneTeamDetailFragmentRecyclerModel> dataList = null;
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
+    private int positionArg = 0;
     private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=두산";
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
@@ -44,6 +45,16 @@ public class OneTeamDetailFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            positionArg = getArguments().getInt("POSITION");
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +84,7 @@ public class OneTeamDetailFragment extends Fragment {
 
         OneTeamDetailFragment.JsoupAsyncTask jsoupAsyncTask = new OneTeamDetailFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
+        Log.d(TAG, "positionArg ====> " + positionArg);
 
     }
 
