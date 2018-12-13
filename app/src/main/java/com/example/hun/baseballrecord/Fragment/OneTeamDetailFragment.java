@@ -203,6 +203,7 @@ public class OneTeamDetailFragment extends Fragment {
                     for(int i=0; i<arr.length; i = i+2){
                         dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
                     }
+                    // http://www.statiz.co.kr/player.php?name=      ////// 특정 선수 조회
                 } else {
                     validCheck = false;
                 }
