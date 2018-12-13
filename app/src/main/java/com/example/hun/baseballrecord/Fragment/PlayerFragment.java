@@ -23,6 +23,7 @@ import com.example.hun.baseballrecord.R;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -36,12 +37,9 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private List<OneTeamDetailFragmentRecyclerModel> dataList = null;
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
-    private String playerName = "";
-    private Spinner yearSpinner;
-    private TextView mSearchBtn;
-    private TextView noRecord;
-    private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=박치국";
-    private boolean validCheck = true;
+    private String playerName = "박치국";
+    private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
+
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
 
@@ -83,9 +81,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         oneTeamDetailRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
-        yearSpinner = mRootView.findViewById(R.id.search_year_player);
-        mSearchBtn = mRootView.findViewById(R.id.search_year_btn);
-        noRecord = mRootView.findViewById(R.id.no_record);
+
         addMainMenuDummy();
 //        setRecyclerView();
 
@@ -136,15 +132,20 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
             try {
 
 
-                Document doc = Jsoup.connect(accessUrl).get();
-
-//                Log.d(TAG, "doc ===> " + doc.html());
+                Document doc = Jsoup.connect(accessUrl + playerName).get();
                 Log.d(TAG, "doc ===> " + doc.text());
 
                 dataList.clear();
                 String temp = "";
 
-                Elements backNumber = doc.select("div.box-body");
+                Elements description = doc.select("ul.dropdown-menu");
+//                for(Element e : description){
+//                    Log.d(TAG, "e =======> " + e.text());
+//                }
+
+                if(!description.get(7).text().isEmpty()){
+                    Log.d(TAG, "e =======> " + description.get(7).text());
+                }
 
 //                if(!backNumber.get(2).text().isEmpty()){
 //                    validCheck = true;
