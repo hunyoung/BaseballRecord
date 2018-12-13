@@ -96,6 +96,18 @@ public class OneTeamDetailFragment extends Fragment implements MainActivity.onKe
         addMainMenuDummy();
 //        setRecyclerView();
 
+
+        if(positionArg==0) teamString = "두산";
+        else if(positionArg==1) teamString = "sk";
+        else if(positionArg==2) teamString = "kt";
+        else if(positionArg==3) teamString = "lg";
+        else if(positionArg==4) teamString = "nc";
+        else if(positionArg==5) teamString = "삼성";
+        else if(positionArg==6) teamString = "롯데";
+        else if(positionArg==7) teamString = "kia";
+        else if(positionArg==8) teamString = "넥센";
+        else if(positionArg==9) teamString = "한화";
+
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -147,6 +159,7 @@ public class OneTeamDetailFragment extends Fragment implements MainActivity.onKe
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PLAYER_NAME", playerName);
+                args.putString("SELECT_TEAM", teamString);
 
                 PlayerFragment fragment1 = new PlayerFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
@@ -179,16 +192,6 @@ public class OneTeamDetailFragment extends Fragment implements MainActivity.onKe
         protected Void doInBackground(Void... params) {
             try {
 
-                if(positionArg==0) teamString = "두산";
-                else if(positionArg==1) teamString = "sk";
-                else if(positionArg==2) teamString = "kt";
-                else if(positionArg==3) teamString = "lg";
-                else if(positionArg==4) teamString = "nc";
-                else if(positionArg==5) teamString = "삼성";
-                else if(positionArg==6) teamString = "롯데";
-                else if(positionArg==7) teamString = "kia";
-                else if(positionArg==8) teamString = "넥센";
-                else if(positionArg==9) teamString = "한화";
 
                 Log.d(TAG, "html url ===> " + accessUrl +  "&year=" + mSearchYear + "&team=" + teamString);
                 Document doc = Jsoup.connect(accessUrl +  "&year=" + mSearchYear + "&team=" + teamString).get();

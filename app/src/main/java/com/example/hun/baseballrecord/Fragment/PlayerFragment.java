@@ -38,6 +38,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
     private RecyclerView oneTeamDetailRecyclerView;
     private String playerName = "박치국";
+    private String teamName = "두산";
     private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
     private String tempInformation = "";
     private TextView mPlayerName;
@@ -56,6 +57,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             playerName = getArguments().getString("PLAYER_NAME");
+            teamName = getArguments().getString("SELECT_TEAM");
         }
 
     }
@@ -101,7 +103,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
         jsoupAsyncTask.execute();
         Log.d(TAG, "positionArg ====> " + playerName);
-
+        Log.d(TAG, "teamName ====> " + teamName);
 
 
     }
@@ -171,6 +173,19 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
                 } else {
                     Log.d(TAG, "동명 이인 존재");
+
+                    Elements birthOdd = doc.select("tr.oddrow_stz td");
+
+                    for(Element e : birthOdd){
+                        Log.d(TAG, "odd   e ====>>>> " + e.text());
+                    }
+
+                    Elements birthEven = doc.select("tr.evenrow_stz td");
+
+                    for(Element e : birthEven){
+                        Log.d(TAG, "even   e ====>>>> " + e.text());
+                    }
+
                 }
 
 
