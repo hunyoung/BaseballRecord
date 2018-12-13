@@ -1,6 +1,7 @@
 package com.example.hun.baseballrecord.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Activity.VideoActivity;
 import com.example.hun.baseballrecord.Adapter.TeamFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.TeamFragmentRecyclerModel;
@@ -48,7 +50,7 @@ import java.util.List;
 //import butterknife.ButterKnife;
 
 public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeListener,
-        OnChartGestureListener, OnChartValueSelectedListener, View.OnClickListener {
+        OnChartGestureListener, OnChartValueSelectedListener, View.OnClickListener, MainActivity.onKeyBackPressedListener {
     private static String TAG = "TeamFragment";
     private String htmlURL = "https://www.koreabaseball.com/TeamRank/TeamRank.aspx";
 
@@ -759,5 +761,16 @@ public class TeamFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
     }
 
+    @Override
+    public void onBackKey(){
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        activity.onBackPressed();
+    }
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
+    }
 
 }

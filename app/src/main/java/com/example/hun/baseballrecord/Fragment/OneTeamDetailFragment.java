@@ -1,6 +1,7 @@
 package com.example.hun.baseballrecord.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Adapter.OneTeamDetailFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Adapter.TeamDetailFrgmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.OneTeamDetailFragmentRecyclerModel;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OneTeamDetailFragment extends Fragment {
+public class OneTeamDetailFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
     private static String TAG = "OneTeamDetailFragment";
 
     private View mRootView;
@@ -228,6 +230,17 @@ public class OneTeamDetailFragment extends Fragment {
     }
 
 
+    @Override
+    public void onBackKey(){
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        activity.onBackPressed();
+    }
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
+    }
 
 
 

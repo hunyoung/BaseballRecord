@@ -1,6 +1,7 @@
 package com.example.hun.baseballrecord.Activity;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -31,7 +32,7 @@ import java.util.List;
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
     private static String TAG = "MainActivity";
 
     private RecyclerView mainMenuRecyclerView = null;
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity  {
                 TeamFragment fragment1 = new TeamFragment();
                 transaction.replace(R.id.fragment_container, fragment1);
                 transaction.commit();
+//                transaction.addToBackStack(null);
                 toolBar.setTitle(R.string.team_total);
                 toolBar.setSubtitle("야구");
                 break;
@@ -162,6 +164,7 @@ public class MainActivity extends AppCompatActivity  {
                 MainFragment fragment2 = new MainFragment();
                 transaction.replace(R.id.fragment_container, fragment2);
                 transaction.commit();
+                transaction.addToBackStack(null);
                 toolBar.setTitle(R.string.total);
                 toolBar.setSubtitle("종합 기록");
                 break;
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity  {
                 TeamDetailFragment fragment3 = new TeamDetailFragment();
                 transaction.replace(R.id.fragment_container, fragment3);
                 transaction.commit();
+                transaction.addToBackStack(null);
                 toolBar.setTitle("3번 프래그먼트");
                 break;
 
@@ -179,6 +183,7 @@ public class MainActivity extends AppCompatActivity  {
                 NewsFragment fragment4 = new NewsFragment();
                 transaction.replace(R.id.fragment_container, fragment4);
                 transaction.commit();
+                transaction.addToBackStack(null);
                 toolBar.setTitle("네이버 뉴스");
                 toolBar.setSubtitle("야구");
                 break;
@@ -195,5 +200,33 @@ public class MainActivity extends AppCompatActivity  {
         }
 
     }
+
+    @Override
+    public void onBackStackChanged() {
+
+    }
+
+    public interface onKeyBackPressedListener {
+        void onBackKey();
+    }
+    private onKeyBackPressedListener mOnKeyBackPressedListener;
+    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener){
+        mOnKeyBackPressedListener = listener;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(mOnKeyBackPressedListener != null){
+            mOnKeyBackPressedListener.onBackKey();
+        } else {
+            if(getSupportFragmentManager().getBackStackEntryCount()==0){
+//                Toast.makeText(getApplicationContext(), "종료하려면 한번 더 누르세요.", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                super.onBackPressed();
+            }
+        }
+    }
+
 
 }
