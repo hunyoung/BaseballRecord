@@ -11,6 +11,21 @@
         android:textSize="25sp"
         android:text="선수 정보"
         />
+    <TextView
+        android:id="@+id/information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="선수 정보"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="세부 기록은 추가될 에정입니다."
+        />
 
 
     <ScrollView

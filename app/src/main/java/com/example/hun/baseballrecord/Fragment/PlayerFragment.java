@@ -39,6 +39,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private RecyclerView oneTeamDetailRecyclerView;
     private String playerName = "박치국";
     private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
+    private String tempInformation = "";
+    private TextView mInformation;
 
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
@@ -81,7 +83,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         oneTeamDetailRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
         dataList = new ArrayList<>();
-
+        mInformation = mRootView.findViewById(R.id.information);
         addMainMenuDummy();
 //        setRecyclerView();
 
@@ -145,6 +147,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
                 if(!description.get(7).text().isEmpty()){
                     Log.d(TAG, "e =======> " + description.get(7).text());
+                    tempInformation = description.get(7).text();
                 }
 
 //                if(!backNumber.get(2).text().isEmpty()){
@@ -175,6 +178,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         @Override
         protected void onPostExecute(Void result) {
+            mInformation.setText(tempInformation);
             asyncDialog.dismiss();
 //            setRecyclerView();
         }
