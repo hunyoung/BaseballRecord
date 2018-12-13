@@ -150,25 +150,29 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 String temp = "";
 
                 Elements description = doc.select("ul.dropdown-menu");
-//                for(Element e : description){
-//                    Log.d(TAG, "e =======> " + e.text());
-//                }
-
-                if(!description.get(7).text().isEmpty()){
-                    Log.d(TAG, "e =======> " + description.get(7).text());
-                    tempInformation = description.get(7).text();
+                for(Element e : description){
+                    Log.d(TAG, "e =======> " + e.text());
                 }
 
-                sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
-                sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
-                sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
-                sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
-                sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+3, tempInformation.indexOf("신인지명"));
-                sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
-                sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
-                sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
-                sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
-                sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
+                if(description.size() >7){
+                    if(!description.get(7).text().isEmpty()){
+                        Log.d(TAG, "e =======> " + description.get(7).text());
+                        tempInformation = description.get(7).text();
+                    }
+                    sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
+                    sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
+                    sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
+                    sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
+                    sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+3, tempInformation.indexOf("신인지명"));
+                    sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
+                    sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
+                    sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
+                    sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
+                    sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
+                } else {
+                    Log.d(TAG, "동명 이인 존재");
+                }
+
 
 //                if(!backNumber.get(2).text().isEmpty()){
 //                    validCheck = true;
