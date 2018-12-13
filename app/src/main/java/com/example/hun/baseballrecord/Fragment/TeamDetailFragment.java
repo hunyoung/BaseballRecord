@@ -88,7 +88,7 @@ public class TeamDetailFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "position ==>  " + position);
-                Toast.makeText(getContext(), "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putInt("POSITION", position);

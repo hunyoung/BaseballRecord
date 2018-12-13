@@ -64,9 +64,17 @@
             >
         </android.support.v7.widget.RecyclerView>
 
-
     </ScrollView>
 
+    <TextView
+        android:id="@+id/no_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="26sp"
+        android:maxLines="2"
+        android:text="해당 년도의 데이터가 없습니다."/>
 
 
 </LinearLayout>

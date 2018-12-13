@@ -42,9 +42,11 @@ public class OneTeamDetailFragment extends Fragment {
     private int positionArg = 0;
     private Spinner yearSpinner;
     private TextView mSearchBtn;
+    private TextView noRecord;
     private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7";
     private String teamString = "두산";
     private String mSearchYear = "2018";
+    private boolean validCheck = true;
 //    private String accessUrl = "http://www.statiz.co.kr/team.php?opt=0&sopt=7&year=2018&team=lg";
 
 
@@ -88,6 +90,7 @@ public class OneTeamDetailFragment extends Fragment {
         dataList = new ArrayList<>();
         yearSpinner = mRootView.findViewById(R.id.search_year_player);
         mSearchBtn = mRootView.findViewById(R.id.search_year_btn);
+        noRecord = mRootView.findViewById(R.id.no_record);
         addMainMenuDummy();
 //        setRecyclerView();
 
@@ -186,31 +189,24 @@ public class OneTeamDetailFragment extends Fragment {
 
                 Elements backNumber = doc.select("div.box-body");
 
-//                Log.d(TAG, "backNumber  =====> " + backNumber.text());
-//                for(int i=0; i<backNumber.size(); i++){
+                if(!backNumber.get(2).text().isEmpty()){
+                    validCheck = true;
+                    temp = backNumber.get(2).text();
+                    Log.d(TAG, "backNumber ===> " + backNumber.get(2).text());
+                    temp.split(" ");
+                    Log.d(TAG, "length   " + temp.split(" ").length);
 
-//                }
-                Log.d(TAG, "backNumber ===> " + backNumber.get(2).text());
-                temp = backNumber.get(2).text();
-                temp.split(" ");
-                Log.d(TAG, "length   " + temp.split(" ").length);
+                    String[] arr;
 
-                String[] arr;
+                    arr = temp.split(" ");
 
-                arr = temp.split(" ");
-
-                for(int i=0; i<arr.length; i = i+2){
-                    dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
-                }
-
-                //테스트1
-                Elements titles = doc.select("div.box-body a");
-                Log.d(TAG, "titles  =====> " + titles.text());
-                for(int i=0; i<titles.size(); i++){
-                    if(i>12){
-//                        dataList.add( new OneTeamDetailFragmentRecyclerModel(titles.get(i).text(), ""));
+                    for(int i=0; i<arr.length; i = i+2){
+                        dataList.add( new OneTeamDetailFragmentRecyclerModel(arr[i+1], arr[i]));
                     }
+                } else {
+                    validCheck = false;
                 }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -221,6 +217,11 @@ public class OneTeamDetailFragment extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             asyncDialog.dismiss();
+            if(!validCheck){
+                noRecord.setVisibility(View.VISIBLE);
+            } else {
+                noRecord.setVisibility(View.GONE);
+            }
             setRecyclerView();
         }
     }
