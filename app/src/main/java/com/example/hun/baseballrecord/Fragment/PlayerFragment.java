@@ -173,7 +173,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
                     sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
                     sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
-                } else {
+                } else if(doc.select("tr.oddrow_stz td").hasText() || doc.select("tr.evenrow_stz td").hasText()){
                     Log.d(TAG, "동명 이인 존재");
                     searchFisrt = true;
                     Elements birthOdd = doc.select("tr.oddrow_stz td");
@@ -193,6 +193,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                             birthTxt = "&birth=" + birthEven.get(i-2).text();
                         }
                     }
+                } else {
+                    Log.d(TAG, "검색결과 없음");
                 }
 
             } catch (IOException e) {
