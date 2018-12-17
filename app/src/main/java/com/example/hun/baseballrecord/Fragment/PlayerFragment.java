@@ -109,10 +109,10 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        dataList.add(new PlayerFragmentRecyclerModel("","연도", "나이", "P", "G",
-                "타석", "타수", "득점", "안타", "2타", "3타",
-                "홈런", "루타", "타점", "도루", "도실", "볼넷",
-                "사구", "사구", "고4", "삼진", "병살",
+        dataList.add(new PlayerFragmentRecyclerModel("","연도", "팀명", "나이", "포지션",
+                "G", "타석", "타수", "득점", "안타", "2타",
+                "3타", "홈런", "루타", "타점", "도루", "도실",
+                "볼넷", "사구", "고4", "삼진", "병살",
                 "희타", "희비", "타율", "출루율", "장타율",
                 "OPS", "wOBA", "WRC+", "WAR", "WPA"));
 //        setRecyclerView();
