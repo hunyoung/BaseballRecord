@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/player_colum"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="올시즌"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/player_year"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="aaa"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/player_teamName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="bbb" />
+
+            <TextView
+                android:id="@+id/player_age"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_position"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_game"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_battingCount"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_realBattingCount"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_round"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_oneBase"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_twoBase"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_threeBase"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_homeRun"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_totalBase"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_runBattedIn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_steal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_steal_fail"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_fourBall"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_hittedBall"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_intentionalBaseOnBalls"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_strikeOut"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_doublePlay"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_sacrificeRound"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_sacrifice_fly"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_battingRate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_baseOnRate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_slugRate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_ops"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_woba"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_wrcPlus"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_war"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+            <TextView
+                android:id="@+id/player_wpa"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/border"
+                android:text="ccc" />
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+
+</LinearLayout>

@@ -5,20 +5,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.hun.baseballrecord.Activity.MainActivity;
-import com.example.hun.baseballrecord.Adapter.OneTeamDetailFrgmentRecyclerAdapter;
-import com.example.hun.baseballrecord.Model.OneTeamDetailFragmentRecyclerModel;
+import com.example.hun.baseballrecord.Adapter.PlayerFragmentRecyclerAdapter;
+import com.example.hun.baseballrecord.Model.PlayerFragmentRecyclerModel;
 import com.example.hun.baseballrecord.R;
 
 import org.jsoup.Jsoup;
@@ -31,12 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
-    private static String TAG = "OneTeamDetailFragment";
+    private static String TAG = "PlayerFragment";
 
     private View mRootView;
-    private List<OneTeamDetailFragmentRecyclerModel> dataList = null;
-    private OneTeamDetailFrgmentRecyclerAdapter mOneTeamDetailFragmentRecyclerAdapter = null;
-    private RecyclerView oneTeamDetailRecyclerView;
+    private List<PlayerFragmentRecyclerModel> dataList = null;
+    private PlayerFragmentRecyclerAdapter PlayerFragmentRecyclerAdapter = null;
+    private RecyclerView playerDetailRecyclerView;
     private String playerName = "박치국";
     private String teamName = "두산";
     private String birthTxt = "";
@@ -83,7 +80,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private void init() {
         Log.d(TAG, "init()");
 
-        oneTeamDetailRecyclerView = mRootView.findViewById(R.id.one_team_detail_fragment_recyclerview);
+        playerDetailRecyclerView = mRootView.findViewById(R.id.player_fragment_recyclerview);
         dataList = new ArrayList<>();
         mPlayerName = mRootView.findViewById(R.id.player_name);
 
@@ -112,19 +109,24 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-//        dataList.add(new OneTeamDetailFragmentRecyclerModel("두산", "aaa"));
-       // setRecyclerView();
+        dataList.add(new PlayerFragmentRecyclerModel("올시즌","연도", "나이", "P", "G",
+                "타석", "타수", "득점", "안타", "2타", "3타",
+                "홈런", "루타", "타점", "도루", "도실", "볼넷",
+                "사구", "사구", "고4", "삼진", "병살",
+                "희타", "희비", "타율", "출루율", "장타율",
+                "OPS", "wOBA", "WRC+", "WAR", "WPA"));
+        //setRecyclerView();
 
     }
 
 
     private void setRecyclerView() {
         Log.d(TAG, "setRecyclerView");
-        mOneTeamDetailFragmentRecyclerAdapter = new OneTeamDetailFrgmentRecyclerAdapter(getContext(), R.layout.one_team_detail_fragment_recyclerview_item, dataList);
-        oneTeamDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        oneTeamDetailRecyclerView.setHasFixedSize(true);
+        PlayerFragmentRecyclerAdapter = new PlayerFragmentRecyclerAdapter(getContext(), R.layout.player_fragment_detail_item, dataList);
+        playerDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        playerDetailRecyclerView.setHasFixedSize(true);
 
-        oneTeamDetailRecyclerView.setAdapter(mOneTeamDetailFragmentRecyclerAdapter);
+        playerDetailRecyclerView.setAdapter(PlayerFragmentRecyclerAdapter);
 
     }
 
@@ -154,13 +156,13 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 String temp = "";
 
                 Elements description = doc.select("ul.dropdown-menu");
-                for(Element e : description){
-                    Log.d(TAG, "e =======> " + e.text());
-                }
+//                for(Element e : description){
+//                    Log.d(TAG, "e =======> " + e.text());
+//                }
 
                 if(description.size() >7){
                     if(!description.get(7).text().isEmpty()){
-                        Log.d(TAG, "e =======> " + description.get(7).text());
+//                        Log.d(TAG, "e =======> " + description.get(7).text());
                         tempInformation = description.get(7).text();
                     }
                     sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
@@ -173,6 +175,32 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                     sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
                     sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
                     sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
+
+                    if(sPlayerWholePosition.equals("투수")){
+                        Log.d(TAG, "검색 선수 포지션 = 투수");
+
+                    } else {
+                        Log.d(TAG, "검색 선수 포지션 = 타자");
+
+                        Elements des = doc.select("tr.oddrow_stz0 td");
+                        Log.d(TAG, "des size ====> " + des.size());
+                        for(int i = 0; i<des.size(); i++){
+                            if(i % 32 == 0){
+                                dataList.add(new PlayerFragmentRecyclerModel(des.get(i).text(), des.get(i+1).text(), des.get(i+2).text(), des.get(i+3).text(),
+                                        des.get(i+4).text(), des.get(i+5).text(), des.get(i+6).text(), des.get(i+7).text(), des.get(i+8).text(), des.get(i+9).text(),
+                                        des.get(i+10).text(), des.get(i+11).text(), des.get(i+12).text(), des.get(i+13).text(), des.get(i+14).text(), des.get(i+15).text(),
+                                        des.get(i+16).text(), des.get(i+17).text(), des.get(i+18).text(), des.get(i+19).text(), des.get(i+20).text(), des.get(i+21).text(),
+                                        des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
+                                        des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
+                            }
+
+                        }
+                        for(Element e : des){
+                            Log.d(TAG, "e =======> " + e.text());
+                        }
+                    }
+
+
                 } else if(doc.select("tr.oddrow_stz td").hasText() || doc.select("tr.evenrow_stz td").hasText()){
                     Log.d(TAG, "동명 이인 존재");
                     searchFisrt = true;
@@ -224,7 +252,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 jsoupAsyncTask.execute();
             }
 
-//            setRecyclerView();
+            setRecyclerView();
         }
     }
 
