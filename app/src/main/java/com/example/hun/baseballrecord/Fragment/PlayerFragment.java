@@ -96,7 +96,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         mPlayerWholePosition = mRootView.findViewById(R.id.player_whole_position);
 
 
-        addMainMenuDummy();
+//        addMainMenuDummy();
 //        setRecyclerView();
 
         PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
@@ -109,13 +109,13 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
     private void addMainMenuDummy() {
         Log.d(TAG, "addMainMenuDummy");
-        dataList.add(new PlayerFragmentRecyclerModel("올시즌","연도", "나이", "P", "G",
+        dataList.add(new PlayerFragmentRecyclerModel("","연도", "나이", "P", "G",
                 "타석", "타수", "득점", "안타", "2타", "3타",
                 "홈런", "루타", "타점", "도루", "도실", "볼넷",
                 "사구", "사구", "고4", "삼진", "병살",
                 "희타", "희비", "타율", "출루율", "장타율",
                 "OPS", "wOBA", "WRC+", "WAR", "WPA"));
-        //setRecyclerView();
+//        setRecyclerView();
 
     }
 
@@ -147,13 +147,12 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         @Override
         protected Void doInBackground(Void... params) {
             try {
-
-
                 Document doc = Jsoup.connect(accessUrl + playerName + birthTxt).get();
 //                Log.d(TAG, "doc ===> " + doc.text());
                 searchFisrt = false;
                 dataList.clear();
-                String temp = "";
+                addMainMenuDummy();
+
 
                 Elements description = doc.select("ul.dropdown-menu");
 //                for(Element e : description){
@@ -195,9 +194,9 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                             }
 
                         }
-                        for(Element e : des){
-                            Log.d(TAG, "e =======> " + e.text());
-                        }
+//                        for(Element e : des){
+//                            Log.d(TAG, "e =======> " + e.text());
+//                        }
                     }
 
 
@@ -251,7 +250,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
             }
-
+//            addMainMenuDummy();
             setRecyclerView();
         }
     }
