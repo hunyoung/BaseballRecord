@@ -192,8 +192,20 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                                         des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
                                         des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
                             }
-
                         }
+
+                        Elements desEven = doc.select("tr.evenrow_stz0 td");
+                        for(int i = 32; i<desEven.size(); i++){
+                            if(i % 32 == 0){
+                                dataList.add(new PlayerFragmentRecyclerModel(desEven.get(i).text(), desEven.get(i+1).text(), desEven.get(i+2).text(), desEven.get(i+3).text(),
+                                        desEven.get(i+4).text(), desEven.get(i+5).text(), desEven.get(i+6).text(), desEven.get(i+7).text(), desEven.get(i+8).text(), desEven.get(i+9).text(),
+                                        desEven.get(i+10).text(), desEven.get(i+11).text(), desEven.get(i+12).text(), desEven.get(i+13).text(), desEven.get(i+14).text(), desEven.get(i+15).text(),
+                                        desEven.get(i+16).text(), desEven.get(i+17).text(), desEven.get(i+18).text(), desEven.get(i+19).text(), desEven.get(i+20).text(), desEven.get(i+21).text(),
+                                        desEven.get(i+22).text(), desEven.get(i+23).text(), desEven.get(i+24).text(), desEven.get(i+25).text(), desEven.get(i+26).text(), desEven.get(i+27).text(),
+                                        desEven.get(i+28).text(), desEven.get(i+29).text(), desEven.get(i+30).text(), desEven.get(i+31).text()));
+                            }
+                        }
+
 //                        for(Element e : des){
 //                            Log.d(TAG, "e =======> " + e.text());
 //                        }
