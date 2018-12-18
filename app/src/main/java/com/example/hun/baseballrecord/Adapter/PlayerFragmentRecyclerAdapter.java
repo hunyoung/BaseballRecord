@@ -65,6 +65,7 @@ public class PlayerFragmentRecyclerAdapter extends RecyclerView.Adapter<PlayerFr
         holder.fourBall.setText(recyclerModel.getFourBall());
         holder.hittedBall.setText(recyclerModel.getHittedBall());
         holder.intentionalBaseOnBalls.setText(recyclerModel.getIntentionalBaseOnBalls());
+        holder.strikeOut.setText(recyclerModel.getStrikeOut());
         holder.doublePlay.setText(recyclerModel.getDoublePlay());
         holder.sacrificeRound.setText(recyclerModel.getSacrificeRound());
         holder.sacrificeFly.setText(recyclerModel.getSacrificeFly());
