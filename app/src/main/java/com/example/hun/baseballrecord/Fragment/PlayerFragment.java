@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Adapter.PlayerFragmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.PlayerFragmentRecyclerModel;
@@ -34,6 +36,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private List<PlayerFragmentRecyclerModel> dataList = null;
     private PlayerFragmentRecyclerAdapter PlayerFragmentRecyclerAdapter = null;
     private RecyclerView playerDetailRecyclerView;
+    private ImageView playerPhoto;
+    private String playerPhotoUrl = "";
     private String playerName = "박치국";
     private String teamName = "두산";
     private String birthTxt = "";
@@ -86,7 +90,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         dataList = new ArrayList<>();
         mPlayerName = mRootView.findViewById(R.id.player_name);
         backNumber = mRootView.findViewById(R.id.backNumber);
-
+        playerPhoto = mRootView.findViewById(R.id.player_photo);
         mPlayerBirth = mRootView.findViewById(R.id.player_birth);
         mPlayerHitPitch = mRootView.findViewById(R.id.player_hitPitch);
         mPlayerSchool = mRootView.findViewById(R.id.player_school);
@@ -161,150 +165,32 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {
-                Document doc = Jsoup.connect(accessUrl + playerName + birthTxt).get();
-//                Log.d(TAG, "doc ===> " + doc.text());
-                searchFisrt = false;
-                dataList.clear();
-                Elements backNumber = doc.select("div.box-body");
-                if(!backNumber.get(2).text().isEmpty()){
-                        Log.d(TAG, "e =======> " + backNumber.get(2).text());
-                    backNumberString = backNumber.get(2).text();
-                }
-
-                Elements description = doc.select("ul.dropdown-menu");
-//                for(Element e : description){
-//                    Log.d(TAG, "e =======> " + e.text());
-//                }
-
-                if(description.size() >7){
-                    if(!description.get(7).text().isEmpty()){
-//                        Log.d(TAG, "e =======> " + description.get(7).text());
-                        tempInformation = description.get(7).text();
-                    }
-                    sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
-                    sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
-                    sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
-                    sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
-                    sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+4, tempInformation.indexOf("신인지명"));
-                    sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
-                    sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
-                    sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
-                    sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
-                    sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
-
-                    if(sPlayerWholePosition.equals("투수")){
-                        Log.d(TAG, "검색 선수 포지션 = 투수");
-                        addPitcherDummy();
-
-                        Elements des = doc.select("tr.oddrow_stz0 td");
-                        Log.d(TAG, "des size ====> " + des.size());
-                        for(int i = 0; i<des.size(); i++){
-                            if(i % 33 == 0){
-                                dataList.add(new PlayerFragmentRecyclerModel(des.get(i).text(), des.get(i+1).text(), des.get(i+2).text(), des.get(i+3).text(),
-                                        des.get(i+4).text(), des.get(i+5).text(), des.get(i+6).text(), des.get(i+7).text(), des.get(i+8).text(), des.get(i+9).text(),
-                                        des.get(i+10).text(), des.get(i+11).text(), des.get(i+12).text(), des.get(i+13).text(), des.get(i+14).text(), des.get(i+15).text(),
-                                        des.get(i+16).text(), des.get(i+17).text(), des.get(i+18).text(), des.get(i+19).text(), des.get(i+20).text(), des.get(i+21).text(),
-                                        des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
-                                        des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
-                            }
-                        }
-
-                        Elements desEven = doc.select("tr.evenrow_stz0 td");
-                        for(int i = 33; i<desEven.size(); i++){
-                            if(i % 33 == 0){
-                                dataList.add(new PlayerFragmentRecyclerModel(desEven.get(i).text(), desEven.get(i+1).text(), desEven.get(i+2).text(), desEven.get(i+3).text(),
-                                        desEven.get(i+4).text(), desEven.get(i+5).text(), desEven.get(i+6).text(), desEven.get(i+7).text(), desEven.get(i+8).text(), desEven.get(i+9).text(),
-                                        desEven.get(i+10).text(), desEven.get(i+11).text(), desEven.get(i+12).text(), desEven.get(i+13).text(), desEven.get(i+14).text(), desEven.get(i+15).text(),
-                                        desEven.get(i+16).text(), desEven.get(i+17).text(), desEven.get(i+18).text(), desEven.get(i+19).text(), desEven.get(i+20).text(), desEven.get(i+21).text(),
-                                        desEven.get(i+22).text(), desEven.get(i+23).text(), desEven.get(i+24).text(), desEven.get(i+25).text(), desEven.get(i+26).text(), desEven.get(i+27).text(),
-                                        desEven.get(i+28).text(), desEven.get(i+29).text(), desEven.get(i+30).text(), desEven.get(i+31).text()));
-                            }
-                        }
-
-
-                    } else {
-                        Log.d(TAG, "검색 선수 포지션 = 타자");
-                        addHitterDummy();
-
-                        Elements des = doc.select("tr.oddrow_stz0 td");
-                        Log.d(TAG, "des size ====> " + des.size());
-                        for(int i = 0; i<des.size(); i++){
-                            if(i % 32 == 0){
-                                dataList.add(new PlayerFragmentRecyclerModel(des.get(i).text(), des.get(i+1).text(), des.get(i+2).text(), des.get(i+3).text(),
-                                        des.get(i+4).text(), des.get(i+5).text(), des.get(i+6).text(), des.get(i+7).text(), des.get(i+8).text(), des.get(i+9).text(),
-                                        des.get(i+10).text(), des.get(i+11).text(), des.get(i+12).text(), des.get(i+13).text(), des.get(i+14).text(), des.get(i+15).text(),
-                                        des.get(i+16).text(), des.get(i+17).text(), des.get(i+18).text(), des.get(i+19).text(), des.get(i+20).text(), des.get(i+21).text(),
-                                        des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
-                                        des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
-                            }
-                        }
-
-                        Elements desEven = doc.select("tr.evenrow_stz0 td");
-                        for(int i = 32; i<desEven.size(); i++){
-                            if(i % 32 == 0){
-                                dataList.add(new PlayerFragmentRecyclerModel(desEven.get(i).text(), desEven.get(i+1).text(), desEven.get(i+2).text(), desEven.get(i+3).text(),
-                                        desEven.get(i+4).text(), desEven.get(i+5).text(), desEven.get(i+6).text(), desEven.get(i+7).text(), desEven.get(i+8).text(), desEven.get(i+9).text(),
-                                        desEven.get(i+10).text(), desEven.get(i+11).text(), desEven.get(i+12).text(), desEven.get(i+13).text(), desEven.get(i+14).text(), desEven.get(i+15).text(),
-                                        desEven.get(i+16).text(), desEven.get(i+17).text(), desEven.get(i+18).text(), desEven.get(i+19).text(), desEven.get(i+20).text(), desEven.get(i+21).text(),
-                                        desEven.get(i+22).text(), desEven.get(i+23).text(), desEven.get(i+24).text(), desEven.get(i+25).text(), desEven.get(i+26).text(), desEven.get(i+27).text(),
-                                        desEven.get(i+28).text(), desEven.get(i+29).text(), desEven.get(i+30).text(), desEven.get(i+31).text()));
-                            }
-                        }
-
-//                        for(Element e : des){
-//                            Log.d(TAG, "e =======> " + e.text());
-//                        }
-                    }
-
-
-                } else if(doc.select("tr.oddrow_stz td").hasText() || doc.select("tr.evenrow_stz td").hasText()){
-                    Log.d(TAG, "동명 이인 존재");
-                    searchFisrt = true;
-                    Elements birthOdd = doc.select("tr.oddrow_stz td");
-
-                    for(int i=0; i< birthOdd.size(); i++){
-                        if(birthOdd.get(i).text().equals(teamName)){
-                            Log.d(TAG, "홀수에서 검색됨  생년월일 ===> " + birthOdd.get(i-2).text());
-                            birthTxt = "&birth=" + birthOdd.get(i-2).text();
-                        }
-                    }
-
-                    Elements birthEven = doc.select("tr.evenrow_stz td");
-
-                    for(int i=0; i< birthEven.size(); i++){
-                        if(birthEven.get(i).text().equals(teamName)){
-                            Log.d(TAG, "짝수에서 검색됨  생년월일 ===> " + birthEven.get(i-2).text());
-                            birthTxt = "&birth=" + birthEven.get(i-2).text();
-                        }
-                    }
-                } else {
-                    Log.d(TAG, "검색결과 없음");
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            getPlayerDescription();
+            getPlayerPhoto();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-
             asyncDialog.dismiss();
-
             setUIText();
 
             if(birthTxt != null && searchFisrt){
                 PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
                 jsoupAsyncTask.execute();
             }
-//            addMainMenuDummy();
             setRecyclerView();
         }
     }
 
     private void setUIText(){
+        if(playerName.equals("오재원")){
+            Glide.with(getContext()).load(playerPhotoUrl).into(playerPhoto);
+        } else {
+            Glide.with(getContext()).load(R.drawable.noimage).into(playerPhoto);
+        }
+
+
         mPlayerName.setText(playerName);
         backNumber.setText(backNumberString);
         mPlayerBirth.setText(sPlayerBirth);
@@ -331,7 +217,150 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         super.onAttach(context);
         ((MainActivity)context).setOnKeyBackPressedListener(this);
     }
+    private void getPlayerPhoto(){
+        try{
+            Document doc = Jsoup.connect("https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=77248").get();
+//            Log.d(TAG, "사진    " + doc.toString());
 
+//            Elements photoUrl = doc.select("div.photo");
+//          https://www.koreabaseball.com/file/person/middle/2018/77248.jpg
+            String temp = doc.select("div.photo").select("img").attr("src");
+            playerPhotoUrl = "https://www.koreabaseball.com" + temp ;
+            Log.d(TAG, "temp ===>   " + temp);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void getPlayerDescription(){
+        try {
+            Document doc = Jsoup.connect(accessUrl + playerName + birthTxt).get();
+//                Log.d(TAG, "doc ===> " + doc.text());
+            searchFisrt = false;
+            dataList.clear();
+            Elements backNumber = doc.select("div.box-body");
+            if(!backNumber.get(2).text().isEmpty()){
+                Log.d(TAG, "e =======> " + backNumber.get(2).text());
+                backNumberString = backNumber.get(2).text();
+            }
+
+            Elements description = doc.select("ul.dropdown-menu");
+//                for(Element e : description){
+//                    Log.d(TAG, "e =======> " + e.text());
+//                }
+
+            if(description.size() >7){
+                if(!description.get(7).text().isEmpty()){
+//                        Log.d(TAG, "e =======> " + description.get(7).text());
+                    tempInformation = description.get(7).text();
+                }
+                sPlayerBirth = tempInformation.substring(5, tempInformation.indexOf("투타"));
+                sPlayerHitPitch = tempInformation.substring(tempInformation.indexOf("투타")+3, tempInformation.indexOf("출신학교"));
+                sPlayerSchool = tempInformation.substring(tempInformation.indexOf("출신학교")+5, tempInformation.indexOf("활약연도"));
+                sPlayerRunYear = tempInformation.substring(tempInformation.indexOf("활약연도")+5, tempInformation.indexOf("활약팀"));
+                sPlayerRunTeam = tempInformation.substring(tempInformation.indexOf("활약팀")+4, tempInformation.indexOf("신인지명"));
+                sPlayerFirstPick = tempInformation.substring(tempInformation.indexOf("신인지명")+5, tempInformation.indexOf("최근 소속"));
+                sPlayerRecentTeam = tempInformation.substring(tempInformation.indexOf("최근 소속")+6, tempInformation.indexOf("최근 포지션"));
+                sPlayerRecentPosition = tempInformation.substring(tempInformation.indexOf("최근 포지션")+7, tempInformation.indexOf("통산 소속"));
+                sPlayerWholeTeam = tempInformation.substring(tempInformation.indexOf("통산 소속")+6, tempInformation.indexOf("통산 포지션"));
+                sPlayerWholePosition = tempInformation.substring(tempInformation.indexOf("통산 포지션")+7, tempInformation.length());
+
+                if(sPlayerWholePosition.equals("투수")){
+                    Log.d(TAG, "검색 선수 포지션 = 투수");
+                    addPitcherDummy();
+
+                    Elements des = doc.select("tr.oddrow_stz0 td");
+                    Log.d(TAG, "des size ====> " + des.size());
+                    for(int i = 0; i<des.size(); i++){
+                        if(i % 33 == 0){
+                            dataList.add(new PlayerFragmentRecyclerModel(des.get(i).text(), des.get(i+1).text(), des.get(i+2).text(), des.get(i+3).text(),
+                                    des.get(i+4).text(), des.get(i+5).text(), des.get(i+6).text(), des.get(i+7).text(), des.get(i+8).text(), des.get(i+9).text(),
+                                    des.get(i+10).text(), des.get(i+11).text(), des.get(i+12).text(), des.get(i+13).text(), des.get(i+14).text(), des.get(i+15).text(),
+                                    des.get(i+16).text(), des.get(i+17).text(), des.get(i+18).text(), des.get(i+19).text(), des.get(i+20).text(), des.get(i+21).text(),
+                                    des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
+                                    des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
+                        }
+                    }
+
+                    Elements desEven = doc.select("tr.evenrow_stz0 td");
+                    for(int i = 33; i<desEven.size(); i++){
+                        if(i % 33 == 0){
+                            dataList.add(new PlayerFragmentRecyclerModel(desEven.get(i).text(), desEven.get(i+1).text(), desEven.get(i+2).text(), desEven.get(i+3).text(),
+                                    desEven.get(i+4).text(), desEven.get(i+5).text(), desEven.get(i+6).text(), desEven.get(i+7).text(), desEven.get(i+8).text(), desEven.get(i+9).text(),
+                                    desEven.get(i+10).text(), desEven.get(i+11).text(), desEven.get(i+12).text(), desEven.get(i+13).text(), desEven.get(i+14).text(), desEven.get(i+15).text(),
+                                    desEven.get(i+16).text(), desEven.get(i+17).text(), desEven.get(i+18).text(), desEven.get(i+19).text(), desEven.get(i+20).text(), desEven.get(i+21).text(),
+                                    desEven.get(i+22).text(), desEven.get(i+23).text(), desEven.get(i+24).text(), desEven.get(i+25).text(), desEven.get(i+26).text(), desEven.get(i+27).text(),
+                                    desEven.get(i+28).text(), desEven.get(i+29).text(), desEven.get(i+30).text(), desEven.get(i+31).text()));
+                        }
+                    }
+
+
+                } else {
+                    Log.d(TAG, "검색 선수 포지션 = 타자");
+                    addHitterDummy();
+
+                    Elements des = doc.select("tr.oddrow_stz0 td");
+                    Log.d(TAG, "des size ====> " + des.size());
+                    for(int i = 0; i<des.size(); i++){
+                        if(i % 32 == 0){
+                            dataList.add(new PlayerFragmentRecyclerModel(des.get(i).text(), des.get(i+1).text(), des.get(i+2).text(), des.get(i+3).text(),
+                                    des.get(i+4).text(), des.get(i+5).text(), des.get(i+6).text(), des.get(i+7).text(), des.get(i+8).text(), des.get(i+9).text(),
+                                    des.get(i+10).text(), des.get(i+11).text(), des.get(i+12).text(), des.get(i+13).text(), des.get(i+14).text(), des.get(i+15).text(),
+                                    des.get(i+16).text(), des.get(i+17).text(), des.get(i+18).text(), des.get(i+19).text(), des.get(i+20).text(), des.get(i+21).text(),
+                                    des.get(i+22).text(), des.get(i+23).text(), des.get(i+24).text(), des.get(i+25).text(), des.get(i+26).text(), des.get(i+27).text(),
+                                    des.get(i+28).text(), des.get(i+29).text(), des.get(i+30).text(), des.get(i+31).text()));
+                        }
+                    }
+
+                    Elements desEven = doc.select("tr.evenrow_stz0 td");
+                    for(int i = 32; i<desEven.size(); i++){
+                        if(i % 32 == 0){
+                            dataList.add(new PlayerFragmentRecyclerModel(desEven.get(i).text(), desEven.get(i+1).text(), desEven.get(i+2).text(), desEven.get(i+3).text(),
+                                    desEven.get(i+4).text(), desEven.get(i+5).text(), desEven.get(i+6).text(), desEven.get(i+7).text(), desEven.get(i+8).text(), desEven.get(i+9).text(),
+                                    desEven.get(i+10).text(), desEven.get(i+11).text(), desEven.get(i+12).text(), desEven.get(i+13).text(), desEven.get(i+14).text(), desEven.get(i+15).text(),
+                                    desEven.get(i+16).text(), desEven.get(i+17).text(), desEven.get(i+18).text(), desEven.get(i+19).text(), desEven.get(i+20).text(), desEven.get(i+21).text(),
+                                    desEven.get(i+22).text(), desEven.get(i+23).text(), desEven.get(i+24).text(), desEven.get(i+25).text(), desEven.get(i+26).text(), desEven.get(i+27).text(),
+                                    desEven.get(i+28).text(), desEven.get(i+29).text(), desEven.get(i+30).text(), desEven.get(i+31).text()));
+                        }
+                    }
+
+//                        for(Element e : des){
+//                            Log.d(TAG, "e =======> " + e.text());
+//                        }
+                }
+
+
+            } else if(doc.select("tr.oddrow_stz td").hasText() || doc.select("tr.evenrow_stz td").hasText()){
+                Log.d(TAG, "동명 이인 존재");
+                searchFisrt = true;
+                Elements birthOdd = doc.select("tr.oddrow_stz td");
+
+                for(int i=0; i< birthOdd.size(); i++){
+                    if(birthOdd.get(i).text().equals(teamName)){
+                        Log.d(TAG, "홀수에서 검색됨  생년월일 ===> " + birthOdd.get(i-2).text());
+                        birthTxt = "&birth=" + birthOdd.get(i-2).text();
+                    }
+                }
+
+                Elements birthEven = doc.select("tr.evenrow_stz td");
+
+                for(int i=0; i< birthEven.size(); i++){
+                    if(birthEven.get(i).text().equals(teamName)){
+                        Log.d(TAG, "짝수에서 검색됨  생년월일 ===> " + birthEven.get(i-2).text());
+                        birthTxt = "&birth=" + birthEven.get(i-2).text();
+                    }
+                }
+            } else {
+                Log.d(TAG, "검색결과 없음");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
