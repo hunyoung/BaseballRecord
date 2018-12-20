@@ -40,6 +40,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private boolean searchFisrt = true;
     private String accessUrl = "http://www.statiz.co.kr/player.php?opt=0&name=";
     private String tempInformation = "";
+    private String backNumberString = "";
+    private TextView backNumber;
     private TextView mPlayerName;
     private TextView mPlayerBirth, mPlayerHitPitch, mPlayerSchool, mPlayerRunYear, mPlayerRunTeam;
     private TextView mPlayerFirstPick, mPlayerRecentTeam, mPlayerRecentPosition, mPlayerWholeTeam, mPlayerWholePosition;
@@ -83,6 +85,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         playerDetailRecyclerView = mRootView.findViewById(R.id.player_fragment_recyclerview);
         dataList = new ArrayList<>();
         mPlayerName = mRootView.findViewById(R.id.player_name);
+        backNumber = mRootView.findViewById(R.id.backNumber);
 
         mPlayerBirth = mRootView.findViewById(R.id.player_birth);
         mPlayerHitPitch = mRootView.findViewById(R.id.player_hitPitch);
@@ -163,8 +166,11 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 //                Log.d(TAG, "doc ===> " + doc.text());
                 searchFisrt = false;
                 dataList.clear();
-
-
+                Elements backNumber = doc.select("div.box-body");
+                if(!backNumber.get(2).text().isEmpty()){
+                        Log.d(TAG, "e =======> " + backNumber.get(2).text());
+                    backNumberString = backNumber.get(2).text();
+                }
 
                 Elements description = doc.select("ul.dropdown-menu");
 //                for(Element e : description){
@@ -284,19 +290,10 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 
         @Override
         protected void onPostExecute(Void result) {
-            mPlayerName.setText(playerName);
+
             asyncDialog.dismiss();
 
-            mPlayerBirth.setText(sPlayerBirth);
-            mPlayerHitPitch.setText(sPlayerHitPitch);
-            mPlayerSchool.setText(sPlayerSchool);
-            mPlayerRunYear.setText(sPlayerRunYear);
-            mPlayerRunTeam.setText(sPlayerRunTeam);
-            mPlayerFirstPick.setText(sPlayerFirstPick);
-            mPlayerRecentTeam.setText(sPlayerRecentTeam);
-            mPlayerRecentPosition.setText(sPlayerRecentPosition);
-            mPlayerWholeTeam.setText(sPlayerWholeTeam);
-            mPlayerWholePosition.setText(sPlayerWholePosition);
+            setUIText();
 
             if(birthTxt != null && searchFisrt){
                 PlayerFragment.JsoupAsyncTask jsoupAsyncTask = new PlayerFragment.JsoupAsyncTask();
@@ -305,6 +302,21 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 //            addMainMenuDummy();
             setRecyclerView();
         }
+    }
+
+    private void setUIText(){
+        mPlayerName.setText(playerName);
+        backNumber.setText(backNumberString);
+        mPlayerBirth.setText(sPlayerBirth);
+        mPlayerHitPitch.setText(sPlayerHitPitch);
+        mPlayerSchool.setText(sPlayerSchool);
+        mPlayerRunYear.setText(sPlayerRunYear);
+        mPlayerRunTeam.setText(sPlayerRunTeam);
+        mPlayerFirstPick.setText(sPlayerFirstPick);
+        mPlayerRecentTeam.setText(sPlayerRecentTeam);
+        mPlayerRecentPosition.setText(sPlayerRecentPosition);
+        mPlayerWholeTeam.setText(sPlayerWholeTeam);
+        mPlayerWholePosition.setText(sPlayerWholePosition);
     }
 
 
