@@ -19,6 +19,7 @@ import com.example.hun.baseballrecord.Activity.MainActivity;
 import com.example.hun.baseballrecord.Adapter.PlayerFragmentRecyclerAdapter;
 import com.example.hun.baseballrecord.Model.PlayerFragmentRecyclerModel;
 import com.example.hun.baseballrecord.R;
+import com.example.hun.baseballrecord.Utils.PlayerNameDB;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -51,6 +52,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     private TextView mPlayerFirstPick, mPlayerRecentTeam, mPlayerRecentPosition, mPlayerWholeTeam, mPlayerWholePosition;
     private String sPlayerBirth, sPlayerHitPitch, sPlayerSchool, sPlayerRunYear, sPlayerRunTeam = "";
     private String sPlayerFirstPick, sPlayerRecentTeam, sPlayerRecentPosition, sPlayerWholeTeam, sPlayerWholePosition = "";
+    private String playerId = "";
+    private String kboPlayerIdUrl = "";
 
     public PlayerFragment() {
         // Required empty public constructor
@@ -166,7 +169,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         @Override
         protected Void doInBackground(Void... params) {
             getPlayerDescription();
-            getPlayerPhoto();
+
             return null;
         }
 
@@ -184,12 +187,8 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private void setUIText(){
-        if(playerName.equals("오재원")){
-            Glide.with(getContext()).load(playerPhotoUrl).into(playerPhoto);
-        } else {
-            Glide.with(getContext()).load(R.drawable.noimage).into(playerPhoto);
-        }
-
+        if(!playerId.equals("")){ Glide.with(getContext()).load(playerPhotoUrl).into(playerPhoto); }
+        else { Glide.with(getContext()).load(R.drawable.noimage).into(playerPhoto); }
 
         mPlayerName.setText(playerName);
         backNumber.setText(backNumberString);
@@ -219,15 +218,13 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
     }
     private void getPlayerPhoto(){
         try{
-            Document doc = Jsoup.connect("https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=77248").get();
-//            Log.d(TAG, "사진    " + doc.toString());
-
-//            Elements photoUrl = doc.select("div.photo");
-//          https://www.koreabaseball.com/file/person/middle/2018/77248.jpg
-            String temp = doc.select("div.photo").select("img").attr("src");
-            playerPhotoUrl = "https://www.koreabaseball.com" + temp ;
-            Log.d(TAG, "temp ===>   " + temp);
-
+            PlayerNameDB db = new PlayerNameDB();
+            playerId = db.PlayerDB(playerName);
+            Document doc = Jsoup.connect(kboPlayerIdUrl + playerId).get();
+            playerId = doc.select("div.photo").select("img").attr("src");
+            if(playerId!=null){
+                playerPhotoUrl = "https://www.koreabaseball.com" + playerId ;
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -242,9 +239,11 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
             searchFisrt = false;
             dataList.clear();
             Elements backNumber = doc.select("div.box-body");
-            if(!backNumber.get(2).text().isEmpty()){
-                Log.d(TAG, "e =======> " + backNumber.get(2).text());
-                backNumberString = backNumber.get(2).text();
+            if(backNumber.size() >2){
+                if(!backNumber.get(2).text().isEmpty()){
+                    Log.d(TAG, "e =======> " + backNumber.get(2).text());
+                    backNumberString = backNumber.get(2).text();
+                }
             }
 
             Elements description = doc.select("ul.dropdown-menu");
@@ -271,7 +270,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 if(sPlayerWholePosition.equals("투수")){
                     Log.d(TAG, "검색 선수 포지션 = 투수");
                     addPitcherDummy();
-
+                    kboPlayerIdUrl = "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=";
                     Elements des = doc.select("tr.oddrow_stz0 td");
                     Log.d(TAG, "des size ====> " + des.size());
                     for(int i = 0; i<des.size(); i++){
@@ -301,7 +300,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
                 } else {
                     Log.d(TAG, "검색 선수 포지션 = 타자");
                     addHitterDummy();
-
+                    kboPlayerIdUrl = "https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=";
                     Elements des = doc.select("tr.oddrow_stz0 td");
                     Log.d(TAG, "des size ====> " + des.size());
                     for(int i = 0; i<des.size(); i++){
@@ -332,6 +331,7 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
 //                        }
                 }
 
+                getPlayerPhoto();
 
             } else if(doc.select("tr.oddrow_stz td").hasText() || doc.select("tr.evenrow_stz td").hasText()){
                 Log.d(TAG, "동명 이인 존재");
