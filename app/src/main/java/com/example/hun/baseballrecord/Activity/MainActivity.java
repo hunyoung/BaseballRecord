@@ -65,9 +65,12 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
+        if (actionBar != null) {
+            actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
+        }
+
         toolBar.setTitle(R.string.total);
         toolBar.setSubtitle("부제목");
         toolBar.setNavigationIcon(R.drawable.btn_list);
@@ -175,7 +178,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 transaction.replace(R.id.fragment_container, fragment3);
                 transaction.commit();
                 transaction.addToBackStack(null);
-                toolBar.setTitle("3번 프래그먼트");
+                toolBar.setTitle("선수 기록");
+                toolBar.setSubtitle("기록");
                 break;
 
             case 3:
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 transaction.commit();
                 transaction.addToBackStack(null);
                 toolBar.setTitle("네이버 뉴스");
-                toolBar.setSubtitle("야구");
+                toolBar.setSubtitle("프로 야구");
                 break;
 
             case 4:
