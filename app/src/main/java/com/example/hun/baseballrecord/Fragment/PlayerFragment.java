@@ -195,14 +195,16 @@ public class PlayerFragment extends Fragment implements MainActivity.onKeyBackPr
         backNumberString.split(" ");
         Log.d(TAG, "등번호 backNumberString substring ===> " + backNumberString);
         String temp = "";
-
-        for(int i=0; i<a.length; i++){
-            Log.d(TAG, "등번호 substring ===> " + a[i]);
-            if(i % 2 == 0){
-                temp += a[i] + "\n" + a[i+1];
+        if(a.length >= 2){
+            for(int i=0; i<a.length; i++){
+                Log.d(TAG, "등번호 substring ===> " + a[i]);
+                if(i % 2 == 0){
+                    temp += a[i] + "\n" + a[i+1];
+                }
+                temp += "\n";
             }
-            temp += "\n";
         }
+
         backNumber.setText(temp);
 
         mPlayerName.setText(playerName);
