@@ -23,6 +23,8 @@
         </activity>
 
         <activity android:name=".Activity.VideoActivity" />
+        <activity android:name=".Settings.SettingActivity" />
+        <activity android:name=".Settings.DeveloperActivity" />
 
         <activity android:name=".Activity.PlayerActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"

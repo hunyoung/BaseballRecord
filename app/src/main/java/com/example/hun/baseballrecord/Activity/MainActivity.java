@@ -25,6 +25,7 @@ import com.example.hun.baseballrecord.Fragment.TeamFragment;
 import com.example.hun.baseballrecord.Global.GlobalVariable;
 import com.example.hun.baseballrecord.Model.MainMenuRecyclerModel;
 import com.example.hun.baseballrecord.R;
+import com.example.hun.baseballrecord.Settings.SettingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,9 +109,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 break;
             case R.id.action_bt2:
                 Toast.makeText(this, "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.action_bt3:
-                Toast.makeText(this, "개발 중인 기능입니다.", Toast.LENGTH_SHORT).show();
+                Intent SettingActivity = new Intent(this, com.example.hun.baseballrecord.Settings.SettingActivity.class);
+                startActivity(SettingActivity);
                 break;
             default :
                 break;
