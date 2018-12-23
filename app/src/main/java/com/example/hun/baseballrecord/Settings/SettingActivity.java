@@ -11,6 +11,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.hun.baseballrecord.R;
 
@@ -47,29 +48,28 @@ public class SettingActivity extends PreferenceActivity {
 
             } else if (preference instanceof ListPreference) {
                 /**
-                 * ListPreference�� ��� stringValue�� entryValues�̱� ������ �ٷ� Summary��
-                 * �������� ���Ѵ� ���� ������ entries���� String�� �ε��Ͽ� �����Ѵ�
+                 * ListPreference의 경우 stringValue가 entryValues이기 때문에 바로 Summary를
+                 * 적용하지 못한다 따라서 설정한 entries에서 String을 로딩하여 적용한다
                  */
+
 
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
-
                 preference
                         .setSummary(index >= 0 ? listPreference.getEntries()[index]
                                 : null);
 
             } else if (preference instanceof RingtonePreference) {
                 /**
-                 * RingtonePreference�� ��� stringValue��
-                 * content://media/internal/audio/media�� �����̱� ������
-                 * RingtoneManager�� ����Ͽ� Summary�� �����Ѵ�
+                 * RingtonePreference의 경우 stringValue가
+                 * content://media/internal/audio/media의 형식이기 때문에
+                 * RingtoneManager을 사용하여 Summary를 적용한다
                  *
-                 * �����ϰ�� ""�̴�
+                 * 무음일경우 ""이다
                  */
-
                 if (TextUtils.isEmpty(stringValue)) {
                     // Empty values correspond to 'silent' (no ringtone).
-                    preference.setSummary("�������� ������");
+                    preference.setSummary("무음으로 설정됨");
 
                 } else {
                     Ringtone ringtone = RingtoneManager.getRingtone(
